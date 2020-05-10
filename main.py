@@ -603,7 +603,7 @@ class ClassStatistics:
                             else:
                                 self.class111_dict[(111.8, cur_tag)] += 1
 
-                        if re.search('\.$', cur_word) and cur_word is not ".":  # might be FW tag, but not only
+                        if re.search('\.$', cur_word) and cur_word != ".":  # might be FW tag, but not only
                             if (111.9, cur_tag) not in self.class111_dict:
                                 self.class111_dict[(111.9, cur_tag)] = 1
                             else:
@@ -1491,7 +1491,7 @@ def f_xi_yi(features_indices: Feature2Id, words, tags, i):
             if (111.8, tags[i]) in features_indices.class111_feature_index_dict:
                 active_features_indices.append(features_indices.all_feature_index_dict[(111.8, tags[i])])
 
-        if re.search('\.$', words[i]) and words[i] is not ".":  # might be FW tag, but maybe more
+        if re.search('\.$', words[i]) and words[i] != ".":  # might be FW tag, but maybe more
             if (111.9, tags[i]) in features_indices.class111_feature_index_dict:
                 active_features_indices.append(features_indices.all_feature_index_dict[(111.9, tags[i])])
 
@@ -1806,12 +1806,13 @@ def main():
         train_file_path = train_path
         test_file_path = test_path
         factr = 1e11
-        lambd = 0.2
+        lambd = 0.02
         beam = 50
         run_optimization = True
-        thresholds = 'v13 with 106 , lambda = 0.002'
         result_file_path = f'{test_file_path}_tagged_{time.time()}'
-        info = ""
+        info = "WITHOUT: 110, 1030, 1067\n" \
+               "THRESHOLD: 102, 103, 106, 107 np.mean()\n" \
+               "length prefix and suffix = 7.\n"
 
         c = ClassStatistics(train_file_path)
         c.set_class100_dict()
@@ -1821,11 +1822,11 @@ def main():
         c.set_class104_dict()
         c.set_class105_dict()
         c.set_class106_dict()
-        # c.set_class107_dict()
+        c.set_class107_dict()
         c.set_class108_dict()
         c.set_class109_dict()
+        # c.set_class110_dict()
         c.set_class111_dict()
-        c.set_class110_dict()
         # c.set_class1067_dict()
         # c.set_class1030_dict()                        
 
@@ -1864,6 +1865,8 @@ def main():
         # print(f'f109 features  = {c.class109_dict}')
         sorted_to_print = {k: v for k, v in sorted(c.class111_dict.items(), key=lambda item: item[1], reverse=True)}
         print(f'f111 features  = {sorted_to_print}')
+
+
         f.build_all_classes_feature_index_dict()
 
         # TODO choose pgtol, factr, lamb
@@ -1880,7 +1883,6 @@ def main():
             f"test_file= {test_file_path},\n"
             f"x0 length= {len(x0)}\n"
             f"beam= {beam}\n"
-            f"threshold= {thresholds}\n"
             f"info= {info}\n"
             f"v_star_file_name = {v_star_file_name}\n"
         )
@@ -1921,7 +1923,7 @@ if __name__ == "__main__":
     # PROFFILE = 'prof.profile'
     # cProfile.run('main()', PROFFILE)
     # import pstats
-
+    # #
     # p = pstats.Stats(PROFFILE)
     # p.sort_stats('tottime').print_stats(150)
 
