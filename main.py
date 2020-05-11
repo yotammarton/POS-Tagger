@@ -12,36 +12,9 @@ import time
 import cProfile
 
 
-def re_match_words(regular_exp: str, lst):
-    if not [w for w in lst if w != '']:
-        return False
-    for word in lst:
-        if word != '' and not re.match(regular_exp, word):
-            return False
-    return True
-
-
-def re_match_letters_numbers(regular_exps: list, lst):
-    for i, word in enumerate(lst):
-        if i % 2 == 0:
-            if word != '' and not re.match(regular_exps[i % 2], word):
-                return False
-        else:
-            if word != '' and not re_match_words(regular_exps[i % 2], re.split('[,]|[:]|[\\\\]|[/]|[%]', word)):
-                return False
-    return True
-
-
-def re_match_numbers_letters(regular_exps: list, lst):
-    for i, word in enumerate(lst):
-        if i % 2 == 0:
-            if word != '' and not re_match_words(regular_exps[i % 2], re.split('[,]|[:]|[\\\\]|[/]|[%]', word)):
-                return False
-        else:
-            if word != '' and not re.match(regular_exps[i % 2], word):
-                return False
-    return True
-
+# TODO remove unnecessary imports
+# TODO delete print
+# TODO delete time inside functions
 
 class ClassStatistics:
     """
@@ -50,12 +23,10 @@ class ClassStatistics:
 
     def __init__(self, file_path):
         """
-        :param file_path: full path of the file to read
+        :param file_path: full path of the train file to read
         """
         self.file_path = file_path
         self.Y = set()  # all the different tags we saw in training
-        # TODO added vocabulary
-        self.V = set()  # all the different words we saw in training
 
         # Init all features dictionaries
         self.class100_dict = OrderedDict()  # {(100, word, tag): # times seen}
@@ -74,15 +45,7 @@ class ClassStatistics:
 
         # Capital letters
         self.class109_dict = OrderedDict()  # {(109.x, tag): # times seen}
-        self.class111_dict = OrderedDict()  # {(111.x, tag): # times seen}
-
-        # Special
-        self.class110_dict = OrderedDict()  # {(110, tag-1, word, word + 1): # times seen}
-        self.class1067_dict = OrderedDict()  # {(1067, word-1, tag, word+1): # times seen}
-        self.class1030_dict = OrderedDict()  # {(1030, tag-1, word): # times seen}
-
-        self.class1066_dict = OrderedDict()  # {(1066, word-2, tag): # times seen}
-        self.class1077_dict = OrderedDict()  # {(1077, word+2, tag): # times seen}
+        self.class110_dict = OrderedDict()  # {(110.x, tag): # times seen}  # TODO Question for Gal: is it correct to be under #Capital?
 
     def set_class100_dict(self):
         """
@@ -95,7 +58,6 @@ class ClassStatistics:
                     del splited_words[-1]  # remove \n
                 for word_idx in range(len(splited_words)):
                     cur_word, cur_tag = splited_words[word_idx].split('_')
-                    self.V.add(cur_word)
                     self.Y.add(cur_tag)
                     if (100, cur_word, cur_tag) not in self.class100_dict:
                         self.class100_dict[(100, cur_word, cur_tag)] = 1
@@ -232,7 +194,7 @@ class ClassStatistics:
                         self.class107_dict[(107, next_word, cur_tag)] += 1
 
     def set_class108_dict(self):
-        """ TODO update documentation
+        """
             Create counts dict for class 108 features - Numbers
             define number = [numbers][\/]?[numbers]
             1. if word is only number or [-.:,\/%] chars
@@ -242,28 +204,11 @@ class ClassStatistics:
                 by division based on first char
             4. elif word is [number][-.][letters]([-.]*[number]+)+
             5. elif word is [number][-.][letters]
-            6. if word is year pattern
+            6. if word is year pattern  --> e.g. 1980s , mid-1980, ‘80s
             7. any other pattern with digits
                 by division to the final three chars is letters or not
                 and amount of '-' chars
-
-            OLD:
-            # If word (starts with at least one number) and (might have chars in set: { -  , . : })
-                and (might continue with only numbers) --> e.g. 10:30, 1,000, 100, 35.62
-                {(108.1, tag) : # times seen}
-            # If word (starts with numbers) and (has \/ in the middle) and (ends with numbers)
-                --> e.g. 1\/2 (meaning 0.5 in fraction)
-                {(108.2, tag) : # times seen}
-            # If word (starts with a number) and (might have \/[0-9] to show it a fraction) and
-                (has char “-” after digit) and (continues with letters only) --> e.g. 5-years-old, 1\/2-full-tank, 6-months
-                {(108.3, tag) : # times seen}
-            # If word is from a year pattern --> e.g. 1980s , mid-1980, ‘80s
-                {(108.4, tag) : # times seen}
-            # If word has at least one number in it and is not in any class above
-                {(108.5, tag) : # times seen}
         """
-        # TODO delete lst
-        lst = list()
         with open(self.file_path) as f:
             for line in f:
                 splited_words = re.split(' |[\n]', line)
@@ -277,7 +222,6 @@ class ClassStatistics:
                         splited_cur_word = re.split('-', cur_word)
                         no_category = True
                         if re_match_words('^[0-9]+$', re.split('[-]|[,]|[.]|[:]|[\\\\]|[/]|[%]', cur_word)):
-                            lst.append((108.1, cur_word, cur_tag))
                             if (108.1, cur_tag) not in self.class108_dict:
                                 self.class108_dict[(108.1, cur_tag)] = 1
                             else:
@@ -288,13 +232,11 @@ class ClassStatistics:
                                                                            splited_cur_word) \
                                 and not cur_word.startswith('mid'):
                             if re.match('^[A-Za-z]+$', splited_cur_word[-1]):
-                                lst.append((108.21, cur_word, cur_tag))
                                 if (108.21, cur_tag) not in self.class108_dict:
                                     self.class108_dict[(108.21, cur_tag)] = 1
                                 else:
                                     self.class108_dict[(108.21, cur_tag)] += 1
                             else:
-                                lst.append((108.22, cur_word, cur_tag))
                                 if (108.22, cur_tag) not in self.class108_dict:
                                     self.class108_dict[(108.22, cur_tag)] = 1
                                 else:
@@ -305,12 +247,10 @@ class ClassStatistics:
                                                                             splited_cur_word):
                             if re.match('^[a-z]$', cur_word[0]):
                                 if (108.31, cur_tag) not in self.class108_dict:
-                                    lst.append((108.31, cur_word, cur_tag))
                                     self.class108_dict[(108.31, cur_tag)] = 1
                                 else:
                                     self.class108_dict[(108.31, cur_tag)] += 1
                             else:
-                                lst.append((108.32, cur_word, cur_tag))
                                 if (108.32, cur_tag) not in self.class108_dict:
                                     self.class108_dict[(108.32, cur_tag)] = 1
                                 else:
@@ -319,7 +259,6 @@ class ClassStatistics:
 
                         elif hyphen_count > 1 and re_match_numbers_letters(['^[0-9]+$', '^[A-Za-z]+$'],
                                                                            splited_cur_word):
-                            lst.append((108.4, cur_word, cur_tag))
                             if (108.4, cur_tag) not in self.class108_dict:
                                 self.class108_dict[(108.4, cur_tag)] = 1
                             else:
@@ -328,7 +267,6 @@ class ClassStatistics:
 
                         elif hyphen_count == 1 and re_match_numbers_letters(['^[0-9]+$', '^[A-Za-z]+$'],
                                                                             splited_cur_word):
-                            lst.append((108.5, cur_word, cur_tag))
                             if (108.5, cur_tag) not in self.class108_dict:
                                 self.class108_dict[(108.5, cur_tag)] = 1
                             else:
@@ -336,7 +274,6 @@ class ClassStatistics:
                             no_category = False
 
                         if re.match('^([a-zA-Z]*(-)?[0-9][0-9][0-9][0-9](s?))$|^(\'[0-9][0-9]s)$', cur_word):
-                            lst.append((108.6, cur_word, cur_tag))
                             if (108.6, cur_tag) not in self.class108_dict:
                                 self.class108_dict[(108.6, cur_tag)] = 1
                             else:
@@ -345,24 +282,19 @@ class ClassStatistics:
 
                         if no_category:
                             if re.match('^[A-Za-z]+$', splited_cur_word[-1]):
-                                lst.append((108.7, hyphen_count, cur_word, cur_tag))
                                 if (108.7, hyphen_count, cur_tag) not in self.class108_dict:
                                     self.class108_dict[(108.7, hyphen_count, cur_tag)] = 1
                                 else:
                                     self.class108_dict[(108.7, hyphen_count, cur_tag)] += 1
                             else:
-                                lst.append((108.8, hyphen_count, cur_word, cur_tag))
                                 if (108.8, hyphen_count, cur_tag) not in self.class108_dict:
                                     self.class108_dict[(108.8, hyphen_count, cur_tag)] = 1
                                 else:
                                     self.class108_dict[(108.8, hyphen_count, cur_tag)] += 1
 
-        lst.sort(key=lambda tup: tup[0])
-        print(lst)
-
     def set_class109_dict(self):
-        """ TODO update documentation
-        Yotam's capital
+        """
+        We divide to different sub-classes the treatment for capital letters
             1. if word is not the first, starts with capital and has [- .]+ and both next and previous words starts with capital
             2. elif word is not the first, starts with capital and has [- .]+ and prev starts with capital
             3. elif word is not the first, starts with capital and has [- .]+
@@ -439,12 +371,6 @@ class ClassStatistics:
                             else:
                                 self.class109_dict[(109.7, prev_tag, cur_tag)] += 1
 
-
-
-
-
-
-
                     elif word_idx == 0 or (word_idx > 0 and prev_word in ['``', '.']):
                         if re.match('^[A-Z]', cur_word) and re.match('^[A-Z]', next_word) \
                                 and re.match('^[A-Z]', prev_word):
@@ -467,7 +393,6 @@ class ClassStatistics:
                         else:
                             self.class109_dict[(109.11, prev_tag, cur_tag)] += 1
 
-
                     elif re.match('^[A-Z][A-Z]+$', cur_word):
 
                         if (109.12, prev_tag, cur_tag) not in self.class109_dict:
@@ -488,7 +413,7 @@ class ClassStatistics:
                         else:
                             self.class109_dict[(109.14, prev_tag, cur_tag)] += 1
 
-    def set_class111_dict(self):
+    def set_class110_dict(self):
         """ TODO update documentation
         originally small model
         """
@@ -500,26 +425,26 @@ class ClassStatistics:
                 for word_idx in range(len(splited_words)):
                     cur_tag = splited_words[word_idx].split('_')[1]
                     cur_word = splited_words[word_idx].split('_')[0]
-                    # 111.1 + 111.2
+                    # 110.1 + 110.2
                     if len(cur_word) >= 13:
                         if re.search('ing$', cur_word):
-                            if (111.11, cur_tag) not in self.class111_dict:
-                                self.class111_dict[(111.11, cur_tag)] = 1
+                            if (110.11, cur_tag) not in self.class110_dict:
+                                self.class110_dict[(110.11, cur_tag)] = 1
                             else:
-                                self.class111_dict[(111.11, cur_tag)] += 1
+                                self.class110_dict[(110.11, cur_tag)] += 1
 
                         elif re.search('ed$', cur_word):
-                            if (111.14, cur_tag) not in self.class111_dict:
-                                self.class111_dict[(111.14, cur_tag)] = 1
+                            if (110.14, cur_tag) not in self.class110_dict:
+                                self.class110_dict[(110.14, cur_tag)] = 1
                             else:
-                                self.class111_dict[(111.14, cur_tag)] += 1
+                                self.class110_dict[(110.14, cur_tag)] += 1
 
                         elif re.search('ally$', cur_word) or re.search('ely$', cur_word) or \
                                 re.search('tly$', cur_word):
-                            if (111.12, cur_tag) not in self.class111_dict:  # RB tag
-                                self.class111_dict[(111.12, cur_tag)] = 1
+                            if (110.12, cur_tag) not in self.class110_dict:  # RB tag
+                                self.class110_dict[(110.12, cur_tag)] = 1
                             else:
-                                self.class111_dict[(111.12, cur_tag)] += 1
+                                self.class110_dict[(110.12, cur_tag)] += 1
 
                         elif re.search('tant$', cur_word) or \
                                 re.search('cal$', cur_word) or \
@@ -530,30 +455,30 @@ class ClassStatistics:
                                 re.search('-sensitive$', cur_word) or \
                                 re.search('-specific$', cur_word) or \
                                 re.search('tly$', cur_word):  # JJ tag
-                            if (111.13, cur_tag) not in self.class111_dict:
-                                self.class111_dict[(111.13, cur_tag)] = 1
+                            if (110.13, cur_tag) not in self.class110_dict:
+                                self.class110_dict[(110.13, cur_tag)] = 1
                             else:
-                                self.class111_dict[(111.13, cur_tag)] += 1
+                                self.class110_dict[(110.13, cur_tag)] += 1
                         else:  # NN + NNS tags
                             if cur_word[-1] == 's':
-                                if (111.2, cur_tag) not in self.class111_dict:
-                                    self.class111_dict[(111.2, cur_tag)] = 1
+                                if (110.2, cur_tag) not in self.class110_dict:
+                                    self.class110_dict[(110.2, cur_tag)] = 1
                                 else:
-                                    self.class111_dict[(111.2, cur_tag)] += 1
+                                    self.class110_dict[(110.2, cur_tag)] += 1
 
-                            if (111.1, cur_tag) not in self.class111_dict:
-                                self.class111_dict[(111.1, cur_tag)] = 1
+                            if (110.1, cur_tag) not in self.class110_dict:
+                                self.class110_dict[(110.1, cur_tag)] = 1
                             else:
-                                self.class111_dict[(111.1, cur_tag)] += 1
+                                self.class110_dict[(110.1, cur_tag)] += 1
 
                     if re.match('^[0-9\-,.:]*[][0-9]+[0-9\-,.:]*$', cur_word) or (cur_word in ["II", "III", "IV"] or
                                                                                   re.match(
                                                                                       '^[0-9\-.]+[L][R][B][0-9\-.]+[R][R][B][0-9\-.]+$',
                                                                                       cur_word)):  # CD tag
-                        if (111.3, cur_tag) not in self.class111_dict:
-                            self.class111_dict[(111.3, cur_tag)] = 1
+                        if (110.3, cur_tag) not in self.class110_dict:
+                            self.class110_dict[(110.3, cur_tag)] = 1
                         else:
-                            self.class111_dict[(111.3, cur_tag)] += 1
+                            self.class110_dict[(110.3, cur_tag)] += 1
 
                     elif ((re.search('[\-]', cur_word) and
                            (re.search('ing$', cur_word.split('-')[-1]) or
@@ -567,18 +492,18 @@ class ClassStatistics:
                             re.search('^anti', cur_word.split('-')[0]) or
                             re.search('er$', cur_word.split('-')[0]))) or
                           re.search('kDa$', cur_word)) or cur_word in ["CR", "CS"]:  # JJ tag
-                        if (111.4, cur_tag) not in self.class111_dict:
-                            self.class111_dict[(111.4, cur_tag)] = 1
+                        if (110.4, cur_tag) not in self.class110_dict:
+                            self.class110_dict[(110.4, cur_tag)] = 1
                         else:
-                            self.class111_dict[(111.4, cur_tag)] += 1
+                            self.class110_dict[(110.4, cur_tag)] += 1
 
                     else:
                         if re.match('^[a-z]*[A-Z\-0-9.,]+[s]$', cur_word) or cur_word == "GCS":  # NNS tag
-                            print("-----111.5---" + str(cur_word) + " , " + str(cur_tag))
-                            if (111.5, cur_tag) not in self.class111_dict:
-                                self.class111_dict[(111.5, cur_tag)] = 1
+                            print("-----110.5---" + str(cur_word) + " , " + str(cur_tag))
+                            if (110.5, cur_tag) not in self.class110_dict:
+                                self.class110_dict[(110.5, cur_tag)] = 1
                             else:
-                                self.class111_dict[(111.5, cur_tag)] += 1
+                                self.class110_dict[(110.5, cur_tag)] += 1
 
                         if (re.match('^[A-Z\-0-9.,]+$', cur_word) and cur_word not in ["I", "A", ",", ".", ":"]) or \
                                 re.search('[a-z\-][A-Z]', cur_word) or \
@@ -586,139 +511,49 @@ class ClassStatistics:
                                 re.match('^[a-z\-]+[0-9]+$', cur_word) or \
                                 re.search('coid$', cur_word) or \
                                 re.search('ness$', cur_word):  # NN tag
-                            if (111.6, cur_tag) not in self.class111_dict:
-                                self.class111_dict[(111.6, cur_tag)] = 1
+                            if (110.6, cur_tag) not in self.class110_dict:
+                                self.class110_dict[(110.6, cur_tag)] = 1
                             else:
-                                self.class111_dict[(111.6, cur_tag)] += 1
+                                self.class110_dict[(110.6, cur_tag)] += 1
 
                         if re.match('^[0-9\-.,]+[\-][a-zA-Z]+$', cur_word):  # might be JJ tag
-                            if (111.7, cur_tag) not in self.class111_dict:
-                                self.class111_dict[(111.7, cur_tag)] = 1
+                            if (110.7, cur_tag) not in self.class110_dict:
+                                self.class110_dict[(110.7, cur_tag)] = 1
                             else:
-                                self.class111_dict[(111.7, cur_tag)] += 1
+                                self.class110_dict[(110.7, cur_tag)] += 1
 
                         if re.match('^[A-Z]?[a-z]+[\-][0-9\-.,]+$', cur_word):  # might be NN tag
-                            if (111.8, cur_tag) not in self.class111_dict:
-                                self.class111_dict[(111.8, cur_tag)] = 1
+                            if (110.8, cur_tag) not in self.class110_dict:
+                                self.class110_dict[(110.8, cur_tag)] = 1
                             else:
-                                self.class111_dict[(111.8, cur_tag)] += 1
+                                self.class110_dict[(110.8, cur_tag)] += 1
 
                         if re.search('\.$', cur_word) and cur_word != ".":  # might be FW tag, but not only
-                            if (111.9, cur_tag) not in self.class111_dict:
-                                self.class111_dict[(111.9, cur_tag)] = 1
+                            if (110.9, cur_tag) not in self.class110_dict:
+                                self.class110_dict[(110.9, cur_tag)] = 1
                             else:
-                                self.class111_dict[(111.9, cur_tag)] += 1
+                                self.class110_dict[(110.9, cur_tag)] += 1
 
                         if cur_word in ['Treponema', 'cerevisiae', 'pallidum', 'Borrelia', 'burgdorferi',
                                         'vitro', 'vivo', 'i.e.', 'e.g.']:  # FW tag
-                            if (111.92, cur_tag) not in self.class111_dict:
-                                self.class111_dict[(111.92, cur_tag)] = 1
+                            if (110.92, cur_tag) not in self.class110_dict:
+                                self.class110_dict[(110.92, cur_tag)] = 1
                             else:
-                                self.class111_dict[(111.92, cur_tag)] += 1
+                                self.class110_dict[(110.92, cur_tag)] += 1
                         if cur_word in ['in', 'In'] and word_idx != len(splited_words) - 1:  # FW tag
                             next_word = splited_words[word_idx + 1].split('_')[0]
                             if next_word in ['vitro', 'vivo']:
-                                if (111.92, cur_tag) not in self.class111_dict:
-                                    self.class111_dict[(111.92, cur_tag)] = 1
+                                if (110.92, cur_tag) not in self.class110_dict:
+                                    self.class110_dict[(110.92, cur_tag)] = 1
                                 else:
-                                    self.class111_dict[(111.92, cur_tag)] += 1
+                                    self.class110_dict[(110.92, cur_tag)] += 1
 
                         if cur_word in ['i', 'ii', 'iii', 'iv']:  # LS tag
-                            if (111.93, cur_tag) not in self.class111_dict:
-                                self.class111_dict[(111.93, cur_tag)] = 1
+                            if (110.93, cur_tag) not in self.class110_dict:
+                                self.class110_dict[(110.93, cur_tag)] = 1
                             else:
-                                self.class111_dict[(111.93, cur_tag)] += 1
+                                self.class110_dict[(110.93, cur_tag)] += 1
 
-    def set_class110_dict(self):
-        """
-            Create counts dict for class 110 features
-        """
-        with open(self.file_path) as f:
-            for line in f:
-                splited_words = re.split(' |[\n]', line)
-                if splited_words[-1] == "":
-                    del splited_words[-1]  # remove \n
-                for word_idx in range(len(splited_words)):
-                    prev_tag = splited_words[word_idx - 1].split('_')[1] if word_idx > 0 else ''
-                    cur_word = splited_words[word_idx].split('_')[0]
-                    next_word = splited_words[word_idx + 1].split('_')[0] if word_idx + 1 < len(
-                        splited_words) - 1 else 'STOP'
-                    if (110, prev_tag, cur_word, next_word) not in self.class110_dict:
-                        self.class110_dict[(110, prev_tag, cur_word, next_word)] = 1
-                    else:
-                        self.class110_dict[(110, prev_tag, cur_word, next_word)] += 1
-
-    def set_class1067_dict(self):
-        """
-            Create counts dict for class 1067 features
-        """
-        with open(self.file_path) as f:
-            for line in f:
-                splited_words = re.split(' |[\n]', line)
-                if splited_words[-1] == "":
-                    del splited_words[-1]  # remove \n
-                for word_idx in range(len(splited_words)):
-                    cur_tag = splited_words[word_idx].split('_')[1]
-                    prev_word = splited_words[word_idx - 1].split('_')[0] if word_idx > 0 else '*'
-                    next_word = splited_words[word_idx + 1].split('_')[0] if word_idx + 1 < len(
-                        splited_words) - 1 else 'STOP'
-                    if (1067, prev_word, cur_tag, next_word) not in self.class1067_dict:
-                        self.class1067_dict[(1067, prev_word, cur_tag, next_word)] = 1
-                    else:
-                        self.class1067_dict[(1067, prev_word, cur_tag, next_word)] += 1
-
-    def set_class1030_dict(self):
-        """
-            Create counts dict for class 1030 features
-        """
-        with open(self.file_path) as f:
-            for line in f:
-                splited_words = re.split(' |[\n]', line)
-                if splited_words[-1] == "":
-                    del splited_words[-1]  # remove \n
-                for word_idx in range(len(splited_words)):
-                    cur_word = splited_words[word_idx].split('_')[0]
-                    prev_tag = splited_words[word_idx - 1].split('_')[1] if word_idx > 0 else ''
-
-                    if (1030, prev_tag, cur_word) not in self.class1030_dict:
-                        self.class1030_dict[(1030, prev_tag, cur_word)] = 1
-                    else:
-                        self.class1030_dict[(1030, prev_tag, cur_word)] += 1
-
-    def set_class1066_dict(self):
-        """
-            Create counts dict for class 1066 features
-        """
-        with open(self.file_path) as f:
-            for line in f:
-                splited_words = re.split(' |[\n]', line)
-                if splited_words[-1] == "":
-                    del splited_words[-1]  # remove \n
-                for word_idx in range(len(splited_words)):
-                    cur_tag = splited_words[word_idx].split('_')[1]
-                    prev_prev_word = splited_words[word_idx - 2].split('_')[0] if word_idx > 1 else '*'
-                    if (1066, prev_prev_word, cur_tag) not in self.class1066_dict:
-                        self.class1066_dict[(1066, prev_prev_word, cur_tag)] = 1
-                    else:
-                        self.class1066_dict[(1066, prev_prev_word, cur_tag)] += 1
-
-    def set_class1077_dict(self):
-        """
-            Create counts dict for class 1077 features
-        """
-        with open(self.file_path) as f:
-            for line in f:
-                splited_words = re.split(' |[\n]', line)
-                if splited_words[-1] == "":
-                    del splited_words[-1]  # remove \n
-                for word_idx in range(len(splited_words)):
-                    cur_tag = splited_words[word_idx].split('_')[1]
-                    next_next_word = splited_words[word_idx + 2].split('_')[0] if \
-                        word_idx + 2 < len(splited_words) else 'STOP'
-                    if (1077, next_next_word, cur_tag) not in self.class1077_dict:
-                        self.class1077_dict[(1077, next_next_word, cur_tag)] = 1
-                    else:
-                        self.class1077_dict[(1077, next_next_word, cur_tag)] += 1
 
 class Feature2Id:
     """
@@ -761,27 +596,12 @@ class Feature2Id:
         self.class109_feature_index_dict = OrderedDict()
         self.n_class109 = 0
 
-        self.class111_feature_index_dict = OrderedDict()
-        self.n_class111 = 0
+        self.class110_feature_index_dict = OrderedDict()
+        self.n_class110 = 0
 
         # TODO delete if no thresholds
         self.suffix_count_dict = OrderedDict()
         self.prefix_count_dict = OrderedDict()
-
-        self.class110_feature_index_dict = OrderedDict()
-        self.n_class110 = 0
-
-        self.class1067_feature_index_dict = OrderedDict()
-        self.n_class1067 = 0
-
-        self.class1030_feature_index_dict = OrderedDict()
-        self.n_class1030 = 0
-
-        self.class1066_feature_index_dict = OrderedDict()
-        self.n_class1066 = 0
-
-        self.class1077_feature_index_dict = OrderedDict()
-        self.n_class1077 = 0
 
     def set_index_class100(self, threshold=0):
         """
@@ -817,13 +637,6 @@ class Feature2Id:
                 self.n_class102 += 1
         self.n_total_features += self.n_class102
 
-        # ORIGINAL
-        # for key, value in self.feature_statistics.class102_dict.items():
-        #     if value >= threshold:
-        #         self.class102_feature_index_dict[key] = self.n_class102 + self.n_total_features
-        #         self.n_class102 += 1
-        # self.n_total_features += self.n_class102
-
     def set_index_class103(self, threshold=0):
         keys = [key for key in self.feature_statistics.class103_dict]
         values = [self.feature_statistics.class103_dict[key] for key in keys]
@@ -834,13 +647,6 @@ class Feature2Id:
                 self.class103_feature_index_dict[key] = self.n_class103 + self.n_total_features
                 self.n_class103 += 1
         self.n_total_features += self.n_class103
-
-        # ORIGINAL
-        # for key, value in self.feature_statistics.class103_dict.items():
-        #     if value >= threshold:
-        #         self.class103_feature_index_dict[key] = self.n_class103 + self.n_total_features
-        #         self.n_class103 += 1
-        # self.n_total_features += self.n_class103
 
     def set_index_class104(self, threshold=0):
         for key, value in self.feature_statistics.class104_dict.items():
@@ -893,62 +699,11 @@ class Feature2Id:
         self.n_total_features += self.n_class109
 
     def set_index_class110(self, threshold=0):
-        # keys = [key for key in self.feature_statistics.class110_dict]
-        # values = [self.feature_statistics.class110_dict[key] for key in keys]
-        # threshold = np.mean(values)
-
         for key, value in self.feature_statistics.class110_dict.items():
             if value >= threshold:
                 self.class110_feature_index_dict[key] = self.n_class110 + self.n_total_features
                 self.n_class110 += 1
         self.n_total_features += self.n_class110
-
-    def set_index_class1067(self, threshold=0):
-        for key, value in self.feature_statistics.class1067_dict.items():
-            if value >= threshold:
-                self.class1067_feature_index_dict[key] = self.n_class1067 + self.n_total_features
-                self.n_class1067 += 1
-        self.n_total_features += self.n_class1067
-
-    def set_index_class1030(self, threshold=0):
-        # keys = [key for key in self.feature_statistics.class1030_dict]
-        # values = [self.feature_statistics.class1030_dict[key] for key in keys]
-        # threshold = np.mean(values)
-
-        for key, value in self.feature_statistics.class1030_dict.items():
-            if value >= threshold:
-                self.class1030_feature_index_dict[key] = self.n_class1030 + self.n_total_features
-                self.n_class1030 += 1
-        self.n_total_features += self.n_class1030
-
-    def set_index_class111(self, threshold=0):
-        for key, value in self.feature_statistics.class111_dict.items():
-            if value >= threshold:
-                self.class111_feature_index_dict[key] = self.n_class111 + self.n_total_features
-                self.n_class111 += 1
-        self.n_total_features += self.n_class111
-
-    def set_index_class1066(self, threshold=0):
-        keys = [key for key in self.feature_statistics.class1066_dict]
-        values = [self.feature_statistics.class1066_dict[key] for key in keys]
-        threshold = np.mean(values)
-
-        for key, value in self.feature_statistics.class1066_dict.items():
-            if value >= threshold:
-                self.class1066_feature_index_dict[key] = self.n_class1066 + self.n_total_features
-                self.n_class1066 += 1
-        self.n_total_features += self.n_class1066
-
-    def set_index_class1077(self, threshold=0):
-        keys = [key for key in self.feature_statistics.class1077_dict]
-        values = [self.feature_statistics.class1077_dict[key] for key in keys]
-        threshold = np.mean(values)
-
-        for key, value in self.feature_statistics.class1077_dict.items():
-            if value >= threshold:
-                self.class1077_feature_index_dict[key] = self.n_class1077 + self.n_total_features
-                self.n_class1077 += 1
-        self.n_total_features += self.n_class1077
 
     def build_all_classes_feature_index_dict(self):
         self.all_feature_index_dict.update(self.class100_feature_index_dict)
@@ -961,14 +716,9 @@ class Feature2Id:
         self.all_feature_index_dict.update(self.class107_feature_index_dict)
         self.all_feature_index_dict.update(self.class108_feature_index_dict)
         self.all_feature_index_dict.update(self.class109_feature_index_dict)
-        self.all_feature_index_dict.update(self.class111_feature_index_dict)
         self.all_feature_index_dict.update(self.class110_feature_index_dict)
-        self.all_feature_index_dict.update(self.class1067_feature_index_dict)
-        self.all_feature_index_dict.update(self.class1030_feature_index_dict)
-        self.all_feature_index_dict.update(self.class1066_feature_index_dict)
-        self.all_feature_index_dict.update(self.class1077_feature_index_dict)
 
-    # TODO
+    # TODO DELETE
     def plots_for_threshold(self):
 
         # f101
@@ -1007,7 +757,7 @@ class Feature2Id:
         #     plt.xticks(x, tags)
         #     plt.show()
 
-    # TODO
+    # TODO DELETE
     def prefix_tags_distribution_condition(self, my_key):
         prefix = my_key[1]
 
@@ -1024,7 +774,7 @@ class Feature2Id:
         else:
             return False
 
-    # TODO
+    # TODO DELETE
     def suffix_tags_distribution_condition(self, my_key):
         suffix = my_key[1]
 
@@ -1158,6 +908,38 @@ class ConfusionMatrix:
             html.write('<font size="10" face="Courier New" >' + style.render() + '</font>')
 
 
+# Auxiliary functions for class f108
+def re_match_words(regular_exp: str, lst):
+    if not [w for w in lst if w != '']:
+        return False
+    for word in lst:
+        if word != '' and not re.match(regular_exp, word):
+            return False
+    return True
+
+
+def re_match_letters_numbers(regular_exps: list, lst):
+    for i, word in enumerate(lst):
+        if i % 2 == 0:
+            if word != '' and not re.match(regular_exps[i % 2], word):
+                return False
+        else:
+            if word != '' and not re_match_words(regular_exps[i % 2], re.split('[,]|[:]|[\\\\]|[/]|[%]', word)):
+                return False
+    return True
+
+
+def re_match_numbers_letters(regular_exps: list, lst):
+    for i, word in enumerate(lst):
+        if i % 2 == 0:
+            if word != '' and not re_match_words(regular_exps[i % 2], re.split('[,]|[:]|[\\\\]|[/]|[%]', word)):
+                return False
+        else:
+            if word != '' and not re.match(regular_exps[i % 2], word):
+                return False
+    return True
+
+
 """START OF SECTION FOR OBJECTIVE AND GRADIENT CALC"""
 
 
@@ -1170,7 +952,7 @@ def my_sum(obj):
     return sum(obj)
 
 
-# global variables
+# global variables for objective function optimization
 first_iteration = 1
 active_indices_sentences_i = 0
 flattened_f_xi_yi = 0
@@ -1276,8 +1058,6 @@ def f_xi_yi(features_indices: Feature2Id, words, tags, i):
     cur_word = words[i]
     prev_word = words[i - 1] if i > 0 else '*'
     next_word = words[i + 1] if i < len(words) - 1 else 'STOP'
-    prev_prev_word = words[i - 2] if i - 1 > 0 else '*'
-    next_next_word = words[i + 2] if i < len(words) - 2 else 'STOP'
     cur_tag = tags[i]
     prev_tag = tags[i - 1] if i > 0 else ''
     prev_prev_tag = tags[i - 2] if i - 1 > 0 else ''
@@ -1411,8 +1191,6 @@ def f_xi_yi(features_indices: Feature2Id, words, tags, i):
             active_features_indices.append(
                 features_indices.all_feature_index_dict[(109.3, prev_tag, cur_tag)])
 
-
-
     elif i > 0 and re.match('^[A-Z]', cur_word) and re.match('^[A-Z]', next_word) \
             and re.match('^[A-Z]', prev_word):
         if (109.4, prev_tag, cur_tag) in features_indices.class109_feature_index_dict:
@@ -1472,32 +1250,17 @@ def f_xi_yi(features_indices: Feature2Id, words, tags, i):
                 features_indices.all_feature_index_dict[(109.14, prev_tag, cur_tag)])
 
     # features fired in class 110
-    if (110, prev_tag, cur_word, next_word) in features_indices.class110_feature_index_dict:
-        active_features_indices.append(
-            features_indices.all_feature_index_dict[(110, prev_tag, cur_word, next_word)])
-
-    # features fired in class 1067
-    if (1067, prev_word, cur_tag, next_word) in features_indices.class1067_feature_index_dict:
-        active_features_indices.append(
-            features_indices.all_feature_index_dict[(1067, prev_word, cur_tag, next_word)])
-
-    # features fired in class 1030
-    if (1030, prev_tag, cur_word) in features_indices.class1030_feature_index_dict:
-        active_features_indices.append(
-            features_indices.all_feature_index_dict[(1030, prev_tag, cur_word)])
-
-    # features fired in class 111
     if len(words[i]) >= 13:
         if re.search('ing$', words[i]):
-            if (111.11, tags[i]) in features_indices.class111_feature_index_dict:
-                active_features_indices.append(features_indices.all_feature_index_dict[(111.11, tags[i])])
+            if (110.11, tags[i]) in features_indices.class110_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(110.11, tags[i])])
         elif re.search('ed$', words[i]):
-            if (111.14, tags[i]) in features_indices.class111_feature_index_dict:
-                active_features_indices.append(features_indices.all_feature_index_dict[(111.14, tags[i])])
+            if (110.14, tags[i]) in features_indices.class110_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(110.14, tags[i])])
 
         elif re.search('ally$', words[i]) or re.search('ely$', words[i]) or re.search('tly$', words[i]):  # RB tag
-            if (111.12, tags[i]) in features_indices.class111_feature_index_dict:
-                active_features_indices.append(features_indices.all_feature_index_dict[(111.12, tags[i])])
+            if (110.12, tags[i]) in features_indices.class110_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(110.12, tags[i])])
 
         elif re.search('tant$', words[i]) or \
                 re.search('cal$', words[i]) or \
@@ -1508,20 +1271,20 @@ def f_xi_yi(features_indices: Feature2Id, words, tags, i):
                 re.search('-sensitive$', words[i]) or \
                 re.search('-specific$', words[i]) or \
                 re.search('tly$', words[i]):  # JJ tag
-            if (111.13, tags[i]) in features_indices.class111_feature_index_dict:
-                active_features_indices.append(features_indices.all_feature_index_dict[(111.13, tags[i])])
+            if (110.13, tags[i]) in features_indices.class110_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(110.13, tags[i])])
         else:  # NN + NNS tags
             if words[i][-1] == 's':
-                if (111.2, tags[i]) in features_indices.class111_feature_index_dict:
-                    active_features_indices.append(features_indices.all_feature_index_dict[(111.2, tags[i])])
+                if (110.2, tags[i]) in features_indices.class110_feature_index_dict:
+                    active_features_indices.append(features_indices.all_feature_index_dict[(110.2, tags[i])])
 
-            if (111.1, tags[i]) in features_indices.class111_feature_index_dict:
-                active_features_indices.append(features_indices.all_feature_index_dict[(111.1, tags[i])])
+            if (110.1, tags[i]) in features_indices.class110_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(110.1, tags[i])])
 
     if re.match('^[0-9\-,.:]*[0-9]+[0-9\-,.:]*$', words[i]) or words[i] in ["II", "III", "IV"] or \
             re.match('^[0-9\-.]+[L][R][B][0-9\-.]+[R][R][B][0-9\-.]+$', words[i]):  # CD tag
-        if (111.3, tags[i]) in features_indices.class111_feature_index_dict:
-            active_features_indices.append(features_indices.all_feature_index_dict[(111.3, tags[i])])
+        if (110.3, tags[i]) in features_indices.class110_feature_index_dict:
+            active_features_indices.append(features_indices.all_feature_index_dict[(110.3, tags[i])])
 
     elif ((re.search('[\-]', words[i]) and
            (re.search('ing$', words[i].split('-')[-1]) or
@@ -1535,56 +1298,46 @@ def f_xi_yi(features_indices: Feature2Id, words, tags, i):
             re.search('^anti', words[i].split('-')[0]) or
             re.search('er$', words[i].split('-')[0]))) or
           re.search('kDa$', words[i])) or words[i] in ["CR", "CS"]:  # JJ tag
-        if (111.4, tags[i]) in features_indices.class111_feature_index_dict:
-            active_features_indices.append(features_indices.all_feature_index_dict[(111.4, tags[i])])
+        if (110.4, tags[i]) in features_indices.class110_feature_index_dict:
+            active_features_indices.append(features_indices.all_feature_index_dict[(110.4, tags[i])])
     else:
         if re.match('^[a-z]*[A-Z\-0-9.,]+[s]$', words[i]) or words[i] == "GCS":  # NNS tag
-            if (111.5, tags[i]) in features_indices.class111_feature_index_dict:
-                active_features_indices.append(features_indices.all_feature_index_dict[(111.5, tags[i])])
+            if (110.5, tags[i]) in features_indices.class110_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(110.5, tags[i])])
 
         if (re.match('^[A-Z\-0-9.,]+$', words[i]) and words[i] not in ["I", "A", ",", ".", ":"]) or \
                 re.search('[a-z][A-Z]', words[i]) or \
                 re.match('[A-Za-z][\-][A-Za-z0-9.,\-]+$', words[i]) or \
                 re.search('coid$', words[i]) or re.search('ness$', words[i]):  # NN tag
-            if (111.6, tags[i]) in features_indices.class111_feature_index_dict:
-                active_features_indices.append(features_indices.all_feature_index_dict[(111.6, tags[i])])
+            if (110.6, tags[i]) in features_indices.class110_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(110.6, tags[i])])
 
         if re.match('^[0-9\-.,]+[\-][a-zA-Z]+$', words[i]):  # might be JJ tag
-            if (111.7, tags[i]) in features_indices.class111_feature_index_dict:
-                active_features_indices.append(features_indices.all_feature_index_dict[(111.7, tags[i])])
+            if (110.7, tags[i]) in features_indices.class110_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(110.7, tags[i])])
 
         if re.match('^[A-Z]?[a-z]+[\-][0-9\-.,]+$', words[i]):  # might be NN tag.
-            if (111.8, tags[i]) in features_indices.class111_feature_index_dict:
-                active_features_indices.append(features_indices.all_feature_index_dict[(111.8, tags[i])])
+            if (110.8, tags[i]) in features_indices.class110_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(110.8, tags[i])])
 
         if re.search('\.$', words[i]) and words[i] != ".":  # might be FW tag, but maybe more
-            if (111.9, tags[i]) in features_indices.class111_feature_index_dict:
-                active_features_indices.append(features_indices.all_feature_index_dict[(111.9, tags[i])])
+            if (110.9, tags[i]) in features_indices.class110_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(110.9, tags[i])])
 
         if words[i] in ['Treponema', 'pallidum', 'Borrelia', 'burgdorferi', 'vitro', 'vivo']:  # FW tag
-            if (111.92, tags[i]) in features_indices.class111_feature_index_dict:
-                active_features_indices.append(features_indices.all_feature_index_dict[(111.92, tags[i])])
+            if (110.92, tags[i]) in features_indices.class110_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(110.92, tags[i])])
 
         if words[i] in ['in', 'In'] and i != len(words) - 1:  # FW tag
             next_word = words[i + 1]
             if next_word in ['vitro', 'vivo']:
-                if (111.92, tags[i]) in features_indices.class111_feature_index_dict:
-                    active_features_indices.append(features_indices.all_feature_index_dict[(111.92, tags[i])])
+                if (110.92, tags[i]) in features_indices.class110_feature_index_dict:
+                    active_features_indices.append(features_indices.all_feature_index_dict[(110.92, tags[i])])
 
         if words[i] in ['i', 'ii', 'iii', 'iv']:  # LS tag
-            if (111.93, tags[i]) in features_indices.class111_feature_index_dict:
-                active_features_indices.append(features_indices.all_feature_index_dict[(111.93, tags[i])])
+            if (110.93, tags[i]) in features_indices.class110_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(110.93, tags[i])])
 
-    # features fired in class 1066
-    if (1066, prev_prev_word, cur_tag) in features_indices.class1066_feature_index_dict:
-        active_features_indices.append(
-            features_indices.all_feature_index_dict[(1066, prev_prev_word, cur_tag)])
-
-    # features fired in class 1077
-
-    if (1077, next_next_word, cur_tag) in features_indices.class1077_feature_index_dict:
-        active_features_indices.append(
-            features_indices.all_feature_index_dict[(1077, next_next_word, cur_tag)])
     return active_features_indices
 
 
@@ -1613,7 +1366,6 @@ def q_params_aux(words, t, u, v, weights, features_indices):
 
 
 def q_params_calc(k, t, u, weights, features_indices: Feature2Id, words: list, class_statistics: ClassStatistics):
-    # start = time.time()
     Y = list(class_statistics.Y)
 
     # set words list according to current k
@@ -1638,8 +1390,6 @@ def q_params_calc(k, t, u, weights, features_indices: Feature2Id, words: list, c
     for i in range(len(softmax)):
         q_params[Y[i]] = softmax[i]
 
-    # stop = time.time()
-    # print(f'function q_params new took {stop - start} secs for sentence\n{words}')
     return q_params
 
 
@@ -1656,7 +1406,7 @@ def beam_search(B, candidates_dict):
         chosen_B_keys.add(key)
         if len(chosen_B_keys) == B:
             return list(chosen_B_keys)
-    # print(len(chosen_B_keys))
+
     return list(chosen_B_keys)
 
 
@@ -1730,7 +1480,7 @@ def memm_viterbi(weights, features_indices: Feature2Id, words: list, class_stati
     for k in range(len(words) - 3, -1, -1):
         tags_infer[k] = bp[(k + 2, tags_infer[k + 1], tags_infer[k + 2])]
 
-    # Determinitic tagging  # TODO Determinitic tagging. maybe can do it smarter and change the Y that v is running on
+    # Deterministic tagging  # TODO Determinitic tagging. maybe can do it smarter and change the Y that v is running on
     for i in range(len(words)):
         if words[i] in [";", "--"]:
             tags_infer[i] = ":"
@@ -1768,7 +1518,7 @@ def generate_inference_file(path_file_to_tag: str, path_result: str, weights, fe
                 line_to_write = ' '.join(['_'.join(word_tag) for word_tag in list(zip(words, tags))]) + last_char
                 write_file.write(line_to_write)
                 stop = time.time()
-                # print(f'tagging of sentence: {line}\n       took {stop - start} secs')
+                # print(f'tagging of sentence: {line}\n       took {stop - start} secs') # TODO Delete
 
 
 def compare_tagged_files(path_true: str, path_predicted: str, class_statistics: ClassStatistics) -> (dict, float):
@@ -1812,7 +1562,7 @@ def compare_tagged_files(path_true: str, path_predicted: str, class_statistics: 
             else:  # for the case where we have some tag in the test that we didn't see during train
                 dict_for_confusion_matrix[(true.split('_')[1], predicted.split('_')[1])] = 1
 
-        #  TODO Original code
+        #  TODO Replace back to original code:
         # tags_true = [w.split('_')[1] for w in splited_true]
         # tags_predicted = [w.split('_')[1] for w in splited_predicted]
         # for true, predicted in zip(tags_true, tags_predicted):
@@ -1831,7 +1581,7 @@ def compare_tagged_files(path_true: str, path_predicted: str, class_statistics: 
 
 def split_train_test(tagged_file_path: str, train_path: str, test_path: str, test_size=25):
     """
-    split a train file to: train set, validation set
+    split a train file to: train set, validation set (randomlly)
     :param tagged_file_path: a path for a tagged train file
     :param train_path: path (e.g. train.txt) to save the train file
     :param test_path: path (e.g. test.txt) to save the test file
@@ -1858,7 +1608,123 @@ def split_train_test(tagged_file_path: str, train_path: str, test_path: str, tes
     return f'{cur_time}_{train_path}', f'{cur_time}_{test_path}'
 
 
-def main():
+def run_model_1():
+    global first_iteration
+    global active_indices_sentences_i
+    global flattened_f_xi_yi
+    global gradient_left_sigma
+    global all_active_indices
+    global softmax_indices_for_gradient
+    first_iteration = 1
+    active_indices_sentences_i = 0
+    flattened_f_xi_yi = 0
+    gradient_left_sigma = 0
+    all_active_indices = 0
+    softmax_indices_for_gradient = 0
+
+    train_file_path = r'train1.wtag'
+    test_file_path = r'test1.wtag'
+
+    factr = 'default'
+    lambd = 0.2
+    beam = 50
+    run_optimization = True
+    result_file_path = f'{test_file_path}_tagged_{time.time()}'
+    info = "THRESHOLD: 102, 103, 106, 107 np.mean()\n" \
+           "length prefix and suffix = 7.\n"
+
+    c = ClassStatistics(train_file_path)
+    c.set_class100_dict()
+    c.set_class101_dict()
+    c.set_class102_dict()
+    c.set_class103_dict()
+    c.set_class104_dict()
+    c.set_class105_dict()
+    c.set_class106_dict()
+    c.set_class107_dict()
+    c.set_class108_dict()
+    c.set_class109_dict()
+    c.set_class110_dict()
+
+    f = Feature2Id(c)
+    f.set_index_class100()
+    f.set_index_class101()
+    f.set_index_class102()
+    f.set_index_class103()
+    f.set_index_class104()
+    f.set_index_class105()
+    f.set_index_class106()
+    f.set_index_class107()
+    f.set_index_class108()
+    f.set_index_class109()
+    f.set_index_class110()
+
+    print(f'f100 features amount = {len(f.class100_feature_index_dict)}')
+    print(f'f101 features amount = {len(f.class101_feature_index_dict)}')
+    print(f'f102 features amount = {len(f.class102_feature_index_dict)}')
+    print(f'f103 features amount = {len(f.class103_feature_index_dict)}')
+    print(f'f104 features amount = {len(f.class104_feature_index_dict)}')
+    print(f'f105 features amount = {len(f.class105_feature_index_dict)}')
+    print(f'f106 features amount = {len(f.class106_feature_index_dict)}')
+    print(f'f107 features amount = {len(f.class107_feature_index_dict)}')
+    print(f'f108 features amount = {len(f.class108_feature_index_dict)}')
+    print(f'f109 features amount = {len(f.class109_feature_index_dict)}')
+    print(f'f110 features amount = {len(f.class110_feature_index_dict)}')
+
+    # print(f'f108 features  = {c.class108_dict}')
+    # print(f'f109 features  = {c.class109_dict}')
+    sorted_to_print = {k: v for k, v in sorted(c.class110_dict.items(), key=lambda item: item[1], reverse=True)}
+    print(f'f110 features  = {sorted_to_print}')
+
+    f.build_all_classes_feature_index_dict()
+
+    # TODO choose pgtol, factr, lamb
+    # args= [file_path, lambda , feature_statistics, features_indices]
+    args = (train_file_path, lambd, c, f)
+    x0 = np.random.randn(f.n_total_features)
+
+    v_star_file_name = f'v_star_file={train_file_path}_lam={lambd}_factr={factr}_time={time.time()}.pkl'
+
+    print(
+        f"lambda= {lambd},\n"
+        f"factr= {factr},\n"
+        f"train_file= {train_file_path},\n"
+        f"test_file= {test_file_path},\n"
+        f"x0 length= {len(x0)}\n"
+        f"beam= {beam}\n"
+        f"info= {info}\n"
+        f"v_star_file_name = {v_star_file_name}\n"
+    )
+
+    if run_optimization:
+        if type(factr) != str:  # factr is a number
+            optimal_params = optimize.fmin_l_bfgs_b(func=function_l_and_gradient_l_special, x0=x0, args=args,
+                                                    factr=factr, disp=1)
+        else:  # factr is a string = 'default'
+            optimal_params = optimize.fmin_l_bfgs_b(func=function_l_and_gradient_l_special, x0=x0, args=args,
+                                                    disp=1)
+
+        v_star = optimal_params[0]
+        with open(v_star_file_name, 'wb') as file:
+            pickle.dump(optimal_params[0], file)
+
+    else:
+        """LOAD PICKLE"""
+        v_star = pickle.load(open(r'', "rb"))
+
+    generate_inference_file(path_file_to_tag=test_file_path, path_result=result_file_path, weights=v_star,
+                            features_indices=f, class_statistics=c, beam=beam)
+
+    conf_mat_dict, accuracy = compare_tagged_files(path_true=test_file_path, path_predicted=result_file_path,
+                                                   class_statistics=c)
+    print(f'\nconf_mat_dict = {conf_mat_dict}')
+    print(f'\naccuracy = {accuracy}')
+
+    conf_mat = ConfusionMatrix(conf_mat_dict, m=1, M=50)
+    conf_mat.create_conf_matrix_save_to_html_file(f'conf_mat_{time.time()}.html')
+
+
+def run_model_2():
     accuracies = list()
     number_of_runs = 50
     for _ in range(number_of_runs):
@@ -1875,20 +1741,15 @@ def main():
         all_active_indices = 0
         softmax_indices_for_gradient = 0
 
-        train_file_path = r'train1.wtag'
-        test_file_path = r'test1.wtag'
-
         train_path, test_path = split_train_test('train2.wtag', 'train2.txt', 'test2.txt', test_size=25)  # 90% / 10%
         train_file_path = train_path
         test_file_path = test_path
-        factr = 1e11
+        factr = 'default'
         lambd = 0.02
         beam = 50
         run_optimization = True
         result_file_path = f'{test_file_path}_tagged_{time.time()}'
-        info = "WITHOUT: 110, 1030, 1067\n" \
-               "WITH: 1066, 1077\n" \
-               "THRESHOLD: 102, 103, 106, 107, 1066, 1077 np.mean()\n" \
+        info = "THRESHOLD: 102, 103, 106, 107 np.mean()\n" \
                "length prefix and suffix = 7.\n"
 
         c = ClassStatistics(train_file_path)
@@ -1902,12 +1763,7 @@ def main():
         c.set_class107_dict()
         c.set_class108_dict()
         c.set_class109_dict()
-        # c.set_class110_dict()
-        c.set_class111_dict()
-        # c.set_class1067_dict()
-        # c.set_class1030_dict()
-        c.set_class1066_dict()
-        c.set_class1077_dict()
+        c.set_class110_dict()
 
         f = Feature2Id(c)
         f.set_index_class100()
@@ -1920,12 +1776,7 @@ def main():
         f.set_index_class107()
         f.set_index_class108()
         f.set_index_class109()
-        f.set_index_class111()
         f.set_index_class110()
-        f.set_index_class1067()
-        f.set_index_class1030()
-        f.set_index_class1066()
-        f.set_index_class1077()
 
         print(f'f100 features amount = {len(f.class100_feature_index_dict)}')
         print(f'f101 features amount = {len(f.class101_feature_index_dict)}')
@@ -1938,17 +1789,11 @@ def main():
         print(f'f108 features amount = {len(f.class108_feature_index_dict)}')
         print(f'f109 features amount = {len(f.class109_feature_index_dict)}')
         print(f'f110 features amount = {len(f.class110_feature_index_dict)}')
-        print(f'f111 features amount = {len(f.class111_feature_index_dict)}')
-        print(f'f1067 features amount = {len(f.class1067_feature_index_dict)}')
-        print(f'f1030 features amount = {len(f.class1030_feature_index_dict)}')
-        print(f'f1066 features amount = {len(f.class1066_feature_index_dict)}')
-        print(f'f1077 features amount = {len(f.class1077_feature_index_dict)}')
-
 
         # print(f'f108 features  = {c.class108_dict}')
         # print(f'f109 features  = {c.class109_dict}')
-        sorted_to_print = {k: v for k, v in sorted(c.class111_dict.items(), key=lambda item: item[1], reverse=True)}
-        print(f'f111 features  = {sorted_to_print}')
+        sorted_to_print = {k: v for k, v in sorted(c.class110_dict.items(), key=lambda item: item[1], reverse=True)}
+        print(f'f110 features  = {sorted_to_print}')
 
         f.build_all_classes_feature_index_dict()
 
@@ -2003,15 +1848,12 @@ def main():
 
 
 if __name__ == "__main__":
-    start = time.time()
+    start_1 = time.time()
+    run_model_1()
+    stop_1 = time.time()
+    print(f'MODEL 1 TOOK {stop_1 - start_1} SECS')
 
-    PROFFILE = 'prof.profile'
-    cProfile.run('main()', PROFFILE)
-    import pstats
-
-    p = pstats.Stats(PROFFILE)
-    p.sort_stats('tottime').print_stats(150)
-
-    main()
-    stop = time.time()
-    print(f'THE WHOLE CODE TOOK {stop - start} SECS')
+    start_2 = time.time()
+    run_model_2()
+    stop_2 = time.time()
+    print(f'MODEL 2 TOOK {stop_2 - start_2} SECS')
