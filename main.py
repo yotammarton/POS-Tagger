@@ -81,6 +81,9 @@ class ClassStatistics:
         self.class1067_dict = OrderedDict()  # {(1067, word-1, tag, word+1): # times seen}
         self.class1030_dict = OrderedDict()  # {(1030, tag-1, word): # times seen}
 
+        self.class1066_dict = OrderedDict()  # {(1066, word-2, tag): # times seen}
+        self.class1077_dict = OrderedDict()  # {(1077, word+2, tag): # times seen}
+
     def set_class100_dict(self):
         """
             Create counts dict for class 100 features
@@ -682,6 +685,40 @@ class ClassStatistics:
                     else:
                         self.class1030_dict[(1030, prev_tag, cur_word)] += 1
 
+    def set_class1066_dict(self):
+        """
+            Create counts dict for class 1066 features
+        """
+        with open(self.file_path) as f:
+            for line in f:
+                splited_words = re.split(' |[\n]', line)
+                if splited_words[-1] == "":
+                    del splited_words[-1]  # remove \n
+                for word_idx in range(len(splited_words)):
+                    cur_tag = splited_words[word_idx].split('_')[1]
+                    prev_prev_word = splited_words[word_idx - 2].split('_')[0] if word_idx > 1 else '*'
+                    if (1066, prev_prev_word, cur_tag) not in self.class1066_dict:
+                        self.class1066_dict[(1066, prev_prev_word, cur_tag)] = 1
+                    else:
+                        self.class1066_dict[(1066, prev_prev_word, cur_tag)] += 1
+
+    def set_class1077_dict(self):
+        """
+            Create counts dict for class 1077 features
+        """
+        with open(self.file_path) as f:
+            for line in f:
+                splited_words = re.split(' |[\n]', line)
+                if splited_words[-1] == "":
+                    del splited_words[-1]  # remove \n
+                for word_idx in range(len(splited_words)):
+                    cur_tag = splited_words[word_idx].split('_')[1]
+                    next_next_word = splited_words[word_idx + 2].split('_')[0] if \
+                        word_idx + 2 < len(splited_words) else 'STOP'
+                    if (1077, next_next_word, cur_tag) not in self.class1077_dict:
+                        self.class1077_dict[(1077, next_next_word, cur_tag)] = 1
+                    else:
+                        self.class1077_dict[(1077, next_next_word, cur_tag)] += 1
 
 class Feature2Id:
     """
@@ -739,6 +776,12 @@ class Feature2Id:
 
         self.class1030_feature_index_dict = OrderedDict()
         self.n_class1030 = 0
+
+        self.class1066_feature_index_dict = OrderedDict()
+        self.n_class1066 = 0
+
+        self.class1077_feature_index_dict = OrderedDict()
+        self.n_class1077 = 0
 
     def set_index_class100(self, threshold=0):
         """
@@ -885,6 +928,28 @@ class Feature2Id:
                 self.n_class111 += 1
         self.n_total_features += self.n_class111
 
+    def set_index_class1066(self, threshold=0):
+        keys = [key for key in self.feature_statistics.class1066_dict]
+        values = [self.feature_statistics.class1066_dict[key] for key in keys]
+        threshold = np.mean(values)
+
+        for key, value in self.feature_statistics.class1066_dict.items():
+            if value >= threshold:
+                self.class1066_feature_index_dict[key] = self.n_class1066 + self.n_total_features
+                self.n_class1066 += 1
+        self.n_total_features += self.n_class1066
+
+    def set_index_class1077(self, threshold=0):
+        keys = [key for key in self.feature_statistics.class1077_dict]
+        values = [self.feature_statistics.class1077_dict[key] for key in keys]
+        threshold = np.mean(values)
+
+        for key, value in self.feature_statistics.class1077_dict.items():
+            if value >= threshold:
+                self.class1077_feature_index_dict[key] = self.n_class1077 + self.n_total_features
+                self.n_class1077 += 1
+        self.n_total_features += self.n_class1077
+
     def build_all_classes_feature_index_dict(self):
         self.all_feature_index_dict.update(self.class100_feature_index_dict)
         self.all_feature_index_dict.update(self.class101_feature_index_dict)
@@ -900,6 +965,8 @@ class Feature2Id:
         self.all_feature_index_dict.update(self.class110_feature_index_dict)
         self.all_feature_index_dict.update(self.class1067_feature_index_dict)
         self.all_feature_index_dict.update(self.class1030_feature_index_dict)
+        self.all_feature_index_dict.update(self.class1066_feature_index_dict)
+        self.all_feature_index_dict.update(self.class1077_feature_index_dict)
 
     # TODO
     def plots_for_threshold(self):
@@ -1209,6 +1276,8 @@ def f_xi_yi(features_indices: Feature2Id, words, tags, i):
     cur_word = words[i]
     prev_word = words[i - 1] if i > 0 else '*'
     next_word = words[i + 1] if i < len(words) - 1 else 'STOP'
+    prev_prev_word = words[i - 2] if i - 1 > 0 else '*'
+    next_next_word = words[i + 2] if i < len(words) - 2 else 'STOP'
     cur_tag = tags[i]
     prev_tag = tags[i - 1] if i > 0 else ''
     prev_prev_tag = tags[i - 2] if i - 1 > 0 else ''
@@ -1506,6 +1575,16 @@ def f_xi_yi(features_indices: Feature2Id, words, tags, i):
             if (111.93, tags[i]) in features_indices.class111_feature_index_dict:
                 active_features_indices.append(features_indices.all_feature_index_dict[(111.93, tags[i])])
 
+    # features fired in class 1066
+    if (1066, prev_prev_word, cur_tag) in features_indices.class1066_feature_index_dict:
+        active_features_indices.append(
+            features_indices.all_feature_index_dict[(1066, prev_prev_word, cur_tag)])
+
+    # features fired in class 1077
+
+    if (1077, next_next_word, cur_tag) in features_indices.class1077_feature_index_dict:
+        active_features_indices.append(
+            features_indices.all_feature_index_dict[(1077, next_next_word, cur_tag)])
     return active_features_indices
 
 
@@ -1808,7 +1887,8 @@ def main():
         run_optimization = True
         result_file_path = f'{test_file_path}_tagged_{time.time()}'
         info = "WITHOUT: 110, 1030, 1067\n" \
-               "THRESHOLD: 102, 103, 106, 107 np.mean()\n" \
+               "WITH: 1066, 1077\n" \
+               "THRESHOLD: 102, 103, 106, 107, 1066, 1077 np.mean()\n" \
                "length prefix and suffix = 7.\n"
 
         c = ClassStatistics(train_file_path)
@@ -1825,7 +1905,9 @@ def main():
         # c.set_class110_dict()
         c.set_class111_dict()
         # c.set_class1067_dict()
-        # c.set_class1030_dict()                        
+        # c.set_class1030_dict()
+        c.set_class1066_dict()
+        c.set_class1077_dict()
 
         f = Feature2Id(c)
         f.set_index_class100()
@@ -1842,6 +1924,8 @@ def main():
         f.set_index_class110()
         f.set_index_class1067()
         f.set_index_class1030()
+        f.set_index_class1066()
+        f.set_index_class1077()
 
         print(f'f100 features amount = {len(f.class100_feature_index_dict)}')
         print(f'f101 features amount = {len(f.class101_feature_index_dict)}')
@@ -1857,6 +1941,9 @@ def main():
         print(f'f111 features amount = {len(f.class111_feature_index_dict)}')
         print(f'f1067 features amount = {len(f.class1067_feature_index_dict)}')
         print(f'f1030 features amount = {len(f.class1030_feature_index_dict)}')
+        print(f'f1066 features amount = {len(f.class1066_feature_index_dict)}')
+        print(f'f1077 features amount = {len(f.class1077_feature_index_dict)}')
+
 
         # print(f'f108 features  = {c.class108_dict}')
         # print(f'f109 features  = {c.class109_dict}')
