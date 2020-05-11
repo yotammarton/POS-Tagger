@@ -11,9 +11,6 @@ import pandas as pd
 import time
 import cProfile
 
-# TODO DELETE - for dibiasing
-ignore_features = dict()
-
 
 def re_match_words(regular_exp: str, lst):
     if not [w for w in lst if w != '']:
@@ -1866,7 +1863,6 @@ def main():
         sorted_to_print = {k: v for k, v in sorted(c.class111_dict.items(), key=lambda item: item[1], reverse=True)}
         print(f'f111 features  = {sorted_to_print}')
 
-
         f.build_all_classes_feature_index_dict()
 
         # TODO choose pgtol, factr, lamb
@@ -1912,20 +1908,22 @@ def main():
         print(f'\nconf_mat_dict = {conf_mat_dict}')
         print(f'\naccuracy = {accuracy}')
 
-        # conf_mat = ConfusionMatrix(conf_mat_dict, m=1, M=50)
-        # conf_mat.create_conf_matrix_save_to_html_file(f'conf_mat_{time.time()}.html')
+        conf_mat = ConfusionMatrix(conf_mat_dict, m=1, M=50)
+        conf_mat.create_conf_matrix_save_to_html_file(f'conf_mat_{time.time()}.html')
+        print(f'\n\n\navg accuracy for {_ + 1} runs = {np.mean(accuracies)}')
+
     print(f'\n\n\nAVG ACCURACY for {number_of_runs} runs = {np.mean(accuracies)}')
 
 
 if __name__ == "__main__":
     start = time.time()
 
-    # PROFFILE = 'prof.profile'
-    # cProfile.run('main()', PROFFILE)
-    # import pstats
-    # #
-    # p = pstats.Stats(PROFFILE)
-    # p.sort_stats('tottime').print_stats(150)
+    PROFFILE = 'prof.profile'
+    cProfile.run('main()', PROFFILE)
+    import pstats
+
+    p = pstats.Stats(PROFFILE)
+    p.sort_stats('tottime').print_stats(150)
 
     main()
     stop = time.time()
