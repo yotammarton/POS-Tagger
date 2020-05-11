@@ -1850,10 +1850,10 @@ def run_model_2():
 
 
 if __name__ == "__main__":
-    start_1 = time.time()
-    run_model_1()
-    stop_1 = time.time()
-    print(f'MODEL 1 TOOK {stop_1 - start_1} SECS')
+    # start_1 = time.time()
+    # run_model_1()
+    # stop_1 = time.time()
+    # print(f'MODEL 1 TOOK {stop_1 - start_1} SECS')
 
     start_2 = time.time()
     run_model_2()
