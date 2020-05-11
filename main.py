@@ -15,6 +15,7 @@ import cProfile
 # TODO remove unnecessary imports
 # TODO delete print
 # TODO delete time inside functions
+# TODO change .pkl weights name to: trained_weights_data_i.pkl
 
 class ClassStatistics:
     """
@@ -891,7 +892,6 @@ class ConfusionMatrix:
                 else:
                     df.loc[pred_tag][true_tag] = 0
 
-
         # change colors for wrong tagging
         style = df.style.apply(self.background_gradient, axis=None)
 
@@ -1611,6 +1611,7 @@ def split_train_test(tagged_file_path: str, train_path: str, test_path: str, tes
 
 
 def run_model_1():
+    start = time.time()
     global first_iteration
     global active_indices_sentences_i
     global flattened_f_xi_yi
@@ -1627,7 +1628,7 @@ def run_model_1():
     train_file_path = r'train1.wtag'
     test_file_path = r'test1.wtag'
 
-    factr = 1e11
+    factr = 'default'
     lambd = 0.2
     beam = 50
     run_optimization = True
@@ -1714,6 +1715,9 @@ def run_model_1():
         """LOAD PICKLE"""
         v_star = pickle.load(open(r'', "rb"))
 
+    stop = time.time()
+    print(f'MODEL 1 TRAINING TOOK {stop - start} secs')
+
     generate_inference_file(path_file_to_tag=test_file_path, path_result=result_file_path, weights=v_star,
                             features_indices=f, class_statistics=c, beam=beam)
 
@@ -1728,7 +1732,7 @@ def run_model_1():
 
 def run_model_2():
     accuracies = list()
-    number_of_runs = 1
+    number_of_runs = 50
     for _ in range(number_of_runs):
         global first_iteration
         global active_indices_sentences_i
@@ -1746,7 +1750,7 @@ def run_model_2():
         train_path, test_path = split_train_test('train2.wtag', 'train2.txt', 'test2.txt', test_size=25)  # 90% / 10%
         train_file_path = train_path
         test_file_path = test_path
-        factr = 1e11
+        factr = 'default'
         lambd = 0.02
         beam = 50
         run_optimization = True
@@ -1850,12 +1854,12 @@ def run_model_2():
 
 
 if __name__ == "__main__":
-    # start_1 = time.time()
-    # run_model_1()
-    # stop_1 = time.time()
-    # print(f'MODEL 1 TOOK {stop_1 - start_1} SECS')
+    start_1 = time.time()
+    run_model_1()
+    stop_1 = time.time()
+    print(f'WHOLE MODEL 1 TOOK {stop_1 - start_1} SECS')
 
     start_2 = time.time()
     run_model_2()
     stop_2 = time.time()
-    print(f'MODEL 2 TOOK {stop_2 - start_2} SECS')
+    print(f'WHOLE MODEL 2 TOOK {stop_2 - start_2} SECS')
