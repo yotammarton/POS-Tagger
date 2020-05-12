@@ -1628,7 +1628,7 @@ def run_model_1():
     train_file_path = r'train1.wtag'
     test_file_path = r'test1.wtag'
 
-    factr = 'default'
+    factr = 1e11
     lambd = 0.2
     beam = 50
     run_optimization = True
