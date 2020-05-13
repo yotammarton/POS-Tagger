@@ -45,7 +45,7 @@ class ClassStatistics:
         self.class108_dict = OrderedDict()  # {(108.x, tag): # times seen}
 
         # Capital letters
-        self.class109_dict = OrderedDict()  # {(109.x, tag): # times seen}
+        self.class109_dict = OrderedDict()  # {(109.x, prev_tag, cur_tag): # times seen}
         self.class110_dict = OrderedDict()  # {(110.x, tag): # times seen}  # TODO Question for Gal: is it correct to be under #Capital?
 
     def set_class100_dict(self):
@@ -1067,10 +1067,10 @@ def f_xi_yi(features_indices: Feature2Id, words, tags, i):
     # features fired in class 100
     if (100, cur_word, cur_tag) in features_indices.class100_feature_index_dict:
         active_features_indices.append(features_indices.all_feature_index_dict[(100, cur_word, cur_tag)])
-    elif (100, cur_word.lower(), cur_tag) in features_indices.class100_feature_index_dict:
-        active_features_indices.append(features_indices.all_feature_index_dict[(100, cur_word.lower(), cur_tag)])
-    elif (100, cur_word.upper(), cur_tag) in features_indices.class100_feature_index_dict:
-        active_features_indices.append(features_indices.all_feature_index_dict[(100, cur_word.upper(), cur_tag)])
+    # elif (100, cur_word.lower(), cur_tag) in features_indices.class100_feature_index_dict:
+    #     active_features_indices.append(features_indices.all_feature_index_dict[(100, cur_word.lower(), cur_tag)])
+    # elif (100, cur_word.upper(), cur_tag) in features_indices.class100_feature_index_dict:
+    #     active_features_indices.append(features_indices.all_feature_index_dict[(100, cur_word.upper(), cur_tag)])
     elif (100, cur_word[0].upper() + cur_word[1:].lower(), cur_tag) in features_indices.class100_feature_index_dict:
         active_features_indices.append(
             features_indices.all_feature_index_dict[(100, cur_word[0].upper() + cur_word[1:].lower(), cur_tag)])
@@ -1634,7 +1634,8 @@ def run_model_1():
     run_optimization = True
     result_file_path = f'{test_file_path}_tagged_{time.time()}'
     info = "THRESHOLD: 102, 103, 106, 107 np.mean()\n" \
-           "length prefix and suffix = 7.\n"
+           "length prefix and suffix = 7.\n" \
+           "f_xi_yi without 2 middle conditions\n"
 
     c = ClassStatistics(train_file_path)
     c.set_class100_dict()
@@ -1756,7 +1757,8 @@ def run_model_2():
         run_optimization = True
         result_file_path = f'{test_file_path}_tagged_{time.time()}'
         info = "THRESHOLD: 102, 103, 106, 107 np.mean()\n" \
-               "length prefix and suffix = 7.\n"
+               "length prefix and suffix = 7.\n" \
+                "f_xi_yi without 2 middle conditions\n"
 
         c = ClassStatistics(train_file_path)
         c.set_class100_dict()
@@ -1853,7 +1855,7 @@ def run_model_2():
     print(f'\n\n\nAVG ACCURACY for {number_of_runs} runs = {np.mean(accuracies)}')
 
 
-if __name__ == "__main__":
+def main():
     start_1 = time.time()
     run_model_1()
     stop_1 = time.time()
@@ -1863,3 +1865,7 @@ if __name__ == "__main__":
     run_model_2()
     stop_2 = time.time()
     print(f'WHOLE MODEL 2 TOOK {stop_2 - start_2} SECS')
+
+
+if __name__ == "__main__":
+    main()
