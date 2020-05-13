@@ -1067,10 +1067,10 @@ def f_xi_yi(features_indices: Feature2Id, words, tags, i):
     # features fired in class 100
     if (100, cur_word, cur_tag) in features_indices.class100_feature_index_dict:
         active_features_indices.append(features_indices.all_feature_index_dict[(100, cur_word, cur_tag)])
-    # elif (100, cur_word.lower(), cur_tag) in features_indices.class100_feature_index_dict:
-    #     active_features_indices.append(features_indices.all_feature_index_dict[(100, cur_word.lower(), cur_tag)])
-    # elif (100, cur_word.upper(), cur_tag) in features_indices.class100_feature_index_dict:
-    #     active_features_indices.append(features_indices.all_feature_index_dict[(100, cur_word.upper(), cur_tag)])
+    elif (100, cur_word.lower(), cur_tag) in features_indices.class100_feature_index_dict:
+        active_features_indices.append(features_indices.all_feature_index_dict[(100, cur_word.lower(), cur_tag)])
+    elif (100, cur_word.upper(), cur_tag) in features_indices.class100_feature_index_dict:
+        active_features_indices.append(features_indices.all_feature_index_dict[(100, cur_word.upper(), cur_tag)])
     elif (100, cur_word[0].upper() + cur_word[1:].lower(), cur_tag) in features_indices.class100_feature_index_dict:
         active_features_indices.append(
             features_indices.all_feature_index_dict[(100, cur_word[0].upper() + cur_word[1:].lower(), cur_tag)])
