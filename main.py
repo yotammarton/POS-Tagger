@@ -1067,10 +1067,10 @@ def f_xi_yi(features_indices: Feature2Id, words, tags, i):
     # features fired in class 100
     if (100, cur_word, cur_tag) in features_indices.class100_feature_index_dict:
         active_features_indices.append(features_indices.all_feature_index_dict[(100, cur_word, cur_tag)])
-    # elif (100, cur_word.lower(), cur_tag) in features_indices.class100_feature_index_dict:
-    #     active_features_indices.append(features_indices.all_feature_index_dict[(100, cur_word.lower(), cur_tag)])
-    # elif (100, cur_word.upper(), cur_tag) in features_indices.class100_feature_index_dict:
-    #     active_features_indices.append(features_indices.all_feature_index_dict[(100, cur_word.upper(), cur_tag)])
+    elif (100, cur_word.lower(), cur_tag) in features_indices.class100_feature_index_dict:
+        active_features_indices.append(features_indices.all_feature_index_dict[(100, cur_word.lower(), cur_tag)])
+    elif (100, cur_word.upper(), cur_tag) in features_indices.class100_feature_index_dict:
+        active_features_indices.append(features_indices.all_feature_index_dict[(100, cur_word.upper(), cur_tag)])
     elif (100, cur_word[0].upper() + cur_word[1:].lower(), cur_tag) in features_indices.class100_feature_index_dict:
         active_features_indices.append(
             features_indices.all_feature_index_dict[(100, cur_word[0].upper() + cur_word[1:].lower(), cur_tag)])
@@ -1634,8 +1634,7 @@ def run_model_1():
     run_optimization = True
     result_file_path = f'{test_file_path}_tagged_{time.time()}'
     info = "THRESHOLD: 102, 103, 106, 107 np.mean()\n" \
-           "length prefix and suffix = 7.\n" \
-           "f_xi_yi without 2 middle conditions\n"
+           "length prefix and suffix = 7.\n"
 
     c = ClassStatistics(train_file_path)
     c.set_class100_dict()
@@ -1757,8 +1756,7 @@ def run_model_2():
         run_optimization = True
         result_file_path = f'{test_file_path}_tagged_{time.time()}'
         info = "THRESHOLD: 102, 103, 106, 107 np.mean()\n" \
-               "length prefix and suffix = 7.\n" \
-                "f_xi_yi without 2 middle conditions\n"
+               "length prefix and suffix = 7.\n"
 
         c = ClassStatistics(train_file_path)
         c.set_class100_dict()
