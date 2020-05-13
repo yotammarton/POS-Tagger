@@ -1732,8 +1732,7 @@ def run_model_1():
 
 def run_model_2():
     accuracies = list()
-    number_of_runs = 50
-    for _ in range(number_of_runs):
+    for i in range(1, 26):
         global first_iteration
         global active_indices_sentences_i
         global flattened_f_xi_yi
@@ -1747,14 +1746,14 @@ def run_model_2():
         all_active_indices = 0
         softmax_indices_for_gradient = 0
 
-        train_path, test_path = split_train_test('train2.wtag', 'train2.txt', 'test2.txt', test_size=25)  # 90% / 10%
-        train_file_path = train_path
-        test_file_path = test_path
+        train_file_path = rf'kfold\train2_{i}.txt'
+        test_file_path = rf'kfold\test2_{i}.txt'
+
         factr = 'default'
         lambd = 0.02
         beam = 50
         run_optimization = True
-        result_file_path = f'{test_file_path}_tagged_{time.time()}'
+        result_file_path = f'{test_file_path.split(".")[0]}_tagged_{time.time()}.txt'
         info = "THRESHOLD: 102, 103, 106, 107 np.mean()\n" \
                "length prefix and suffix = 7.\n"
 
@@ -1830,8 +1829,8 @@ def run_model_2():
                                                         disp=1)
 
             v_star = optimal_params[0]
-            with open(v_star_file_name, 'wb') as file:
-                pickle.dump(optimal_params[0], file)
+            # with open(v_star_file_name, 'wb') as file:
+            #     pickle.dump(optimal_params[0], file)
 
         else:
             """LOAD PICKLE"""
@@ -1848,21 +1847,42 @@ def run_model_2():
 
         # conf_mat = ConfusionMatrix(conf_mat_dict, m=1, M=50)
         # conf_mat.create_conf_matrix_save_to_html_file(f'conf_mat_{time.time()}.html')
-        print(f'\n\n\navg accuracy for {_ + 1} runs = {np.mean(accuracies)}')
+        print(f'\n\n\navg accuracy for {i} runs = {np.mean(accuracies)}')
 
-    print(f'\n\n\nAVG ACCURACY for {number_of_runs} runs = {np.mean(accuracies)}')
+    print(f'\n\n\nAVG ACCURACY for {25} runs = {np.mean(accuracies)}')
 
 
 def main():
-    start_1 = time.time()
-    run_model_1()
-    stop_1 = time.time()
-    print(f'WHOLE MODEL 1 TOOK {stop_1 - start_1} SECS')
+    # start_1 = time.time()
+    # run_model_1()
+    # stop_1 = time.time()
+    # print(f'WHOLE MODEL 1 TOOK {stop_1 - start_1} SECS')
 
     start_2 = time.time()
     run_model_2()
     stop_2 = time.time()
     print(f'WHOLE MODEL 2 TOOK {stop_2 - start_2} SECS')
+
+
+# TODO delete
+def create_files_train2():
+    # prepare sentences list from tagged file
+    with open('train2.wtag') as file:
+        sentences = [line for line in file]
+    np.random.shuffle(sentences)
+
+    for i in range(25):
+        test_indices = [idx for idx in range(i * 10, i * 10 + 10)]
+        train_indices = [idx for idx in range(250) if idx not in test_indices]
+        # write test lines to file
+        with open(rf"kfold\test2_{i + 1}.txt", 'w') as file:
+            for idx in test_indices:
+                file.write(sentences[idx])
+
+        # write train lines to file
+        with open(rf"kfold\train2_{i + 1}.txt", 'w') as file:
+            for idx in train_indices:
+                file.write(sentences[idx])
 
 
 if __name__ == "__main__":

@@ -1,0 +1,10 @@
+The_DT lytic_JJ cycle_NN of_IN EBV_NN infection_NN was_VBD induced_VBN by_IN transfection_NN of_IN the_DT cells_NNS with_IN the_DT coding_NN region_NN of_IN the_DT P3HR-1_NN defective_JJ genome_NN ._.
+To_TO evaluate_VB the_DT role_NN in_IN myelopoiesis_NN ,_, transgenic_JJ mice_NNS expressing_VBG were_VBD engineered_VBN ._.
+We_PRP have_VBP previously_RB shown_VBN that_IN after_IN a_DT mutation_NN of_IN Leu122_NN to_TO Arg_NN the_DT DNA_NN binding_NN basic_JJ domain_NN of_IN MyoD_NN confers_VBZ c-myc-like_JJ functional_JJ characteristics_NNS to_TO the_DT protein_NN ._.
+The_DT clinical_JJ relevance_NN of_IN these_DT alterations_NNS was_VBD studied_VBN by_IN comparing_VBG the_DT FISH_NN results_NNS with_IN several_JJ parameters_NNS currently_RB used_VBN in_IN breast-cancer_JJ pathology_NN ._.
+Differential_JJ monocyte_NN adhesion_NN and_CC adhesion_NN molecule_NN expression_NN in_IN venous_JJ and_CC arterial_JJ endothelial_JJ cells_NNS ._.
+In_IN agar_NN cultures_NNS ,_, 47.10_CD cells_NNS form_VBP 7-_CD and_CC 14-day_JJ colonies_NNS in_IN response_NN to_TO a_DT cocktail_NN of_IN colony-stimulating_JJ factor_NN 2.5_CD ,_, interleukin-3_NN 1_CD ,_, and_CC mouse_NN CSF-1_NN 10_CD ._.
+The_DT three_CD jun_NN genes_NNS showed_VBD a_DT similar_JJ time_NN course_NN in_IN induction_NN by_IN PMA_NN ,_, maximal_JJ mRNA_NN levels_NNS being_VBG reached_VBN after_IN 60_CD min_NN of_IN induction_NN ._.
+PMA_NN ,_, but_CC not_RB Ara-C_NN or_CC ceramides_NNS ,_, activated_VBD ERK_NN MAPKS_NNS ,_, in_IN Jurkat_NN and_CC EL4_NN ._.
+Gel_NN retardation_NN and_CC methylation_NN interference_NN studies_NNS revealed_VBD that_IN bacterially_RB produced_VBN AP-2_NN bound_VBD specifically_RB and_CC with_IN high_JJ affinity_NN to_TO all_DT three_CD 21_CD bp_NN repeats_NNS ,_, and_CC that_IN it_PRP required_VBD the_DT core_NN sequence_NN AGGC_NN for_IN specific_JJ binding_NN ._.
+These_DT results_NNS confirm_VBP at_IN a_DT molecular_JJ level_NN the_DT ability_NN of_IN HIV-1_NN to_TO replicate_VB in_IN B_NN cells_NNS and_CC that_IN this_DT activity_NN is_VBZ strongly_RB associated_VBN with_IN NF-kappaB_NN ._.

@@ -1,0 +1,10 @@
+We_PRP have_VBP used_VBN a_DT 32P-labeled_JJ oligonucleotide_NN derived_VBN from_IN human_JJ immunodeficiency_NN virus_NN HIV-1_NN long_JJ terminal_JJ repeat_NN ,_, which_WDT contains_VBZ a_DT tandem_JJ repeat_NN of_IN the_DT NF_NN kappa_NN B_NN binding_NN sequence_NN ,_, as_IN a_DT probe_NN in_IN a_DT gel_NN retardation_NN assay_NN to_TO study_VB this_DT transcription_NN factor_NN ._.
+Bcl-3_NN may_MD therefore_RB aid_VB activation_NN of_IN select_JJ NF-kappa_NN B-regulated_JJ genes_NNS ,_, including_VBG those_DT of_IN the_DT human_JJ immunodeficiency_NN virus_NN ._.
+This_DT sequence_NN element_NN was_VBD referred_VBN to_TO as_IN the_DT BAT_NN box_NN and_CC deletion_NN significantly_RB reduced_VBD the_DT activity_NN of_IN a_DT CD20_NN promoter-CAT_JJ construct_NN in_IN B_NN cells_NNS ._.
+The_DT activity_NN of_IN the_DT promoter_NN regulating_VBG the_DT synthesis_NN of_IN the_DT p105_NN precursor_NN of_IN the_DT NF-kappa_NN B_NN p50_NN subunit_NN was_VBD enhanced_VBN in_IN these_DT cells_NNS ._.
+Several_JJ DNA-binding_JJ proteins_NNS are_VBP known_VBN to_TO bind_VB this_DT sequence_NN ._.
+The_DT identification_NN of_IN carriers_NNS is_VBZ of_IN substantial_JJ clinical_JJ importance_NN for_IN genetic_JJ counseling_NN ._.
+Activation_NN of_IN protein_NN kinase_NN C_NN and_CC elevation_NN of_IN cAMP_NN interact_VBP synergistically_RB to_TO raise_VB c-Fos_NN and_CC AP-1_NN activity_NN in_IN Jurkat_NN cells_NNS ._.
+In_IN this_DT report_NN ,_, we_PRP show_VBP that_IN upon_IN the_DT stimulation_NN of_IN both_DT pathways_NNS T_NN lymphocytes_NNS became_VBD refractory_JJ to_TO activation_NN via_IN the_DT cell_NN receptor_NN TcR_NN complex_NN ._.
+Here_RB we_PRP demonstrate_VBP that_IN the_DT human_JJ GM-CSF_NN promoter_NN and_CC enhancer_NN also_RB encompass_VBP binding_VBG sites_NNS for_IN core-binding_JJ factor_NN CBF_NN ._.
+Dimerization_NN among_IN transcription_NN factors_NNS has_VBZ become_VBN a_DT recurrent_JJ theme_NN in_IN the_DT regulation_NN of_IN eukaryotic_JJ gene_NN expression_NN ._.

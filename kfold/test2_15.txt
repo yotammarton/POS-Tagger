@@ -1,0 +1,10 @@
+In_IN contrast_NN to_TO wild-type_JJ B_NN cells_NNS ,_, neither_DT of_IN the_DT class_NN II_CD mutant_JJ cell_NN lines_NNS could_MD use_VB the_DT X_NN box_NN region_NN to_TO direct_VB the_DT expression_NN of_IN a_DT transiently_RB transfected_VBN reporter_NN gene_NN ,_, indicating_VBG that_IN the_DT X_NN box-dependent_JJ transcriptional_JJ pathway_NN is_VBZ defective_JJ in_IN these_DT cells_NNS ._.
+Two_CD unrearranged_JJ TcR_NN delta_NN transcripts_NNS had_VBD a_DT size_NN similar_JJ to_TO that_DT of_IN the_DT functional_JJ TcR_NN delta_NN mRNA_NN 2.3_CD and_CC 1.3_CD kb_NN found_VBN in_IN TcR_NN T_NN lymphocytes_NNS ._.
+An_DT acquired_JJ form_NN of_IN peripheral_JJ resistance_NN to_TO glucocorticoids_NNS was_VBD suspected_VBN ._.
+Corticosteroid_NN receptors_NNS and_CC lymphocyte_NN subsets_NNS in_IN mononuclear_JJ leukocytes_NNS in_IN aging_NN ._.
+Except_IN for_IN the_DT conserved_VBN zinc-finger_NN domains_NNS ,_, the_DT amino_NN acid_NN sequences_NNS of_IN the_DT three_CD proteins_NNS are_VBP distinct_JJ ._.
+Correlations_NNS were_VBD found_VBN between_IN plasma_NN IFN_NN alpha_NN and_CC receptor_NN Kd_NN on_IN monocytes_NNS of_IN AIDS-GR_NN r_NN 0.77_CD and_CC between_IN IFN_NN alpha_NN and_CC plasma_NN cortisol_NN in_IN the_DT same_JJ group_NN r_NN 0.74_CD ._.
+The_DT induction_NN of_IN the_DT AP-1_NN transcription_NN factor_NN has_VBZ been_VBN ascribed_VBN to_TO the_DT early_JJ events_NNS leading_VBG to_TO T_NN cell_NN differentiation_NN and_CC activation_NN ._.
+G0S24_NN has_VBZ potential_JJ sites_NNS for_IN transcription_NN factors_NNS in_IN the_DT flank_NN and_CC intron_NN ;_: these_DT include_VBP a_DT serum_NN response_NN element_NN ._.
+The_DT regulation_NN of_IN transcription_NN factors_NNS belonging_VBG to_TO the_DT signal_NN transducer_NN and_CC activator_NN of_IN transcription_NN STAT_NN family_NN was_VBD analyzed_VBN in_IN PHA-activated_JJ mononuclear_JJ cells_NNS and_CC in_IN purified_VBN T_NN cells_NNS activated_VBN by_IN cross-linking_JJ cell_NN surface_NN CD3_NN ._.
+The_DT cytokine_NN TNF_NN mediates_VBZ many_JJ of_IN the_DT pathologic_JJ signs_NNS of_IN cachexia_NN ,_, inflammation_NN ,_, and_CC sepsis_NN ._.

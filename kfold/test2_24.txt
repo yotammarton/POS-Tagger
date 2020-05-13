@@ -1,0 +1,10 @@
+In_IN contrast_NN ,_, interleukin-1beta-converting_JJ enzyme_NN family_NN protease_NN inhibitors_NNS Ac-DEVD-CHO_NN and_CC CrmA_NN blocked_VBD Fas-mediated_JJ apoptosis_NN ._.
+Cytokine_NN modulation_NN of_IN HIV_NN expression_NN ._.
+Furthermore_RB ,_, the_DT most_RBS important_JJ trans-acting_JJ factors_NNS of_IN T_NN and_CC B_NN lymphocytes_NNS e.g._FW NF-kB_NN ,_, NF-AT_NN and_CC STAT_NN families_NNS and_CC functional_JJ importance_NN are_VBP described_VBN ._.
+One_CD of_IN the_DT viral_JJ proteins_NNS involved_VBN in_IN this_DT process_NN might_MD be_VB the_DT Tat_NN protein_NN ._.
+IEF-1_NN ,_, a_DT pancreatic_JJ beta-cell_NN type-specific_JJ complex_NN believed_VBN to_TO regulate_VB insulin_NN expression_NN ,_, is_VBZ demonstrated_VBN to_TO consist_VB of_IN at_IN least_JJS two_CD distinct_JJ species_NNS ,_, one_CD of_IN which_WDT does_VBZ not_RB contain_VB Pan_NN molecules_NNS ._.
+Butyric_JJ acid_NN BA_NN is_VBZ known_VBN to_TO induce_VB overexpression_NN of_IN fetal_JJ hemoglobin_NN and_CC then_RB erythroid_JJ differentiation_NN ._.
+The_DT CD20_NN B1_NN gene_NN encodes_VBZ a_DT B_NN cell-specific_JJ protein_NN involved_VBN in_IN the_DT regulation_NN of_IN human_JJ B_NN cell_NN proliferation_NN and_CC differentiation_NN ._.
+The_DT cDNA_NN has_VBZ an_DT open_JJ reading_NN frame_NN of_IN 900_CD amino_NN acids_NNS capable_JJ of_IN encoding_VBG a_DT 97-kDa_JJ protein_NN ._.
+In_IN all_PDT the_DT subjects_NNS ,_, dexamethasone_NN was_VBD able_JJ to_TO suppress_VB plasma_NN cortisol_NN ._.
+However_RB ,_, upon_IN transition_NN from_IN a_DT proliferating_JJ G1_NN to_TO a_DT resting_JJ state_NN of_IN the_DT cell_NN cycle_NN the_DT three_CD genes_NNS were_VBD differently_RB regulated_VBN ._.

@@ -1,0 +1,10 @@
+Sequencing_NN of_IN the_DT GR_NN cDNA_NN and_CC gene_NN including_VBG the_DT 2.3-kb_JJ coding_NN region_NN ,_, the_DT junctions_NNS ,_, the_DT known_JJ region_NN ,_, and_CC approximately_RB 300_CD bp_NN of_IN the_DT revealed_VBD no_DT alterations_NNS ._.
+Previous_JJ studies_NNS have_VBP demonstrated_VBN that_IN human_JJ HL-60_NN myeloid_JJ leukemia_NN cells_NNS differentiate_VBP in_IN response_NN to_TO phorbol_NN esters_NNS ._.
+Glucocorticoids_NNS GCS_NNS profoundly_RB inhibit_VBP several_JJ aspects_NNS of_IN T_NN cell_NN immunity_NN largely_RB through_IN inhibition_NN of_IN cytokine_NN expression_NN at_IN the_DT transcriptional_JJ and_CC posttranscriptional_JJ levels_NNS ._.
+The_DT putative_JJ intracellular_JJ receptors_NNS for_IN FK506_NN and_CC cyclosporin_NN are_VBP cis-trans_JJ prolyl_JJ isomerases_NNS ._.
+Little_JJ is_VBZ known_VBN of_IN expression_NN of_IN 1,25-LRB-OH-RRB-2D3_NN receptor_NN RNA_NN in_IN hematopoietic_JJ cells_NNS ._.
+Furthermore_RB ,_, p50_NN protein_NN was_VBD detected_VBN in_IN the_DT cytoplasm_NN of_IN all_DT lymphocytes_NNS ._.
+Glucocorticoid_NN receptor_NN characteristics_NNS in_IN monocytes_NNS of_IN patients_NNS with_IN corticosteroid-resistant_JJ bronchial_JJ asthma_NN ._.
+By_IN assaying_VBG CAT_NN enzyme_NN activity_NN across_IN a_DT 24-h_JJ PRL_NN induction_NN time_NN course_NN ,_, we_PRP were_VBD able_JJ to_TO assign_VB G1_NN vs._CC S_NN phase_NN PRL_NN responses_NNS of_IN the_DT IRF-1_NN gene_NN to_TO different_JJ regions_NNS of_IN the_DT IRF-1_NN and_CC promoter_NN DNA_NN ._.
+There_EX is_VBZ little_JJ information_NN available_JJ on_IN the_DT response_NN of_IN NF_NN kappa_NN B_NN to_TO cytokines_NNS in_IN normal_JJ human_JJ monocytes_NNS ._.
+A_DT dominant_JJ inhibitory_JJ ras_NN mutant_NN specifically_RB blocked_VBD antigen_NN receptor_NN agonism_NN ,_, indicating_VBG that_IN ras_NN activity_NN is_VBZ required_VBN for_IN antigen_NN receptor_NN signaling_NN ._.

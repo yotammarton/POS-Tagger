@@ -1,0 +1,10 @@
+The_DT transcriptionally_RB regulatory_JJ regions_NNS of_IN the_DT lymphomagenic_JJ Akv_NN and_CC SL3-3_NN murine_JJ leukemia_NN retroviruses_NNS MLVs_NNS contain_VBP two_CD types_NNS of_IN E-box_NN consensus_NN motifs_NNS ,_, CAGATG_NN ._.
+In_IN a_DT sample_NN from_IN one_CD of_IN the_DT patients_NNS ,_, c-fos-positive_JJ lymphocytes_NNS were_VBD identified_VBN as_IN CD4_NN positive_JJ and_CC CD8_NN negative_JJ ._.
+Deletion_NN mutants_NNS containing_VBG 1.3_CD ,_, 0.6_CD ,_, and_CC 0.2_CD kb_NN DNA_NN were_VBD incrementally_RB less_RBR transcriptionally_RB active_JJ ,_, although_IN 0.2_CD kb_NN still_RB mediated_VBD a_DT 12-fold_JJ induction_NN by_IN PRL_NN ._.
+A_DT PMA_NN responsive_JJ element_NN was_VBD localized_JJ to_TO a_DT region_NN between_IN -95_CD and_CC -36_CD bp_NN relative_JJ to_TO the_DT transcription_NN start_NN site_NN ._.
+When_WRB stably_RB introduced_VBN into_IN primary_JJ erythroblasts_NNS or_CC conditionally_RB transformed_VBN erythroid_JJ progenitors_NNS cells_NNS ,_, exogenous_JJ promoted_VBD proliferation_NN and_CC inhibited_VBD terminal_JJ differentiation_NN in_IN an_DT estrogen-dependent_JJ manner_NN ._.
+Expression_NN of_IN DR3_NN appears_VBZ to_TO be_VB restricted_JJ to_TO tissues_NNS enriched_VBN in_IN lymphocytes_NNS ._.
+Likewise_RB ,_, enhanced_VBN expression_NN of_IN exogenous_JJ in_IN erythroblasts_NNS rendered_VBD them_PRP susceptible_JJ to_TO modulation_NN of_IN differentiation_NN by_IN T3_NN ,_, suggesting_VBG a_DT similar_JJ function_NN of_IN both_DT receptors_NNS ._.
+Characterization_NN of_IN a_DT cofactor_NN that_WDT regulates_VBZ dimerization_NN of_IN a_DT mammalian_JJ homeodomain_NN protein_NN ._.
+The_DT S._FW cerevisiae_FW and_CC Sch._FW pombe_FW systems_NNS support_VBP effects_NNS of_IN acidic_JJ activator_NN proteins_NNS ,_, provided_VBN a_DT further_JJ protein_NN fraction_NN from_IN S._FW cerevisiae_FW is_VBZ supplied_VBN ._.
+Various_JJ cellular_JJ stimuli_NNS relieve_VBP this_DT inhibition_NN by_IN mechanisms_NNS largely_RB unknown_JJ ,_, leading_VBG to_TO NF-kappa_NN B_NN nuclear_JJ localization_NN and_CC transactivation_NN of_IN target_NN genes_NNS ._.

@@ -1,0 +1,10 @@
+Retinoic_JJ acid_NN RA_NN -induced_JJ maturation_NN mediated_VBN by_IN the_DT retinoic_JJ acid_NN receptor_NN alpha_NN RAR_NN alpha_NN has_VBZ been_VBN implicated_VBN in_IN myeloid_JJ development_NN ._.
+Tissue_NN specific_JJ regulation_NN of_IN gene_NN expression_NN by_IN transcription_NN factors_NNS is_VBZ a_DT fascinating_JJ new_JJ field_NN in_IN molecular_JJ immunology_NN ._.
+One_CD of_IN NF-kappa_NN B_NN unique_JJ properties_NNS is_VBZ posttranslational_JJ activation_NN via_IN release_NN of_IN an_DT inhibitory_JJ subunit_NN ,_, called_VBN inhibitor_NN of_IN NF-kappa_NN B_NN I_NN kappa_NN B_NN ,_, from_IN a_DT sequestered_JJ cytoplasmic_JJ form_NN ._.
+TCF-1_NN belongs_VBZ to_TO the_DT family_NN of_IN transcription-regulating_JJ proteins_NNS which_WDT share_VBP a_DT region_NN of_IN homology_NN termed_VBN the_DT HMG-box_NN ._.
+We_PRP observed_VBD that_IN in_IN a_DT monocytic_JJ U937_NN and_CC a_DT bronchial_JJ epithelial_NN H292_NN cell-line_JJ dexamethasone_NN strongly_RB suppressed_VBD basal_JJ and_CC induced_VBN ICAM-1_NN expression_NN ._.
+Induction_NN of_IN the_DT POU_NN domain_NN transcription_NN factor_NN Oct-2_NN during_IN T-cell_NN activation_NN by_IN cognate_JJ antigen_NN ._.
+Stability_NN of_IN the_DT c-fos_NN and_CC c-jun_NN mRNA_NN was_VBD not_RB affected_VBN by_IN LTB4_NN ,_, as_IN assessed_VBN after_IN actinomycin_NN D_NN treatment_NN ._.
+We_PRP also_RB showed_VBD that_IN this_DT silencer_NN has_VBZ stronger_JJR inhibitory_JJ activity_NN in_IN HeLa_NN cells_NNS ,_, as_IN compared_VBN to_TO K562_NN human_JJ erythroleukemia_NN cells_NNS ._.
+Preincubation_NN with_IN lysoPC_NN increased_VBD monocytic_JJ cAMP_NN levels_NNS ._.
+Tissue_NN factor_NN expression_NN of_IN human_JJ monocytes_NNS is_VBZ suppressed_VBN by_IN lysophosphatidylcholine_NN ._.

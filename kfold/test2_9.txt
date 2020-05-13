@@ -1,0 +1,10 @@
+analyses_NNS show_VBP that_IN several_JJ Oct2_NN isoforms_NNS can_MD stimulate_VB from_IN a_DT remote_JJ position_NN but_CC that_IN this_DT stimulation_NN is_VBZ restricted_JJ to_TO B_NN cells_NNS ._.
+In_IN particular_JJ ,_, Tax_NN is_VBZ capable_JJ of_IN modulating_VBG the_DT expression_NN or_CC activity_NN of_IN various_JJ host_NN transcription_NN factors_NNS ,_, including_VBG members_NNS of_IN the_DT NF-kappa_NN and_CC families_NNS ,_, as_RB well_RB as_IN the_DT cellular_JJ factors_NNS HEB-1_NN and_CC p67SRF_NN ._.
+These_DT results_NNS provide_VBP the_DT first_JJ direct_JJ evidence_NN for_IN the_DT requirement_NN of_IN GATA-1_NN and_CC NF-E2_NN in_IN BA-induced_JJ differentiation_NN process_NN ._.
+How_WRB does_VBZ GATA-1_NN regulate_VB red_JJ cell_NN genes_NNS like_IN globin_NN or_CC the_DT Epo_NN receptor_NN
+Overexpression_NN of_IN SRF_NN in_IN B_NN cells_NNS causes_VBZ the_DT IL-2R_NN enhancer_NN to_TO function_VB as_RB well_RB as_IN it_PRP does_VBZ in_IN T_NN cells_NNS ,_, suggesting_VBG that_IN the_DT high_JJ level_NN of_IN SRF_NN binding_NN in_IN T_NN cells_NNS is_VBZ functionally_RB important_JJ ._.
+Rapid_JJ nongenomic_JJ in_FW vitro_FW effects_NNS of_IN aldosterone_NN on_IN intracellular_JJ electrolytes_NNS ,_, cell_NN volume_NN ,_, and_CC antiport_NN have_VBP been_VBN found_VBN in_IN human_JJ mononuclear_JJ leukocytes_NNS HML_NN ._.
+The_DT transcription_NN factor_NN GATA-1_NN is_VBZ expressed_VBN in_IN a_DT subset_NN of_IN hemopoietic_JJ cells_NNS ,_, where_WRB it_PRP mediates_VBZ the_DT cell-type_JJ specific_JJ expression_NN of_IN several_JJ genes_NNS ._.
+These_DT studies_NNS demonstrate_VBP a_DT novel_JJ and_CC striking_JJ insensitivity_NN of_IN arterial_JJ endothelium_NN to_TO the_DT effects_NNS of_IN TNF_NN and_CC LPS_NN and_CC indicate_VBP a_DT dissociation_NN between_IN the_DT ability_NN of_IN HUAECs_NNS to_TO upregulate_VB nuclear_JJ factor-kappaB_NN and_CC VCAM-1_NN ._.
+A_DT mutation_NN of_IN the_DT glucocorticoid_NN receptor_NN in_IN primary_JJ cortisol_NN resistance_NN ._.
+Thus_RB ,_, both_DT NF-kappa_NN B-binding_JJ complexes_NNS are_VBP needed_VBN for_IN optimal_JJ viral_JJ transcription_NN ._.

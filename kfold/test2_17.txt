@@ -1,0 +1,10 @@
+Further_JJ evidence_NN suggests_VBZ that_IN Nef_NN inhibits_VBZ NF-kappa_NN B_NN induction_NN by_IN interfering_VBG with_IN a_DT signal_NN derived_VBN from_IN the_DT T-cell_NN receptor_NN complex_NN ._.
+Exposing_VBG human_JJ umbilical_JJ vein_NN endothelial_JJ cells_NNS HUVECs_NNS to_TO results_VBZ in_IN an_DT increase_NN in_IN polymorphonuclear_JJ leukocyte_NN PMN_NN adhesion_NN to_TO HUVECs_NNS ._.
+Down-regulation_NN of_IN immunogenic_JJ proteins_NNS EBNA2-EBNA6_NN in_IN nasal_JJ lymphoma_NN may_MD enable_VB tumour_NN cells_NNS to_TO evade_VB host_NN cytotoxic_JJ T-cell_NN surveillance_NN ._.
+The_DT cyclin-dependent_JJ kinase_NN inhibitor_NN p27Kip1_NN plays_VBZ an_DT important_JJ role_NN in_IN regulating_VBG cell-cycle_JJ progression_NN ._.
+Previously_RB ,_, transcription_NN of_IN the_DT c-fos_NN gene_NN has_VBZ been_VBN reported_VBN to_TO be_VB transactivated_VBN by_IN the_DT viral_JJ transcription_NN factor_NN ,_, Tax1_NN ._.
+This_DT induction_NN of_IN CAT_NN activity_NN was_VBD sensitive_JJ to_TO dexamethasone_NN ._.
+IL-2_NN induced_VBD less_RBR STAT1_NN alpha_NN activation_NN and_CC IFN-alpha_NN induced_VBD greater_JJR STAT5_NN activation_NN in_IN NK3.3_NN cells_NNS compared_VBN with_IN preactivated_JJ primary_JJ NK_NN cells_NNS ._.
+Therefore_RB ,_, it_PRP is_VBZ important_JJ to_TO determine_VB whether_IN CD14_NN is_VBZ expressed_VBN in_IN gingival_JJ fibroblasts_NNS and_CC to_TO define_VB the_DT P-LPS-mediated_JJ signal-transducing_JJ mechanism_NN in_IN the_DT cells_NNS ._.
+Functional_JJ studies_NNS demonstrated_VBD that_IN transcriptional_JJ activation_NN of_IN a_DT plasmid_NN containing_VBG multimerized_JJ kappaB_NN sites_NNS by_IN p65_NN was_VBD inhibited_VBN by_IN agents_NNS that_IN elevate_VBP cAMP_NN and_CC by_IN overexpression_NN of_IN the_DT catalytic_JJ subunit_NN of_IN PKA_NN ._.
+In_IN contrast_NN ,_, Egr-1_NN expression_NN is_VBZ abrogated_VBN in_IN group_NN I_NN Burkitt_NN tumor_NN cells_NNS ,_, irrespective_JJ of_IN the_DT EBV_NN genome_NN carrying_NN status_NN ._.
