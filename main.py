@@ -1067,10 +1067,10 @@ def f_xi_yi(features_indices: Feature2Id, words, tags, i):
     # features fired in class 100
     if (100, cur_word, cur_tag) in features_indices.class100_feature_index_dict:
         active_features_indices.append(features_indices.all_feature_index_dict[(100, cur_word, cur_tag)])
-    elif (100, cur_word.lower(), cur_tag) in features_indices.class100_feature_index_dict:
-        active_features_indices.append(features_indices.all_feature_index_dict[(100, cur_word.lower(), cur_tag)])
-    elif (100, cur_word.upper(), cur_tag) in features_indices.class100_feature_index_dict:
-        active_features_indices.append(features_indices.all_feature_index_dict[(100, cur_word.upper(), cur_tag)])
+    # elif (100, cur_word.lower(), cur_tag) in features_indices.class100_feature_index_dict:
+    #     active_features_indices.append(features_indices.all_feature_index_dict[(100, cur_word.lower(), cur_tag)])
+    # elif (100, cur_word.upper(), cur_tag) in features_indices.class100_feature_index_dict:
+    #     active_features_indices.append(features_indices.all_feature_index_dict[(100, cur_word.upper(), cur_tag)])
     elif (100, cur_word[0].upper() + cur_word[1:].lower(), cur_tag) in features_indices.class100_feature_index_dict:
         active_features_indices.append(
             features_indices.all_feature_index_dict[(100, cur_word[0].upper() + cur_word[1:].lower(), cur_tag)])
@@ -1853,15 +1853,15 @@ def run_model_2():
 
 
 def main():
-    # start_1 = time.time()
-    # run_model_1()
-    # stop_1 = time.time()
-    # print(f'WHOLE MODEL 1 TOOK {stop_1 - start_1} SECS')
+    start_1 = time.time()
+    run_model_1()
+    stop_1 = time.time()
+    print(f'WHOLE MODEL 1 TOOK {stop_1 - start_1} SECS')
 
-    start_2 = time.time()
-    run_model_2()
-    stop_2 = time.time()
-    print(f'WHOLE MODEL 2 TOOK {stop_2 - start_2} SECS')
+    # start_2 = time.time()
+    # run_model_2()
+    # stop_2 = time.time()
+    # print(f'WHOLE MODEL 2 TOOK {stop_2 - start_2} SECS')
 
 
 # TODO delete
