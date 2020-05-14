@@ -1,0 +1,1 @@
+This_DT nonresponsiveness_NN occurs_VBZ because_IN of_IN a_DT lack_NN of_IN expression_NN of_IN the_DT beta-_SYM chain_NN accessory_JJ factor_NN of_IN the_DT IFN-gamma_NN receptor_NN ,_, while_IN at_IN the_DT same_JJ time_NN maintaining_VBG IFN-gamma_NN receptor_NN alpha-chain_NN expression_NN ._.

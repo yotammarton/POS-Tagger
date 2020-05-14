@@ -1,0 +1,1 @@
+Correlations_NNS were_VBD found_VBN between_IN plasma_NN IFN_NN alpha_NN and_CC receptor_NN Kd_NN on_IN monocytes_NNS of_IN AIDS-GR_NN r_NN 0.77_CD and_CC between_IN IFN_NN alpha_NN and_CC plasma_NN cortisol_NN in_IN the_DT same_JJ group_NN r_NN 0.74_CD ._.

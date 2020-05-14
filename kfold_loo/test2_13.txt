@@ -1,0 +1,1 @@
+G0S24_NN has_VBZ potential_JJ sites_NNS for_IN transcription_NN factors_NNS in_IN the_DT flank_NN and_CC intron_NN ;_: these_DT include_VBP a_DT serum_NN response_NN element_NN ._.

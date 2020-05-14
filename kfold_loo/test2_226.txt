@@ -1,0 +1,1 @@
+We_PRP have_VBP found_VBN that_IN purified_VBN human_JJ peripheral-blood_JJ granulocytes_NNS express_VBP constitutively_RB significant_JJ levels_NNS of_IN proto-oncogenes_NNS c-jun_NN ,_, jun_NN B_NN and_CC jun_NN D_NN mRNA_NN ._.

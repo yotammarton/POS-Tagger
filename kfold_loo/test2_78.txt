@@ -1,0 +1,1 @@
+The_DT Ro_NN in_IN the_DT CS_JJ group_NN was_VBD 3,605_CD 984_CD binding_VBG sites_NNS per_IN nucleus_NN mean_NN SEM_NN ,_, n_NN 6_CD and_CC 4,757_CD 692_CD binding_VBG sites_NNS per_IN nucleus_NN mean_NN SEM_NN ,_, n_NN 6_CD in_IN the_DT CR_JJ group_NN p_NN 0.23_CD ._.

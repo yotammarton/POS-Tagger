@@ -1,0 +1,1 @@
+A_DT novel_JJ B_NN cell-derived_JJ coactivator_NN potentiates_VBZ the_DT activation_NN of_IN immunoglobulin_NN promoters_NNS by_IN octamer-binding_JJ transcription_NN factors_NNS ._.

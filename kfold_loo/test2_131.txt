@@ -1,0 +1,1 @@
+Similarly_RB ,_, covalent_JJ modification_NN of_IN free_JJ sulfhydryl_NN groups_NNS with_IN diamide_NN reversible_JJ or_CC N-ethylmaleimide_NN irreversible_JJ results_VBZ in_IN a_DT complete_JJ loss_NN of_IN DNA_NN binding_NN activity_NN ._.

@@ -1,0 +1,1 @@
+This_DT protein_NN complex_NN was_VBD more_RBR abundant_JJ in_IN U-937_NN ,_, K-562_NN ,_, and_CC HeLa_NN cell_NN extracts_NNS than_IN in_IN Raji_NN ,_, HF_NN ,_, 3T3_NN ,_, or_CC HL-60_NN cells_NNS ,_, but_CC the_DT binding_NN activity_NN was_VBD altered_VBN only_RB twofold_RB after_IN TPA_NN treatment_NN ._.

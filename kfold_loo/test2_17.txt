@@ -1,0 +1,1 @@
+A_DT PMA_NN responsive_JJ element_NN was_VBD localized_JJ to_TO a_DT region_NN between_IN -95_CD and_CC -36_CD bp_NN relative_JJ to_TO the_DT transcription_NN start_NN site_NN ._.

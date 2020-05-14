@@ -1,0 +1,1 @@
+Glucocorticoids_NNS GCS_NNS profoundly_RB inhibit_VBP several_JJ aspects_NNS of_IN T_NN cell_NN immunity_NN largely_RB through_IN inhibition_NN of_IN cytokine_NN expression_NN at_IN the_DT transcriptional_JJ and_CC posttranscriptional_JJ levels_NNS ._.

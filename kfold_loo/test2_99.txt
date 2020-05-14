@@ -1,0 +1,1 @@
+This_DT sequence_NN element_NN was_VBD referred_VBN to_TO as_IN the_DT BAT_NN box_NN and_CC deletion_NN significantly_RB reduced_VBD the_DT activity_NN of_IN a_DT CD20_NN promoter-CAT_JJ construct_NN in_IN B_NN cells_NNS ._.

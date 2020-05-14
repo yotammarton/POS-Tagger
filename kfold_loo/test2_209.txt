@@ -1,0 +1,1 @@
+Thus_RB ,_, both_DT NF-kappa_NN B-binding_JJ complexes_NNS are_VBP needed_VBN for_IN optimal_JJ viral_JJ transcription_NN ._.

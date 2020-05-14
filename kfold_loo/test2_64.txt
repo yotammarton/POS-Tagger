@@ -1,0 +1,1 @@
+Single_JJ strand_NN conformation_NN polymorphism_NN SSCP_NN analysis_NN again_RB showed_VBD the_DT heterozygous_JJ status_NN of_IN the_DT twins_NNS and_CC a_DT normal_JJ pattern_NN in_IN parents_NNS ._.

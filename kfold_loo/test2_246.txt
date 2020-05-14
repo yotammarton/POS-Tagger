@@ -1,0 +1,1 @@
+IL-4_NN secreted_VBN by_IN activated_VBN T_NN cells_NNS is_VBZ a_DT pleiotropic_JJ cytokine_NN affecting_VBG growth_NN and_CC differentiation_NN of_IN diverse_JJ cell_NN types_NNS such_JJ as_IN T_NN cells_NNS ,_, B_NN cells_NNS ,_, and_CC mast_NN cells_NNS ._.

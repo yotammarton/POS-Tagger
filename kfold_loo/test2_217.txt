@@ -1,0 +1,1 @@
+Whereas_IN peripheral_JJ T_NN cells_NNS can_MD undergo_VB forms_NNS of_IN positive_JJ selection_NN by_IN antigen-driven_JJ clonal_JJ expansion_NN and_CC negative_JJ selection_NN by_IN abortive_JJ stimulation_NN leading_VBG to_TO anergy_NN or_CC death_NN ,_, neither_DT is_VBZ exactly_RB the_DT same_JJ phenomenon_NN that_WDT occurs_VBZ in_IN the_DT thymic_JJ cortex_NN ._.

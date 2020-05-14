@@ -1,0 +1,1 @@
+Multifactor_JJ cis-dominant_JJ negative_JJ regulation_NN of_IN IL-2_NN gene_NN expression_NN in_IN anergized_VBN T_NN cells_NNS ._.

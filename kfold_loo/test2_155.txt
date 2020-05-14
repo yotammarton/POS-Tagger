@@ -1,0 +1,1 @@
+By_IN assaying_VBG CAT_NN enzyme_NN activity_NN across_IN a_DT 24-h_JJ PRL_NN induction_NN time_NN course_NN ,_, we_PRP were_VBD able_JJ to_TO assign_VB G1_NN vs._CC S_NN phase_NN PRL_NN responses_NNS of_IN the_DT IRF-1_NN gene_NN to_TO different_JJ regions_NNS of_IN the_DT IRF-1_NN and_CC promoter_NN DNA_NN ._.

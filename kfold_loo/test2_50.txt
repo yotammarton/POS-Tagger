@@ -1,0 +1,1 @@
+Differential_JJ monocyte_NN adhesion_NN and_CC adhesion_NN molecule_NN expression_NN in_IN venous_JJ and_CC arterial_JJ endothelial_JJ cells_NNS ._.

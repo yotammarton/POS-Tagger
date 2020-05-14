@@ -1,0 +1,1 @@
+Overexpression_NN of_IN full-length_JJ SCL_NN protein_NN in_IN the_DT lymphoid_JJ cell_NN lines_NNS ,_, SupT1_NN and_CC Raji_NN ,_, did_VBD not_RB alter_VB cell_NN phenotype_NN and_CC there_EX was_VBD no_DT evidence_NN for_IN autoregulation_NN of_IN SCL_NN transcription_NN ._.

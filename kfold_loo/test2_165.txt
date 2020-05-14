@@ -1,0 +1,1 @@
+Exposing_VBG human_JJ umbilical_JJ vein_NN endothelial_JJ cells_NNS HUVECs_NNS to_TO results_VBZ in_IN an_DT increase_NN in_IN polymorphonuclear_JJ leukocyte_NN PMN_NN adhesion_NN to_TO HUVECs_NNS ._.

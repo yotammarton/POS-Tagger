@@ -1,0 +1,1 @@
+Sequencing_NN of_IN the_DT GR_NN cDNA_NN and_CC gene_NN including_VBG the_DT 2.3-kb_JJ coding_NN region_NN ,_, the_DT junctions_NNS ,_, the_DT known_JJ region_NN ,_, and_CC approximately_RB 300_CD bp_NN of_IN the_DT revealed_VBD no_DT alterations_NNS ._.

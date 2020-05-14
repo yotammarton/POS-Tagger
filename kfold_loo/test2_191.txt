@@ -1,0 +1,1 @@
+The_DT three_CD jun_NN genes_NNS showed_VBD a_DT similar_JJ time_NN course_NN in_IN induction_NN by_IN PMA_NN ,_, maximal_JJ mRNA_NN levels_NNS being_VBG reached_VBN after_IN 60_CD min_NN of_IN induction_NN ._.

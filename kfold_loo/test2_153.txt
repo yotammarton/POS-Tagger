@@ -1,0 +1,1 @@
+Two_CD subclones_NNS were_VBD found_VBN to_TO have_VB an_DT abnormal_JJ response_NN to_TO the_DT protein_NN kinase_NN C_NN PKC_NN activator_NN PMA_NN ._.

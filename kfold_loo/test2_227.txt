@@ -1,0 +1,1 @@
+Soluble_JJ factors_NNS secreted_VBN by_IN activated_VBN T-lymphocytes_NNS modulate_VBP the_DT transcription_NN of_IN the_DT immunosuppressive_JJ cytokine_NN TGF-beta_NN 2_CD in_IN glial_JJ cells_NNS ._.

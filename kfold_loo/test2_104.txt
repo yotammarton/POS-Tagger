@@ -1,0 +1,1 @@
+The_DT clinical_JJ relevance_NN of_IN these_DT alterations_NNS was_VBD studied_VBN by_IN comparing_VBG the_DT FISH_NN results_NNS with_IN several_JJ parameters_NNS currently_RB used_VBN in_IN breast-cancer_JJ pathology_NN ._.

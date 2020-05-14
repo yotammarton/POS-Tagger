@@ -1,0 +1,1 @@
+Negative_JJ selection_NN in_IN the_DT cortex_NN appears_VBZ to_TO be_VB a_DT suicidal_JJ inversion_NN of_IN antigen_NN responsiveness_NN :_: instead_RB of_IN turning_VBG on_IN IL-2_NN expression_NN ,_, the_DT activated_VBN cell_NN destroys_VBZ own_JJ chromatin_NN ._.

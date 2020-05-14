@@ -1,0 +1,1 @@
+The_DT transactivator_NN HTLV-I_NN Tax_NN activates_VBZ the_DT promoter_NN of_IN the_DT gene_NN coding_VBG for_IN the_DT interleukin_NN 2_CD alpha-chain_JJ receptor_NN IL-2R_NN alpha_NN via_IN a_DT kappa_NN B_NN site_NN that_WDT can_MD bind_VB several_JJ protein_NN species_NNS of_IN the_DT rel_NN family_NN ._.

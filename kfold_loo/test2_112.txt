@@ -1,0 +1,1 @@
+In_IN agreement_NN with_IN this_DT finding_NN ,_, Northern_NN experiments_NNS where_WRB p65_NN and_CC p105_NN mRNA_NN levels_NNS were_VBD determined_VBN ,_, demonstrated_VBD that_IN expression_NN of_IN these_DT components_NNS of_IN the_DT NF-kappa_NN B_NN transcription_NN factor_NN were_VBD not_RB affected_VBN by_IN IL-10_NN or_CC IL-4_NN ._.

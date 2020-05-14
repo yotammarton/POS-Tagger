@@ -1,0 +1,1 @@
+Transient_JJ overexpression_NN of_IN Bcl-2_NN in_IN mouse_NN and_CC human_JJ T_NN cell_NN blasts_NNS did_VBD not_RB block_VB Fas-mediated_JJ apoptosis_NN ,_, whereas_IN etoposide-_NN and_CC glucocorticoid-induced_JJ cytotoxicity_NN was_VBD potently_RB inhibited_VBN ._.

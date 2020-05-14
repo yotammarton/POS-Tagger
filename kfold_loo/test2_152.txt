@@ -1,0 +1,1 @@
+Erbstatin_NN and_CC genistein_NN inhibited_VBD the_DT sIg-crosslinking-induced_JJ Egr-1_NN mRNA_NN expression_NN in_IN a_DT dose-dependent_JJ manner_NN parallel_JJ to_TO that_WDT observed_VBN in_IN the_DT inhibition_NN of_IN sIg-crosslinking-induced_JJ protein_NN tyrosine_NN phosphorylation_NN ._.

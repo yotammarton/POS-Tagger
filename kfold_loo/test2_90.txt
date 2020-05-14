@@ -1,0 +1,1 @@
+Here_RB ,_, Stanley_NNP Korsmeyer_NNP provides_VBZ a_DT brief_JJ overview_NN of_IN bcl-2_NN ,_, concentrating_VBG on_IN roles_NNS in_IN B-_NN and_CC T-cell_NN development_NN and_CC in_IN oncogenesis_NN ._.

@@ -1,0 +1,1 @@
+The_DT transcription_NN factor_NN E2F_NN activates_VBZ the_DT expression_NN of_IN multiple_JJ genes_NNS involved_VBN in_IN cell_NN proliferation_NN ,_, such_JJ as_IN c-myc_NN and_CC the_DT dihydrofolate_JJ reductase_NN gene_NN ._.

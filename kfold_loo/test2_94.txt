@@ -1,0 +1,1 @@
+We_PRP observed_VBD that_IN in_IN a_DT monocytic_JJ U937_NN and_CC a_DT bronchial_JJ epithelial_NN H292_NN cell-line_JJ dexamethasone_NN strongly_RB suppressed_VBD basal_JJ and_CC induced_VBN ICAM-1_NN expression_NN ._.

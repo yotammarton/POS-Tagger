@@ -1,0 +1,1 @@
+Two_CD proteins_NNS binding_VBG the_DT kappa_NN B_NN sequence_NN ,_, NF-kappa_NN B_NN and_CC KBF1_NN ,_, are_VBP constitutively_RB expressed_VBN in_IN IARC_NN 301_CD nuclei_NNS and_CC induced_VBN by_IN PMA_NN and_CC PHA_NN in_IN Jurkat_NN ._.

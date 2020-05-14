@@ -1,0 +1,1 @@
+Although_IN ,_, the_DT level_NN of_IN MNDA_NN mRNA_NN in_IN primary_JJ monocytes_NNS is_VBZ very_RB low_JJ it_PRP was_VBD up-regulated_VBN at_IN 6_CD h_NN following_VBG the_DT addition_NN of_IN interferon_NN alpha_NN ._.

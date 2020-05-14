@@ -1,0 +1,1 @@
+In_IN this_DT report_NN ,_, it_PRP is_VBZ demonstrated_VBN that_IN Elf-1_NN contains_VBZ a_DT sequence_NN motif_NN that_WDT is_VBZ highly_RB related_JJ to_TO the_DT Rb_NN binding_NN sites_NNS of_IN several_JJ viral_JJ oncoproteins_NNS and_CC binds_VBZ to_TO the_DT pocket_NN region_NN of_IN Rb_NN both_CC in_FW vitro_FW and_CC in_FW vivo_FW ._.

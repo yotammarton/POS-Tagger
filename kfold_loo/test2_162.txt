@@ -1,0 +1,1 @@
+However_RB ,_, upon_IN transition_NN from_IN a_DT proliferating_JJ G1_NN to_TO a_DT resting_JJ state_NN of_IN the_DT cell_NN cycle_NN the_DT three_CD genes_NNS were_VBD differently_RB regulated_VBN ._.

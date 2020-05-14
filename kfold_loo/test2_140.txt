@@ -1,0 +1,1 @@
+All_DT patients_NNS were_VBD characterized_VBN by_IN an_DT Addisonian_JJ picture_NN weakness_NN ,_, weight_NN loss_NN ,_, hypotension_NN ,_, hyponatremia_NN ,_, and_CC intense_JJ mucocutaneous_JJ melanosis_NN ._.

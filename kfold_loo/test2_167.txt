@@ -1,0 +1,1 @@
+Characterization_NN of_IN a_DT cofactor_NN that_WDT regulates_VBZ dimerization_NN of_IN a_DT mammalian_JJ homeodomain_NN protein_NN ._.

@@ -1,0 +1,1 @@
+Moreover_RB ,_, M-CSF-induced_JJ expression_NN of_IN the_DT fos-related_JJ gene_NN ,_, fra-1_NN ,_, was_VBD delayed_VBN compared_VBN to_TO that_DT for_IN both_DT c-fos_NN and_CC fos-B_NN ._.

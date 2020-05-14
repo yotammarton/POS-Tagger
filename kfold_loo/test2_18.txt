@@ -1,0 +1,1 @@
+Comparative_JJ analysis_NN of_IN NFAT_NN nuclear_JJ factor_NN of_IN activated_VBN T_NN cells_NNS complex_JJ in_IN human_JJ T_NN and_CC B_NN lymphocytes_NNS ._.

@@ -1,0 +1,1 @@
+Except_IN for_IN the_DT conserved_VBN zinc-finger_NN domains_NNS ,_, the_DT amino_NN acid_NN sequences_NNS of_IN the_DT three_CD proteins_NNS are_VBP distinct_JJ ._.

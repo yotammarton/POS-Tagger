@@ -1,0 +1,1 @@
+The_DT binding_NN activity_NN of_IN the_DT X1_NN box_NN DNA-binding_JJ protein_NN RFX_NN was_VBD examined_VBN and_CC found_VBN to_TO be_VB present_JJ in_IN wild-type_JJ B_NN cells_NNS and_CC the_DT mutant_JJ RJ2.2.5_NN but_CC was_VBD absent_JJ in_IN SJO_NN and_CC Jurkat_NN ._.

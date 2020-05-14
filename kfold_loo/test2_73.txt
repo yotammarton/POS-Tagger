@@ -1,0 +1,1 @@
+1,25-Dihydroxyvitamin_NN D3_NN 1,25-LRB-OH-RRB-2D3_NN induces_VBZ differentiation_NN and_CC inhibits_VBZ proliferation_NN of_IN myeloid_JJ leukemic_JJ cells_NNS from_IN various_JJ lines_NNS and_CC patients_NNS ;_: these_DT effects_NNS are_VBP probably_RB mediated_VBN through_IN the_DT 1,25-LRB-OH-RRB-2D3_NN receptor_NN ._.

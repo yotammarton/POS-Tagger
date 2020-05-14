@@ -1,0 +1,1 @@
+We_PRP showed_VBD that_IN both_CC IL-10_NN and_CC IL-4_NN inhibit_VBP LPS-induced_JJ IL-6_NN mRNA_NN and_CC protein_NN expression_NN by_IN inhibiting_VBG the_DT transcription_NN rate_NN of_IN the_DT IL-6_NN gene_NN ._.

@@ -1,0 +1,1 @@
+c-Jun_NN protein_NN isolated_VBN from_IN phorbol_NN ester-induced_JJ cells_NNS did_VBD not_RB target_VB c-Fos_NN for_IN degradation_NN ,_, which_WDT suggests_VBZ that_IN c-Fos_NN is_VBZ transiently_RB stabilized_VBN after_IN stimulation_NN of_IN cell_NN growth_NN ._.

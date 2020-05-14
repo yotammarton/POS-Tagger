@@ -1,0 +1,1 @@
+Kappa_NN B-specific_JJ DNA_NN binding_NN proteins_NNS are_VBP differentially_RB inhibited_VBN by_IN enhancer_NN mutations_NNS and_CC biological_JJ oxidation_NN ._.

@@ -1,0 +1,1 @@
+Although_IN lymphokine_NN genes_NNS are_VBP coordinately_RB regulated_VBN upon_IN antigen_NN stimulation_NN ,_, they_PRP are_VBP regulated_VBN by_IN the_DT mechanisms_NNS common_JJ to_TO all_DT as_RB well_RB as_IN those_DT which_WDT are_VBP unique_JJ to_TO each_DT gene_NN ._.

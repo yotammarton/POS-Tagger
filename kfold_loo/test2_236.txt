@@ -1,0 +1,1 @@
+When_WRB stably_RB introduced_VBN into_IN primary_JJ erythroblasts_NNS or_CC conditionally_RB transformed_VBN erythroid_JJ progenitors_NNS cells_NNS ,_, exogenous_JJ promoted_VBD proliferation_NN and_CC inhibited_VBD terminal_JJ differentiation_NN in_IN an_DT estrogen-dependent_JJ manner_NN ._.

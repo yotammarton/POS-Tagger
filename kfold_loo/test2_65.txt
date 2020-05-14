@@ -1,0 +1,1 @@
+Taken_VBN together_RB ,_, data_NNS indicate_VBP that_IN MS-2_NN mediates_VBZ induction_NN of_IN the_DT CD11b_NN gene_NN as_IN cells_NNS of_IN the_DT monocytic_JJ lineage_NN mature_VBP ._.

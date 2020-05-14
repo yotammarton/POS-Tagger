@@ -1,0 +1,1 @@
+A_DT lymphoid-specific_JJ element_NN ,_, microB_NN ,_, is_VBZ necessary_JJ for_IN enhancer_NN function_NN in_IN pre-B_JJ cells_NNS ._.

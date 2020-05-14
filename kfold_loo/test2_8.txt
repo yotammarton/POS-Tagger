@@ -1,0 +1,1 @@
+n-Acetyl-L-cysteine_NN NAC_NN ,_, a_DT potent_JJ antioxidant_NN ,_, blocked_VBD NF-kappa_NN B_NN activation_NN caused_VBN by_IN IL-4_NN and_CC by_IN anti-CD40_JJ mAb_NN ._.

@@ -1,0 +1,1 @@
+In_IN agar_NN cultures_NNS ,_, 47.10_CD cells_NNS form_VBP 7-_CD and_CC 14-day_JJ colonies_NNS in_IN response_NN to_TO a_DT cocktail_NN of_IN colony-stimulating_JJ factor_NN 2.5_CD ,_, interleukin-3_NN 1_CD ,_, and_CC mouse_NN CSF-1_NN 10_CD ._.

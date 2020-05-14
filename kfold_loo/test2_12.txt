@@ -1,0 +1,1 @@
+An_DT analysis_NN of_IN the_DT immediate_JJ promoter_NN of_IN the_DT human_JJ erythroid_JJ ALAS_NN gene_NN revealed_VBD several_JJ putative_JJ erythroid-specific_JJ cis-acting_JJ elements_NNS including_VBG both_PDT a_DT GATA-1_NN and_CC an_DT NF-E2_NN binding_NN site_NN ._.

@@ -1,0 +1,1 @@
+This_DT protein_NN also_RB binds_VBZ to_TO the_DT immunoglobulin_NN heavy-chain_NN enhancer_NN mu_NN E1_NN site_NN ._.

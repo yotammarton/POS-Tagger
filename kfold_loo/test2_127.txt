@@ -1,0 +1,1 @@
+We_PRP previously_RB identified_VBD a_DT Fas_NN ligand_NN regulatory_JJ element_NN FLRE_NN in_IN the_DT Fas_NN ligand_NN fasL_NN promoter_NN that_IN binds_VBZ Egr_NN family_NN proteins_NNS and_CC demonstrated_VBD that_IN Egr-3_NN PILOT_NN but_CC not_RB Egr-1_NN NGFI-A_NN ,_, Krox-24_NN ,_, Tis-8_NN ,_, and_CC Zif-268_NN induces_VBZ transcription_NN of_IN fasL_NN ._.

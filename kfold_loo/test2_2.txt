@@ -1,0 +1,1 @@
+Moreover_RB ,_, simian_JJ virus_NN 40_CD enhancer_NN activity_NN was_VBD blocked_VBN by_IN the_DT MnlI-AluI_NN fragment_NN in_IN HeLa_NN cells_NNS but_CC not_RB in_IN B_NN cells_NNS ._.

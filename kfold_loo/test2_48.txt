@@ -1,0 +1,1 @@
+The_DT cDNA_NN has_VBZ an_DT open_JJ reading_NN frame_NN of_IN 900_CD amino_NN acids_NNS capable_JJ of_IN encoding_VBG a_DT 97-kDa_JJ protein_NN ._.

@@ -1,0 +1,1 @@
+The_DT results_NNS suggest_VBP that_IN M-CSF_NN induction_NN of_IN M-CSF_NN involves_VBZ G_NN proteins_NNS ,_, PKC_NN and_CC NF_NN kappa_NN B_NN ._.

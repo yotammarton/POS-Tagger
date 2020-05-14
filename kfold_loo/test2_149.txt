@@ -1,0 +1,1 @@
+In_IN this_DT report_NN the_DT biological_JJ properties_NNS of_IN the_DT compounds_NNS ZK161422_NN and_CC ZK157202_NN ,_, which_WDT are_VBP 20-methyl-_NN and_CC 20-methyl-23-eneanalogues_NN ,_, respectively_RB ,_, have_VBP been_VBN analyzed_VBN in_IN comparison_NN with_IN VD_NN ._.

@@ -1,0 +1,1 @@
+Western_NN blot_NN with_IN an_DT N-terminal_JJ antibody_NN showed_VBD normal_JJ levels_NNS of_IN immunoreactive_JJ GR_NN ,_, but_CC quantitative_JJ analysis_NN with_IN isoform-specific_JJ C-terminal_JJ antibodies_NNS revealed_VBD a_DT markedly_RB reduced_VBN GRalpha_NN expression_NN ,_, and_CC high_JJ GRbeta_NN expression_NN ._.

@@ -1,0 +1,1 @@
+A_DT dominant_JJ inhibitory_JJ ras_NN mutant_NN specifically_RB blocked_VBD antigen_NN receptor_NN agonism_NN ,_, indicating_VBG that_IN ras_NN activity_NN is_VBZ required_VBN for_IN antigen_NN receptor_NN signaling_NN ._.

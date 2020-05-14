@@ -1,0 +1,1 @@
+Treatment_NN of_IN T_NN cells_NNS with_IN mitogens_NNS phorbol_NN esters_NNS or_CC cytokines_NNS TNF_NN alpha_NN induces_VBZ NF-kB_NN nuclear_JJ translocation_NN and_CC the_DT subsequent_JJ expression_NN of_IN NF-kB_NN dependent_JJ T_NN cell_NN genes_NNS ._.

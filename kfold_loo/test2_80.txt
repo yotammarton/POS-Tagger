@@ -1,0 +1,1 @@
+U1_NN lines_NNS overexpressing_VBG activator_NN NF-IL-6_NN produced_VBD more_JJR viral_JJ mRNA_NN and_CC virus_NN particles_NNS following_VBG cellular_JJ activation_NN than_IN control_NN lines_NNS ,_, demonstrating_VBG that_IN proteins_NNS are_VBP limiting_VBG for_IN virus_NN transcription_NN ._.

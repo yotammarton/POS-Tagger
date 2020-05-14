@@ -1,0 +1,1 @@
+In_IN a_DT sample_NN from_IN one_CD of_IN the_DT patients_NNS ,_, c-fos-positive_JJ lymphocytes_NNS were_VBD identified_VBN as_IN CD4_NN positive_JJ and_CC CD8_NN negative_JJ ._.

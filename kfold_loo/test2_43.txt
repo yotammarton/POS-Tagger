@@ -1,0 +1,1 @@
+Gel_NN retardation_NN and_CC methylation_NN interference_NN studies_NNS revealed_VBD that_IN bacterially_RB produced_VBN AP-2_NN bound_VBD specifically_RB and_CC with_IN high_JJ affinity_NN to_TO all_DT three_CD 21_CD bp_NN repeats_NNS ,_, and_CC that_IN it_PRP required_VBD the_DT core_NN sequence_NN AGGC_NN for_IN specific_JJ binding_NN ._.

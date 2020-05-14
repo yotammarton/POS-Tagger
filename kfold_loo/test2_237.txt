@@ -1,0 +1,1 @@
+p38_NN and_CC p63_NN may_MD provide_VB a_DT docking_NN site_NN for_IN Grb2_NN ,_, thereby_RB linking_VBG Grb2_NN SH3-binding_JJ proteins_NNS SOS1_NN ,_, SLP-76_NN ,_, and_CC p120_NN to_TO downstream_JJ signalling_NN events_NNS ._.

@@ -1,0 +1,1 @@
+Cell_NN cycle-dependent_JJ initiation_NN and_CC lineage-dependent_JJ abrogation_NN of_IN GATA-1_NN expression_NN in_IN pure_JJ differentiating_VBG hematopoietic_JJ progenitors_NNS ._.

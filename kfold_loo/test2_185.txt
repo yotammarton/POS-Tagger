@@ -1,0 +1,1 @@
+Lipopolysaccharide_NN induces_VBZ phosphorylation_NN of_IN MAD3_NN and_CC activation_NN of_IN c-Rel_NN and_CC related_JJ NF-kappa_NN B_NN proteins_NNS in_IN human_JJ monocytic_JJ THP-1_NN cells_NNS ._.

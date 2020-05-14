@@ -1,0 +1,1 @@
+Expression_NN of_IN PILOT_NN ,_, a_DT putative_JJ transcription_NN factor_NN ,_, requires_VBZ two_CD signals_NNS and_CC is_VBZ cyclosporin_NN A_NN sensitive_JJ in_IN T_NN cells_NNS ._.

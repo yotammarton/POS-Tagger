@@ -1,0 +1,1 @@
+There_EX is_VBZ a_DT suitably_RB located_JJ TATA_NN box_NN ,_, but_CC potential_JJ sites_NNS for_IN CCAAT-box_NN binding_NN factors_NNS are_VBP far_RB upstream_JJ ,_, embedded_JJ in_IN a_DT 42-nucleotide_JJ repeat_NN element_NN ._.

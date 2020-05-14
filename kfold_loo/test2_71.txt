@@ -1,0 +1,1 @@
+In_IN contrast_NN ,_, interleukin-1beta-converting_JJ enzyme_NN family_NN protease_NN inhibitors_NNS Ac-DEVD-CHO_NN and_CC CrmA_NN blocked_VBD Fas-mediated_JJ apoptosis_NN ._.

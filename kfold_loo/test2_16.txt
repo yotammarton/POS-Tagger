@@ -1,0 +1,1 @@
+It_PRP is_VBZ located_JJ in_IN the_DT nucleus_NN in_IN mature_JJ B_NN cells_NNS ,_, but_CC is_VBZ present_JJ in_IN other_JJ cell_NN types_NNS as_IN an_DT inactive_JJ cytoplasmic_JJ complex_NN ._.

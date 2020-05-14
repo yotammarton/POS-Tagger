@@ -1,0 +1,1 @@
+The_DT cytokine_NN TNF_NN mediates_VBZ many_JJ of_IN the_DT pathologic_JJ signs_NNS of_IN cachexia_NN ,_, inflammation_NN ,_, and_CC sepsis_NN ._.

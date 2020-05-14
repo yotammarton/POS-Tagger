@@ -1,0 +1,1 @@
+We_PRP show_VBP that_IN a_DT cellular_JJ reducing_NN catalyst_NN thioredoxin_NN Trx_NN plays_VBZ a_DT major_JJ role_NN in_IN activation_NN of_IN the_DT DNA_NN binding_NN of_IN NF_NN kappa_NN B_NN in_FW vitro_FW and_CC stimulation_NN of_IN transcription_NN from_IN the_DT NF_NN kappa_NN B-dependent_JJ gene_NN expression_NN ._.

@@ -1,0 +1,1 @@
+Leukotriene_NN B4_NN stimulates_VBZ c-fos_NN and_CC c-jun_NN gene_NN transcription_NN and_CC AP-1_NN binding_NN activity_NN in_IN human_JJ monocytes_NNS ._.

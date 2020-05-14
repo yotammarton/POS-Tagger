@@ -1,0 +1,1 @@
+Overexpression_NN of_IN SRF_NN in_IN B_NN cells_NNS causes_VBZ the_DT IL-2R_NN enhancer_NN to_TO function_VB as_RB well_RB as_IN it_PRP does_VBZ in_IN T_NN cells_NNS ,_, suggesting_VBG that_IN the_DT high_JJ level_NN of_IN SRF_NN binding_NN in_IN T_NN cells_NNS is_VBZ functionally_RB important_JJ ._.

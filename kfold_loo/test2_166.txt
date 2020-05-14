@@ -1,0 +1,1 @@
+Deletion_NN mutants_NNS containing_VBG 1.3_CD ,_, 0.6_CD ,_, and_CC 0.2_CD kb_NN DNA_NN were_VBD incrementally_RB less_RBR transcriptionally_RB active_JJ ,_, although_IN 0.2_CD kb_NN still_RB mediated_VBD a_DT 12-fold_JJ induction_NN by_IN PRL_NN ._.

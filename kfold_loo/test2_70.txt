@@ -1,0 +1,1 @@
+Retinoic_JJ acid_NN RA_NN -induced_JJ maturation_NN mediated_VBN by_IN the_DT retinoic_JJ acid_NN receptor_NN alpha_NN RAR_NN alpha_NN has_VBZ been_VBN implicated_VBN in_IN myeloid_JJ development_NN ._.

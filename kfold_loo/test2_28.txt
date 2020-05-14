@@ -1,0 +1,1 @@
+The_DT previously_RB defined_VBN minimal_JJ enhancer_NN containing_VBG the_DT muA_NN ,_, muE3_NN ,_, and_CC muB_NN sites_NNS is_VBZ transactivated_VBN by_IN a_DT combination_NN of_IN the_DT ETS-domain_NN proteins_NNS PU.1_NN and_CC Ets-1_NN in_IN nonlymphoid_JJ cells_NNS ._.

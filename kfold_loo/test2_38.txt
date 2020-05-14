@@ -1,0 +1,1 @@
+Clone_NN showed_VBD specific_JJ proliferation_NN ,_, cytotoxicity_NN ,_, and_CC cytokine_NN tumor_NN necrosis_NN factor_NN alpha_NN ,_, granulocyte-macrophage_JJ colony-stimulating_JJ factor_NN production_NN when_WRB challenged_VBN with_IN autologous_JJ lymphoblastic_JJ cell_NN lines_NNS pulsed_VBN with_IN peptide_NN ._.

@@ -1,0 +1,1 @@
+Characterization_NN of_IN the_DT nuclear_JJ and_CC cytoplasmic_JJ components_NNS of_IN the_DT lymphoid-specific_JJ nuclear_JJ factor_NN of_IN activated_VBN T_NN cells_NNS NF-AT_NN complex_NN ._.

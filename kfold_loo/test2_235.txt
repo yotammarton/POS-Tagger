@@ -1,0 +1,1 @@
+In_IN addition_NN ,_, an_DT inhibitor_NN of_IN PKC_NN blocked_VBD both_CC activated_VBD ras_NN and_CC phorbol_NN ester_NN stimulation_NN ,_, suggesting_VBG a_DT role_NN for_IN ras_NN upstream_JJ of_IN PKC_NN ._.

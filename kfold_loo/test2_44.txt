@@ -1,0 +1,1 @@
+NP_NN and_CC other_JJ thiol_JJ compounds_NNS also_RB blocked_VBD the_DT activation_NN of_IN NF-kappa_NN B_NN by_IN cycloheximide_NN ,_, double-stranded_JJ RNA_NN ,_, calcium_NN ionophore_NN ,_, TNF-alpha_NN ,_, active_JJ phorbol_NN ester_NN ,_, interleukin-1_NN ,_, lipopolysaccharide_NN and_CC lectin_NN ._.

@@ -9,9 +9,9 @@ from matplotlib import colors
 import seaborn as sns
 import pandas as pd
 import time
-import cProfile
 
 
+# TODO leave one out for model 2 finale
 # TODO remove unnecessary imports
 # TODO delete print
 # TODO delete time inside functions
@@ -718,80 +718,6 @@ class Feature2Id:
         self.all_feature_index_dict.update(self.class108_feature_index_dict)
         self.all_feature_index_dict.update(self.class109_feature_index_dict)
         self.all_feature_index_dict.update(self.class110_feature_index_dict)
-
-    # TODO DELETE
-    def plots_for_threshold(self):
-
-        # f101
-        for length in [1, 2, 3, 4]:
-            keys = [key for key in self.feature_statistics.class101_dict if len(key[1]) == length]
-            values = [self.feature_statistics.class101_dict[key] for key in keys]
-            plt.hist(values, bins=500, range=(0, np.mean(values)))
-            plt.title(f'f101 - Suffix - length = {length}')
-            plt.show()
-            plt.boxplot(values)
-            plt.title(f'f101 - Suffix - length = {length}')
-            plt.show()
-
-        # f102
-        for length in [1, 2, 3, 4]:
-            keys = [key for key in self.feature_statistics.class102_dict if len(key[1]) == length]
-            values = [self.feature_statistics.class102_dict[key] for key in keys]
-            plt.hist(values, bins=500, range=(0, np.mean(values)))
-            plt.title(f'f102 - Prefix - length = {length}')
-            plt.show()
-            plt.boxplot(values)
-            plt.title(f'f102 - Prefix - length = {length}')
-            plt.show()
-
-        # barplot for specific prefix and all its tags distribution
-        # for prefix in ["mill"]:
-        #     keys = [key for key in self.feature_statistics.class102_dict if key[1] == prefix]
-        #     values = [self.feature_statistics.class102_dict[key] for key in keys]
-        #     tags = [key[2] for key in keys]
-        #     print(values)
-        #     print(tags)
-        #     x = np.arange(len(tags))
-        #
-        #     plt.bar(x, values)
-        #     plt.title(f'barplot for specific prefix and all its tags: {prefix}')
-        #     plt.xticks(x, tags)
-        #     plt.show()
-
-    # TODO DELETE
-    def prefix_tags_distribution_condition(self, my_key):
-        prefix = my_key[1]
-
-        if prefix not in self.prefix_count_dict:
-            prefix_count = 0
-            for key, value in self.feature_statistics.class102_dict.items():
-                if key[1] == prefix:
-                    prefix_count += value
-            self.prefix_count_dict.update({prefix: prefix_count})
-
-        if self.feature_statistics.class102_dict[my_key] / self.prefix_count_dict[prefix] > 0.97 and \
-                self.feature_statistics.class102_dict[my_key] >= 5:
-            return True
-        else:
-            return False
-
-    # TODO DELETE
-    def suffix_tags_distribution_condition(self, my_key):
-        suffix = my_key[1]
-
-        if suffix not in self.suffix_count_dict:
-            suffix_count = 0
-            for key, value in self.feature_statistics.class101_dict.items():
-                if key[1] == suffix:
-                    suffix_count += value
-            self.suffix_count_dict.update({suffix: suffix_count})
-
-        if self.feature_statistics.class101_dict[my_key] / self.suffix_count_dict[suffix] > 0.97 and \
-                self.feature_statistics.class101_dict[my_key] >= 5:
-            # print(suffix, self.feature_statistics.class101_dict[my_key] / self.suffix_count_dict[suffix])
-            return True
-        else:
-            return False
 
 
 class ConfusionMatrix:
@@ -1864,23 +1790,28 @@ def main():
     # print(f'WHOLE MODEL 2 TOOK {stop_2 - start_2} SECS')
 
 
-# TODO delete
-def create_files_train2():
+def create_files_leave_one_out(train_file_path='train2.wtag'):
+    """
+    creates files splited to train and test
+    :param train_file_path: path for original tagged train file
+    :return: None, writes the files to directory name 'kfold_loo'
+    """
     # prepare sentences list from tagged file
-    with open('train2.wtag') as file:
+    with open(train_file_path) as file:
         sentences = [line for line in file]
-    np.random.shuffle(sentences)
+    np.random.shuffle(sentences)  # shuffle the data before performing leave-one-out
 
-    for i in range(25):
-        test_indices = [idx for idx in range(i * 10, i * 10 + 10)]
-        train_indices = [idx for idx in range(250) if idx not in test_indices]
+    size = len(sentences)  # 250 for train2.wtag
+    for i in range(size):
+        test_indices = [i]
+        train_indices = [idx for idx in range(size) if idx not in test_indices]
         # write test lines to file
-        with open(rf"kfold\test2_{i + 1}.txt", 'w') as file:
+        with open(rf"kfold_loo\test2_{i + 1}.txt", 'w') as file:
             for idx in test_indices:
                 file.write(sentences[idx])
 
         # write train lines to file
-        with open(rf"kfold\train2_{i + 1}.txt", 'w') as file:
+        with open(rf"kfold_loo\train2_{i + 1}.txt", 'w') as file:
             for idx in train_indices:
                 file.write(sentences[idx])
 

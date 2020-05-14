@@ -1,0 +1,1 @@
+Complications_NNS after_IN lung_NN transplantation_NN include_VBP the_DT development_NN of_IN rejection_NN and_CC an_DT increased_VBN incidence_NN of_IN infection_NN ,_, particularly_RB with_IN cytomegalovirus_NN CMV_NN ._.

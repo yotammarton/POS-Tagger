@@ -1,0 +1,1 @@
+We_PRP find_VBP that_IN OCA-B_NN binds_VBZ DNA_NN directly_RB in_IN the_DT major_JJ groove_NN between_IN the_DT two_CD subdomains_NNS of_IN the_DT POU_NN domain_NN ,_, requiring_VBG both_CC an_DT A_NN at_IN the_DT fifth_JJ position_NN of_IN the_DT octamer_NN element_NN and_CC contact_NN with_IN the_DT POU_NN domain_NN ._.

@@ -1,0 +1,1 @@
+These_DT data_NNS suggest_VBP that_IN different_JJ members_NNS or_CC isoforms_NNS of_IN NFAT_NN gene_NN family_NN may_MD regulate_VB inducible_JJ expression_NN of_IN different_JJ cytokine_NN genes_NNS ._.

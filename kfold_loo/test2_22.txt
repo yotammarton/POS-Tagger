@@ -1,0 +1,1 @@
+PMA_NN ,_, but_CC not_RB Ara-C_NN or_CC ceramides_NNS ,_, activated_VBD ERK_NN MAPKS_NNS ,_, in_IN Jurkat_NN and_CC EL4_NN ._.

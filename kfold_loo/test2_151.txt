@@ -1,0 +1,1 @@
+Down-regulation_NN of_IN immunogenic_JJ proteins_NNS EBNA2-EBNA6_NN in_IN nasal_JJ lymphoma_NN may_MD enable_VB tumour_NN cells_NNS to_TO evade_VB host_NN cytotoxic_JJ T-cell_NN surveillance_NN ._.

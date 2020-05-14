@@ -1,0 +1,1 @@
+analyses_NNS show_VBP that_IN several_JJ Oct2_NN isoforms_NNS can_MD stimulate_VB from_IN a_DT remote_JJ position_NN but_CC that_IN this_DT stimulation_NN is_VBZ restricted_JJ to_TO B_NN cells_NNS ._.

@@ -1,0 +1,1 @@
+Thus_RB the_DT inhibitory_JJ effect_NN of_IN insulin_NN on_IN the_DT GR_NN binding_NN power_NN is_VBZ both_CC dose-_NN and_CC time-dependent_JJ ,_, which_WDT strongly_RB suggests_VBZ that_IN GR_NN is_VBZ tonically_RB controlled_VBN by_IN insulin_NN concentration_NN change_NN under_IN physiological_JJ conditions_NNS ._.

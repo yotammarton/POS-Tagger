@@ -1,0 +1,1 @@
+In_IN addition_NN to_TO NB4_NN cells_NNS ,_, ATRA_NN also_RB activated_VBD IRF-1_NN gene_NN expression_NN in_IN HL-60_NN ,_, U937_NN ,_, and_CC THP-1_NN cells_NNS ,_, which_WDT all_DT respond_VBP to_TO ATRA_NN by_IN growth_NN inhibition_NN ._.

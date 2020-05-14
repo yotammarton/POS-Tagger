@@ -1,0 +1,1 @@
+We_PRP analyzed_VBD the_DT effects_NNS of_IN hemin_NN or_CC TPA_NN induction_NN on_IN the_DT binding_NN and_CC activity_NN of_IN transcription_NN factors_NNS at_IN a_DT regulatory_JJ element_NN found_VBN within_IN the_DT transcriptional_JJ regulatory_JJ sequences_NNS of_IN many_JJ erythroid-specific_JJ genes_NNS ._.

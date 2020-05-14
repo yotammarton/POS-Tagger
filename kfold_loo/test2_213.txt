@@ -1,0 +1,1 @@
+Expression_NN of_IN full-length_JJ and_CC mutant_JJ cDNA_NN clones_NNS in_IN bacteria_NNS reveal_VBP that_IN the_DT single_JJ HMG_NN motif_NN ,_, which_WDT is_VBZ predicted_VBN to_TO contain_VB two_CD extended_VBN alpha-helical_JJ segments_NNS ,_, is_VBZ sufficient_JJ to_TO direct_VB the_DT sequence-specific_JJ binding_NN of_IN TCF-1_NN alpha_NN to_TO DNA_NN ._.

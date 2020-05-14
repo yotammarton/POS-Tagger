@@ -1,0 +1,1 @@
+TCF-1_NN belongs_VBZ to_TO the_DT family_NN of_IN transcription-regulating_JJ proteins_NNS which_WDT share_VBP a_DT region_NN of_IN homology_NN termed_VBN the_DT HMG-box_NN ._.

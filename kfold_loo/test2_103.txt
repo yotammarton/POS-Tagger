@@ -1,0 +1,1 @@
+However_RB ,_, this_DT factor_NN did_VBD not_RB bind_VB to_TO a_DT typical_JJ AP-1_NN site_NN ._.

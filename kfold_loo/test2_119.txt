@@ -1,0 +1,1 @@
+The_DT transcription_NN factor_NN GATA-1_NN is_VBZ expressed_VBN in_IN a_DT subset_NN of_IN hemopoietic_JJ cells_NNS ,_, where_WRB it_PRP mediates_VBZ the_DT cell-type_JJ specific_JJ expression_NN of_IN several_JJ genes_NNS ._.

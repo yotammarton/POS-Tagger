@@ -1,0 +1,1 @@
+The_DT bcl-2_NN gene_NN ,_, a_DT repressor_NN of_IN lymphocyte_NN death_NN ,_, is_VBZ perhaps_RB the_DT best_JJS understood_VBN of_IN the_DT programmed_VBN cell_NN death_NN associated_JJ genes_NNS ._.

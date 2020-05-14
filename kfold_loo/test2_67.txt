@@ -1,0 +1,1 @@
+Calcineurin_NN mutants_NNS render_VBP T_NN lymphocytes_NNS resistant_JJ to_TO cyclosporin_NN A_NN ._.

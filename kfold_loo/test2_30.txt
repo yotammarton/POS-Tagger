@@ -1,0 +1,1 @@
+Tissue_NN factor_NN expression_NN of_IN human_JJ monocytes_NNS is_VBZ suppressed_VBN by_IN lysophosphatidylcholine_NN ._.

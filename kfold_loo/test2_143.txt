@@ -1,0 +1,1 @@
+Nuclear_JJ factor-kappa_NN B_NN NF-kappa_NN B_NN is_VBZ a_DT transcription_NN factor_NN that_WDT binds_VBZ to_TO the_DT consensus_NN DNA_NN sequence_NN in_IN the_DT cis-acting_JJ elements_NNS of_IN various_JJ genes_NNS ._.

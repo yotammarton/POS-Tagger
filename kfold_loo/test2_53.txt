@@ -1,0 +1,1 @@
+The_DT transcriptionally_RB active_JJ factors_NNS mediating_VBG the_DT effect_NN of_IN the_DT HTLV-I_NN Tax_NN transactivator_NN on_IN the_DT IL-2R_NN alpha_NN kappa_NN B_NN enhancer_NN include_VBP the_DT product_NN of_IN the_DT c-rel_NN proto-oncogene_NN ._.

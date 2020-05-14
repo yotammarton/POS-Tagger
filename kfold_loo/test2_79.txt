@@ -1,0 +1,1 @@
+IL-2_NN induced_VBD less_RBR STAT1_NN alpha_NN activation_NN and_CC IFN-alpha_NN induced_VBD greater_JJR STAT5_NN activation_NN in_IN NK3.3_NN cells_NNS compared_VBN with_IN preactivated_JJ primary_JJ NK_NN cells_NNS ._.

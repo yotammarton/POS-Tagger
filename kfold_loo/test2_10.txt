@@ -1,0 +1,1 @@
+Cystic_JJ fibrosis_NN CF_NN patients_NNS develop_VB progressive_JJ cytokine-mediated_JJ inflammatory_JJ lung_NN disease_NN ,_, with_IN abundant_JJ production_NN of_IN thick_JJ ,_, tenacious_JJ ,_, protease-_NN and_CC oxidant-rich_JJ purulent_JJ airway_NN secretions_NNS that_WDT are_VBP difficult_JJ to_TO clear_VB even_RB with_IN physiotherapy_NN ._.

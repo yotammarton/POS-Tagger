@@ -1,0 +1,1 @@
+Primary_JJ partial_JJ cortisol_NN receptor_NN resistance_NN was_VBD previously_RB reported_VBN in_IN a_DT total_NN of_IN 7_CD patients_NNS and_CC 14_CD asymptomatic_JJ family_NN members_NNS ._.

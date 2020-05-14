@@ -1,0 +1,1 @@
+The_DT CD20_NN B1_NN gene_NN encodes_VBZ a_DT B_NN cell-specific_JJ protein_NN involved_VBN in_IN the_DT regulation_NN of_IN human_JJ B_NN cell_NN proliferation_NN and_CC differentiation_NN ._.

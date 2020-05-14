@@ -1,0 +1,1 @@
+IEF-1_NN ,_, a_DT pancreatic_JJ beta-cell_NN type-specific_JJ complex_NN believed_VBN to_TO regulate_VB insulin_NN expression_NN ,_, is_VBZ demonstrated_VBN to_TO consist_VB of_IN at_IN least_JJS two_CD distinct_JJ species_NNS ,_, one_CD of_IN which_WDT does_VBZ not_RB contain_VB Pan_NN molecules_NNS ._.

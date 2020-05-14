@@ -1,0 +1,1 @@
+A_DT mutation_NN of_IN the_DT glucocorticoid_NN receptor_NN in_IN primary_JJ cortisol_NN resistance_NN ._.

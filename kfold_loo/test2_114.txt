@@ -1,0 +1,1 @@
+The_DT common_JJ target_NN of_IN CsA_NN and_CC FK506_NN is_VBZ calcineurin_NN ,_, a_DT ,_, protein_NN phosphatase_NN that_WDT regulates_VBZ the_DT nuclear_JJ import_NN of_IN a_DT transcription_NN factor_NN ,_, NF-AT_NN ,_, required_VBN for_IN expression_NN of_IN T_NN cell_NN activation_NN genes_NNS ._.

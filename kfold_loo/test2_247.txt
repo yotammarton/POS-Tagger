@@ -1,0 +1,1 @@
+Glucocorticoid_NN receptor_NN characteristics_NNS in_IN monocytes_NNS of_IN patients_NNS with_IN corticosteroid-resistant_JJ bronchial_JJ asthma_NN ._.

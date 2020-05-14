@@ -1,0 +1,1 @@
+The_DT transcriptionally_RB regulatory_JJ regions_NNS of_IN the_DT lymphomagenic_JJ Akv_NN and_CC SL3-3_NN murine_JJ leukemia_NN retroviruses_NNS MLVs_NNS contain_VBP two_CD types_NNS of_IN E-box_NN consensus_NN motifs_NNS ,_, CAGATG_NN ._.

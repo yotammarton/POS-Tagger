@@ -1,0 +1,1 @@
+Protein_NN and_CC genomic_JJ sequences_NNS show_VBP similarities_NNS with_IN those_DT of_IN a_DT variety_NN of_IN proteins_NNS involved_VBN in_IN transcription_NN ,_, suggesting_VBG that_IN the_DT G0S24_NN product_NN has_VBZ a_DT similar_JJ role_NN ._.

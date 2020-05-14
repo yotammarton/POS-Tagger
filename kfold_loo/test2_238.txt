@@ -1,0 +1,1 @@
+Activation_NN of_IN protein_NN kinase_NN C_NN and_CC elevation_NN of_IN cAMP_NN interact_VBP synergistically_RB to_TO raise_VB c-Fos_NN and_CC AP-1_NN activity_NN in_IN Jurkat_NN cells_NNS ._.

@@ -1,0 +1,1 @@
+We_PRP have_VBP previously_RB shown_VBN that_IN after_IN a_DT mutation_NN of_IN Leu122_NN to_TO Arg_NN the_DT DNA_NN binding_NN basic_JJ domain_NN of_IN MyoD_NN confers_VBZ c-myc-like_JJ functional_JJ characteristics_NNS to_TO the_DT protein_NN ._.

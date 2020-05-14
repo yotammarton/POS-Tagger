@@ -1,0 +1,1 @@
+In_IN this_DT report_NN ,_, we_PRP show_VBP that_IN upon_IN the_DT stimulation_NN of_IN both_DT pathways_NNS T_NN lymphocytes_NNS became_VBD refractory_JJ to_TO activation_NN via_IN the_DT cell_NN receptor_NN TcR_NN complex_NN ._.

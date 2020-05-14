@@ -1,0 +1,1 @@
+Altogether_RB results_NNS strongly_RB suggest_VBP that_IN GATA-1_NN modulates_VBZ the_DT transcription_NN of_IN tal-1_NN during_IN the_DT differentiation_NN of_IN the_DT erythroid_JJ ,_, megakaryocytic_JJ ,_, and_CC basosophilic_JJ lineages_NNS ._.

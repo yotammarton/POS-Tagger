@@ -1,0 +1,1 @@
+They_PRP bind_VBP to_TO the_DT kappa_NN B_NN motifs_NNS with_IN different_JJ relative_JJ affinities_NNS that_WDT may_MD reflect_VB different_JJ contribution_NN in_IN the_DT expression_NN of_IN various_JJ promoters_NNS ._.

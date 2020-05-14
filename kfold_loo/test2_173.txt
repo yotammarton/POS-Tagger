@@ -1,0 +1,1 @@
+Co-expression_NN of_IN both_CC PU.1_NN and_CC Ets-1_NN in_IN nonlymphoid_JJ cells_NNS trans-activated_JJ reporter_NN plasmids_NNS that_WDT contained_VBD the_DT minimal_JJ mu_NN enhancer_NN ._.

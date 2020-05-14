@@ -1,0 +1,1 @@
+JNK_NN c-Jun_NN NH2-terminal_JJ kinase_NN is_VBZ a_DT target_NN for_IN antioxidants_NNS in_IN T_NN lymphocytes_NNS ._.

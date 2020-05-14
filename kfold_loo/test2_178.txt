@@ -1,0 +1,1 @@
+The_DT data_NNS indicate_VBP that_IN 10-LRB--6-RRB-_CD M_NN DM_NN increased_VBD T_NN cell_NN p50_NN NF-kappa_NN B_NN mRNA_NN levels_NNS by_IN four-fold_JJ compared_VBN to_TO the_DT levels_NNS obtained_VBN in_IN the_DT absence_NN of_IN DM_NN ._.

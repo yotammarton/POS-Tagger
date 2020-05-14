@@ -1,0 +1,1 @@
+An_DT IL-2_NN response_NN element_NN in_IN the_DT human_JJ IL-2_NN receptor_NN alpha_NN chain_NN promoter_NN is_VBZ a_DT composite_JJ element_NN that_WDT binds_VBZ Stat5_NN ,_, Elf-1_NN ,_, HMG-I-LRB-Y-RRB-_NN and_CC a_DT GATA_NN family_NN protein_NN ._.

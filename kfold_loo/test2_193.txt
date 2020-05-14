@@ -1,0 +1,1 @@
+Induction_NN of_IN the_DT POU_NN domain_NN transcription_NN factor_NN Oct-2_NN during_IN T-cell_NN activation_NN by_IN cognate_JJ antigen_NN ._.

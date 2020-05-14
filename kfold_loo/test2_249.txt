@@ -1,0 +1,1 @@
+Functional_JJ studies_NNS demonstrated_VBD that_IN transcriptional_JJ activation_NN of_IN a_DT plasmid_NN containing_VBG multimerized_JJ kappaB_NN sites_NNS by_IN p65_NN was_VBD inhibited_VBN by_IN agents_NNS that_IN elevate_VBP cAMP_NN and_CC by_IN overexpression_NN of_IN the_DT catalytic_JJ subunit_NN of_IN PKA_NN ._.

@@ -1,0 +1,1 @@
+In_IN contrast_NN to_TO peptide_NN vaccination_NN ,_, immunization_NN with_IN adenovirus_NN ,_, expressing_VBG Ad5E1A_NN ,_, induced_VBD Ad5E1A-specific_JJ immunity_NN and_CC prevented_VBD the_DT outgrowth_NN of_IN Ad5E1A-expressing_JJ tumors_NNS ._.

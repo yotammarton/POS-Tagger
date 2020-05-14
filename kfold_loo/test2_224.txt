@@ -1,0 +1,1 @@
+Although_IN inhibition_NN of_IN IL-4-driven_JJ germline_NN C_NN epsilon_NN transcription_NN by_IN NAC_NN was_VBD not_RB sufficient_JJ ,_, the_DT agent_NN remarkably_RB diminished_VBD anti-CD40_JJ mAb-mediated_JJ up-regulation_NN of_IN germline_NN C_NN epsilon_NN transcription_NN ._.

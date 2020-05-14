@@ -1,0 +1,1 @@
+The_DT regulation_NN of_IN transcription_NN factors_NNS belonging_VBG to_TO the_DT signal_NN transducer_NN and_CC activator_NN of_IN transcription_NN STAT_NN family_NN was_VBD analyzed_VBN in_IN PHA-activated_JJ mononuclear_JJ cells_NNS and_CC in_IN purified_VBN T_NN cells_NNS activated_VBN by_IN cross-linking_JJ cell_NN surface_NN CD3_NN ._.

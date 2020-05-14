@@ -1,0 +1,1 @@
+Tissue_NN specific_JJ regulation_NN of_IN gene_NN expression_NN by_IN transcription_NN factors_NNS is_VBZ a_DT fascinating_JJ new_JJ field_NN in_IN molecular_JJ immunology_NN ._.

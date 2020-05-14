@@ -1,0 +1,1 @@
+When_WRB the_DT calcium_NN ionophore_NN was_VBD used_VBN in_IN conjunction_NN with_IN TPA_NN ,_, a_DT PKC_NN activator_NN ,_, the_DT Zp_NN induction_NN was_VBD synergistically_RB enhanced_VBN ._.

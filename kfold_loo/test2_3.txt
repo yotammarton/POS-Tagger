@@ -1,0 +1,1 @@
+Here_RB we_PRP demonstrate_VBP that_IN the_DT human_JJ GM-CSF_NN promoter_NN and_CC enhancer_NN also_RB encompass_VBP binding_VBG sites_NNS for_IN core-binding_JJ factor_NN CBF_NN ._.

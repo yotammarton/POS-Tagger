@@ -1,0 +1,1 @@
+In_IN contrast_NN ,_, Egr-1_NN expression_NN is_VBZ abrogated_VBN in_IN group_NN I_NN Burkitt_NN tumor_NN cells_NNS ,_, irrespective_JJ of_IN the_DT EBV_NN genome_NN carrying_NN status_NN ._.

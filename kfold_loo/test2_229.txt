@@ -1,0 +1,1 @@
+Characterization_NN of_IN a_DT novel_JJ T_NN lymphocyte_NN protein_NN which_WDT binds_VBZ to_TO a_DT site_NN related_JJ to_TO hormone_NN receptor_NN response_NN elements_NNS in_IN the_DT negative_JJ regulatory_JJ sequence_NN of_IN the_DT human_JJ immunodeficiency_NN virus_NN long_JJ terminal_JJ repeat_NN ._.

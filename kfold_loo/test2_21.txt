@@ -1,0 +1,1 @@
+Here_RB we_PRP show_VBP that_IN when_WRB added_VBN exogenously_RB to_TO cells_NNS ,_, Hsp70_NN is_VBZ readily_RB imported_VBN into_IN both_CC cytoplasmic_JJ and_CC nuclear_JJ compartments_NNS in_IN a_DT cell-type-specific_JJ fashion_NN ._.

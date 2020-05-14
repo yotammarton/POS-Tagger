@@ -1,0 +1,1 @@
+In_IN particular_JJ ,_, Tax_NN is_VBZ capable_JJ of_IN modulating_VBG the_DT expression_NN or_CC activity_NN of_IN various_JJ host_NN transcription_NN factors_NNS ,_, including_VBG members_NNS of_IN the_DT NF-kappa_NN and_CC families_NNS ,_, as_RB well_RB as_IN the_DT cellular_JJ factors_NNS HEB-1_NN and_CC p67SRF_NN ._.

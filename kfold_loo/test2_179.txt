@@ -1,0 +1,1 @@
+One_CD type_NN ,_, ,_, is_VBZ located_JJ in_IN the_DT upstream_JJ promoter_NN region_NN ,_, and_CC the_DT other_JJ ,_, E-LRB-gre-RRB-_NN ,_, is_VBZ located_JJ in_IN a_DT tandem_JJ repeat_NN with_IN enhancer_NN properties_NNS ._.

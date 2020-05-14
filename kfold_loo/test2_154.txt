@@ -1,0 +1,1 @@
+Recent_JJ studies_NNS have_VBP identified_VBN homologues_NNS of_IN STAT5_NN ,_, STAT5A_NN ,_, and_CC STAT5B_NN ,_, as_RB well_RB as_IN lower_JJR molecular_JJ weight_NN variants_NNS of_IN STAT5_NN ._.

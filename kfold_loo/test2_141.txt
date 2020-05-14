@@ -1,0 +1,1 @@
+HTLV-I_NN encodes_VBZ an_DT essential_JJ 40-kDa_JJ protein_NN termed_VBN Tax_NN that_WDT not_RB only_RB transactivates_VBZ the_DT long_JJ terminal_JJ repeat_NN of_IN this_DT retrovirus_NN but_CC also_RB induces_VBZ an_DT array_NN of_IN cellular_JJ genes_NNS ._.

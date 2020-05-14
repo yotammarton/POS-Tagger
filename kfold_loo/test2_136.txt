@@ -1,0 +1,1 @@
+These_DT results_NNS confirm_VBP at_IN a_DT molecular_JJ level_NN the_DT ability_NN of_IN HIV-1_NN to_TO replicate_VB in_IN B_NN cells_NNS and_CC that_IN this_DT activity_NN is_VBZ strongly_RB associated_VBN with_IN NF-kappaB_NN ._.

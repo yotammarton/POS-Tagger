@@ -1,0 +1,1 @@
+In_IN this_DT report_NN ,_, we_PRP describe_VBP the_DT phenotype_NN of_IN mouse_NN transgenic_JJ lines_NNS obtained_VBN by_IN inducing_VBG tal-1_NN protein_NN expression_NN in_IN lymphoid_JJ tissues_NNS using_VBG the_DT LCK_NN promoter_NN ._.

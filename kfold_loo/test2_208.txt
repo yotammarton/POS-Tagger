@@ -1,0 +1,1 @@
+In_FW vitro_FW transcription_NN and_CC translation_NN of_IN the_DT complementary_JJ DNA_NN resulted_VBD in_IN the_DT synthesis_NN of_IN a_DT protein_NN with_IN an_DT apparent_JJ molecular_JJ size_NN of_IN 65_CD kilodaltons_NNS kD_NN ._.

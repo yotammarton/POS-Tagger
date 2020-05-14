@@ -1,0 +1,1 @@
+Antiserum_NN specific_JJ for_IN NF-kappa_NN B_NN binding_NN proteins_NNS ,_, but_CC not_RB c-rel-specific_JJ antiserum_NN ,_, disrupted_VBD heterodimer_NN complex_NN formation_NN ._.

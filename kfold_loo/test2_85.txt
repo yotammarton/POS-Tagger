@@ -1,0 +1,1 @@
+Induction_NN of_IN fra-1_NN following_VBG engagement_NN of_IN CD40_NN did_VBD not_RB require_VB protein_NN synthesis_NN ,_, suggesting_VBG that_IN the_DT PKC-dependent_JJ linkage_NN between_IN CD40_NN and_CC fra-1_NN is_VBZ direct_JJ ._.

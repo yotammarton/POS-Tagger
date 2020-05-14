@@ -1,0 +1,1 @@
+Pentoxifylline_NN ,_, a_DT trisubstituted_JJ xanthine_NN derivative_NN ,_, has_VBZ been_VBN used_VBN to_TO decrease_VB blood_NN viscosity_NN and_CC is_VBZ reasonably_RB well_RB tolerated_VBN by_IN most_JJS recipients_NNS of_IN the_DT drug_NN ._.

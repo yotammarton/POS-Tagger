@@ -1,0 +1,1 @@
+Specific_JJ mRNAs_NNS for_IN c-fos_NN and_CC c-jun_NN were_VBD detectable_JJ within_IN 30_CD min_NN after_IN cell_NN activation_NN and_CC reached_VBD maximal_JJ levels_NNS within_IN 2_CD h_NN ._.

@@ -1,0 +1,1 @@
+We_PRP demonstrated_VBD ,_, by_IN applying_VBG the_DT electrophoretic_JJ mobility_NN shift_NN assay_NN ,_, slightly_RB impaired_JJ AP-1_NN DNA_NN binding_NN activity_NN in_IN NCL_NN lymphocytes_NNS and_CC strong_JJ in_IN DS_NN ones_NNS ._.

@@ -1,0 +1,1 @@
+The_DT putative_JJ intracellular_JJ receptors_NNS for_IN FK506_NN and_CC cyclosporin_NN are_VBP cis-trans_JJ prolyl_JJ isomerases_NNS ._.

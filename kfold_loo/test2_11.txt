@@ -1,0 +1,1 @@
+Dimerization_NN among_IN transcription_NN factors_NNS has_VBZ become_VBN a_DT recurrent_JJ theme_NN in_IN the_DT regulation_NN of_IN eukaryotic_JJ gene_NN expression_NN ._.

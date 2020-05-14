@@ -1,0 +1,1 @@
+These_DT results_NNS suggest_VBP a_DT microenvironment-directed_JJ ,_, two-step_JJ model_NN for_IN GATA-1_NN expression_NN in_IN differentiating_VBG hematopoietic_JJ progenitors_NNS that_WDT involves_VBZ i_LS cycle-dependent_JJ initiation_NN and_CC ii_LS lineage-dependent_JJ maintenance_NN or_CC suppression_NN ._.

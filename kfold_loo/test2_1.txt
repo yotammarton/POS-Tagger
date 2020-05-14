@@ -1,0 +1,1 @@
+These_DT observations_NNS suggest_VBP that_IN a_DT so-far-unrecognized_JJ SP-1_NN site_NN in_IN the_DT human_JJ IL-1beta_NN promoter_NN may_MD participate_VB in_IN the_DT transcriptional_JJ regulation_NN of_IN this_DT gene_NN in_IN keratinocytes_NNS ._.

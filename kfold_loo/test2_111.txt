@@ -1,0 +1,1 @@
+Two_CD unrearranged_JJ TcR_NN delta_NN transcripts_NNS had_VBD a_DT size_NN similar_JJ to_TO that_DT of_IN the_DT functional_JJ TcR_NN delta_NN mRNA_NN 2.3_CD and_CC 1.3_CD kb_NN found_VBN in_IN TcR_NN T_NN lymphocytes_NNS ._.

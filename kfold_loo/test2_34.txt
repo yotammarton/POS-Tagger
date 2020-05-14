@@ -1,0 +1,1 @@
+Further_JJ evidence_NN suggests_VBZ that_IN Nef_NN inhibits_VBZ NF-kappa_NN B_NN induction_NN by_IN interfering_VBG with_IN a_DT signal_NN derived_VBN from_IN the_DT T-cell_NN receptor_NN complex_NN ._.
