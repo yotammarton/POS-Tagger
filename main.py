@@ -9,6 +9,7 @@ from matplotlib import colors
 import seaborn as sns
 import pandas as pd
 import time
+import os
 
 
 # TODO run generate_comp_tagged.py and see the results are the same as our comp tagged files - BE CAREFUL - OVERWRITES!!!!
@@ -1825,12 +1826,12 @@ def create_files_leave_one_out_model_2(train_file_path='train2.wtag'):
         test_indices = [i]
         train_indices = [idx for idx in range(size) if idx not in test_indices]
         # write test lines to file
-        with open(rf"kfold_loo\test2_{i + 1}.txt", 'w') as file:
+        with open(os.path.join("kfold_loo", f"test2_{i + 1}.txt"), 'w') as file:
             for idx in test_indices:
                 file.write(sentences[idx])
 
         # write train lines to file
-        with open(rf"kfold_loo\train2_{i + 1}.txt", 'w') as file:
+        with open(os.path.join("kfold_loo", f"train2_{i + 1}.txt"), 'w') as file:
             for idx in train_indices:
                 file.write(sentences[idx])
 
@@ -1844,8 +1845,8 @@ def run_leave_one_out_model_2():
     accuracies = list()
     for i in range(1, 251):
         initialize_global_variables()  # in case of several runs in the same code
-        train_file_path = rf'kfold_loo\train2_{i}.txt'
-        test_file_path = rf'kfold_loo\test2_{i}.txt'
+        train_file_path = os.path.join("kfold_loo", f'train2_{i}.txt')
+        test_file_path = os.path.join("kfold_loo", f'test2_{i}.txt')
 
         lambda_ = 0.02
         beam_ = 50
