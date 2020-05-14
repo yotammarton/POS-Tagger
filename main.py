@@ -11,11 +11,7 @@ import pandas as pd
 import time
 
 
-# TODO leave one out for model 2 finale
-# TODO remove unnecessary imports
-# TODO delete print
-# TODO delete time inside functions
-# TODO change .pkl weights name to: trained_weights_data_i.pkl
+# TODO run generate_comp_tagged.py and see the results are the same as our comp tagged files - BE CAREFUL - OVERWRITES!!!!
 
 class ClassStatistics:
     """
@@ -29,7 +25,7 @@ class ClassStatistics:
         self.file_path = file_path
         self.Y = set()  # all the different tags we saw in training
 
-        # Init all features dictionaries
+        # Init all features classes dictionaries
         self.class100_dict = OrderedDict()  # {(100, word, tag): # times seen}
         self.class101_dict = OrderedDict()  # {(101, word[- length:], tag): # times seen}
         self.class102_dict = OrderedDict()  # {(102, word[:length], tag): # times seen}
@@ -46,7 +42,10 @@ class ClassStatistics:
 
         # Capital letters
         self.class109_dict = OrderedDict()  # {(109.x, prev_tag, cur_tag): # times seen}
-        self.class110_dict = OrderedDict()  # {(110.x, tag): # times seen}  # TODO Question for Gal: is it correct to be under #Capital?
+
+        # Additional patterns
+        self.class110_dict = OrderedDict()  # {(110.x, tag): # times seen}
+        self.class111_dict = OrderedDict()  # {(111.x, tag): # times seen}
 
     def set_class100_dict(self):
         """
@@ -197,6 +196,8 @@ class ClassStatistics:
     def set_class108_dict(self):
         """
             Create counts dict for class 108 features - Numbers
+            Description of the sub-classes in our numbers class:
+
             define number = [numbers][\/]?[numbers]
             1. if word is only number or [-.:,\/%] chars
             2. elif word is [letters][-.][number]([-.]*[letters]+)+
@@ -295,7 +296,8 @@ class ClassStatistics:
 
     def set_class109_dict(self):
         """
-        We divide to different sub-classes the treatment for capital letters
+        Create counts dict for class 109 features - Capital Letters
+        Description of the sub-classes for capital letters treatment:
             1. if word is not the first, starts with capital and has [- .]+ and both next and previous words starts with capital
             2. elif word is not the first, starts with capital and has [- .]+ and prev starts with capital
             3. elif word is not the first, starts with capital and has [- .]+
@@ -415,8 +417,9 @@ class ClassStatistics:
                             self.class109_dict[(109.14, prev_tag, cur_tag)] += 1
 
     def set_class110_dict(self):
-        """ TODO update documentation
-        originally small model
+        """
+        Create counts dict for class 110 features
+        TODO update documentation
         """
         with open(self.file_path) as f:
             for line in f:
@@ -426,21 +429,8 @@ class ClassStatistics:
                 for word_idx in range(len(splited_words)):
                     cur_tag = splited_words[word_idx].split('_')[1]
                     cur_word = splited_words[word_idx].split('_')[0]
-                    # 110.1 + 110.2
                     if len(cur_word) >= 13:
-                        if re.search('ing$', cur_word):
-                            if (110.11, cur_tag) not in self.class110_dict:
-                                self.class110_dict[(110.11, cur_tag)] = 1
-                            else:
-                                self.class110_dict[(110.11, cur_tag)] += 1
-
-                        elif re.search('ed$', cur_word):
-                            if (110.14, cur_tag) not in self.class110_dict:
-                                self.class110_dict[(110.14, cur_tag)] = 1
-                            else:
-                                self.class110_dict[(110.14, cur_tag)] += 1
-
-                        elif re.search('ally$', cur_word) or re.search('ely$', cur_word) or \
+                        if re.search('ally$', cur_word) or re.search('ely$', cur_word) or \
                                 re.search('tly$', cur_word):
                             if (110.12, cur_tag) not in self.class110_dict:  # RB tag
                                 self.class110_dict[(110.12, cur_tag)] = 1
@@ -455,31 +445,147 @@ class ClassStatistics:
                                 re.search('-dependent$', cur_word) or \
                                 re.search('-sensitive$', cur_word) or \
                                 re.search('-specific$', cur_word) or \
-                                re.search('tly$', cur_word):  # JJ tag
-                            if (110.13, cur_tag) not in self.class110_dict:
-                                self.class110_dict[(110.13, cur_tag)] = 1
-                            else:
-                                self.class110_dict[(110.13, cur_tag)] += 1
-                        else:  # NN + NNS tags
-                            if cur_word[-1] == 's':
+                                re.search('tly$', cur_word):
+                            if re.match('^[A-Z]$', cur_word[0]):  # NNP tag
+                                if (110.135, cur_tag) not in self.class110_dict:
+                                    self.class110_dict[(110.135, cur_tag)] = 1
+                                else:
+                                    self.class110_dict[(110.135, cur_tag)] += 1
+                        elif not (re.search('[\-]', cur_word)):  # NN + NNS tags
+                            if cur_word[-1] == 's' and not \
+                                    re.search('ness$', cur_word) and not re.match('^[A-Z]$', cur_word[0]):
                                 if (110.2, cur_tag) not in self.class110_dict:
                                     self.class110_dict[(110.2, cur_tag)] = 1
                                 else:
                                     self.class110_dict[(110.2, cur_tag)] += 1
-
-                            if (110.1, cur_tag) not in self.class110_dict:
-                                self.class110_dict[(110.1, cur_tag)] = 1
+                    if re.match('^[0-9\-,.:]*[][0-9]+[0-9\-,.:]*$', cur_word) or (cur_word in ["II", "III", "IV"] or
+                                                                                  re.match(
+                                                                                      '^[0-9\-.]+[L][R][B][0-9\-.]+[R][R][B][0-9\-.]+$',
+                                                                                      cur_word)):  # CD tag
+                        if cur_word in ["II", "III", "IV"]:  # in big model its NNP and not CD
+                            if (110.35, cur_tag) not in self.class110_dict:
+                                self.class110_dict[(110.35, cur_tag)] = 1
                             else:
-                                self.class110_dict[(110.1, cur_tag)] += 1
+                                self.class110_dict[(110.35, cur_tag)] += 1
+
+                        elif (110.3, cur_tag) not in self.class110_dict:
+                            self.class110_dict[(110.3, cur_tag)] = 1
+                        else:
+                            self.class110_dict[(110.3, cur_tag)] += 1
+
+                    elif (re.search('[\-]', cur_word) and not re.match('^[A-Z]', cur_word.split('-')[-1])) and \
+                            (re.search('ing$', cur_word.split('-')[-1]) or
+                             re.search('ed$', cur_word.split('-')[-1]) or
+                             re.search('ic$', cur_word.split('-')[-1]) or
+                             re.search('age$', cur_word.split('-')[-1]) or
+                             re.search('like$', cur_word.split('-')[-1]) or
+                             re.search('ive$', cur_word.split('-')[-1]) or
+                             re.search('ven$', cur_word.split('-')[-1]) or
+                             re.search('^pre', cur_word.split('-')[0]) or
+                             re.search('^anti', cur_word.split('-')[0]) or
+                             re.search('er$', cur_word.split('-')[0])):  # JJ tag. also ~40 NN get in.
+                        if (110.4, cur_tag) not in self.class110_dict:
+                            self.class110_dict[(110.4, cur_tag)] = 1
+                        else:
+                            self.class110_dict[(110.4, cur_tag)] += 1
+
+                    elif cur_word not in ["-LCB-", "-RCB-", "-LRB-", "-RRB-", "--", "...", "I", "A", ",", ".", ":"]:
+                        if (re.match('^[a-z]*[A-Z\-0-9.,]+[s]$', cur_word) and  # NNS tag
+                            len(cur_word) != 2) and not \
+                                re.match('^([a-zA-Z]*(-)?[0-9][0-9][0-9][0-9](s?))$|^([a-zA-Z]*(-)?[0-9][0-9]s)$',
+                                         cur_word):
+                            if (110.5, cur_tag) not in self.class110_dict:
+                                self.class110_dict[(110.5, cur_tag)] = 1
+                            else:
+                                self.class110_dict[(110.5, cur_tag)] += 1
+
+                        if re.match('^[A-Z\-0-9.,]+$', cur_word) or \
+                                re.search('[a-z\-][A-Z]', cur_word) or \
+                                re.match('^[A-Za-z][\-][a-z]+$', cur_word):  # NNP tag
+                            if (110.6, cur_tag) not in self.class110_dict:
+                                self.class110_dict[(110.6, cur_tag)] = 1
+                            else:
+                                self.class110_dict[(110.6, cur_tag)] += 1
+
+                        if re.match('^[0-9\-.,]+[\-][a-zA-Z]+$', cur_word):  # JJ tag
+                            if (110.7, cur_tag) not in self.class110_dict:
+                                self.class110_dict[(110.7, cur_tag)] = 1
+                            else:
+                                self.class110_dict[(110.7, cur_tag)] += 1
+
+                        if re.search('\.$', cur_word) and cur_word not in [".",
+                                                                           "No."]:  # in big model its NNP, and not FW
+                            if (110.9, cur_tag) not in self.class110_dict:
+                                self.class110_dict[(110.9, cur_tag)] = 1
+                            else:
+                                self.class110_dict[(110.9, cur_tag)] += 1
+
+    def set_class111_dict(self):
+        """
+        Create counts dict for class 111 features
+        TODO update documentation
+        """
+        with open(self.file_path) as f:
+            for line in f:
+                splited_words = re.split(' |[\n]', line)
+                if splited_words[-1] == "":
+                    del splited_words[-1]  # remove \n
+                for word_idx in range(len(splited_words)):
+                    cur_tag = splited_words[word_idx].split('_')[1]
+                    cur_word = splited_words[word_idx].split('_')[0]
+                    if len(cur_word) >= 13:
+                        if re.search('ing$', cur_word) and not (re.search('[\-]', cur_word)):
+                            if (111.11, cur_tag) not in self.class111_dict:
+                                self.class111_dict[(111.11, cur_tag)] = 1
+                            else:
+                                self.class111_dict[(111.11, cur_tag)] += 1
+
+                        elif re.search('ed$', cur_word) and not (re.search('[\-]', cur_word)):
+                            if (111.14, cur_tag) not in self.class111_dict:
+                                self.class111_dict[(111.14, cur_tag)] = 1
+                            else:
+                                self.class111_dict[(111.14, cur_tag)] += 1
+
+                        elif re.search('ally$', cur_word) or re.search('ely$', cur_word) or \
+                                re.search('tly$', cur_word):
+                            if (111.12, cur_tag) not in self.class111_dict:  # RB tag
+                                self.class111_dict[(111.12, cur_tag)] = 1
+                            else:
+                                self.class111_dict[(111.12, cur_tag)] += 1
+
+                        elif re.search('tant$', cur_word) or \
+                                re.search('cal$', cur_word) or \
+                                re.search('ic$', cur_word) or \
+                                re.search('ive$', cur_word) or \
+                                re.search('nal$', cur_word) or \
+                                re.search('-dependent$', cur_word) or \
+                                re.search('-sensitive$', cur_word) or \
+                                re.search('-specific$', cur_word) or \
+                                re.search('tly$', cur_word):  # JJ tag
+                            if (111.13, cur_tag) not in self.class111_dict:
+                                self.class111_dict[(111.13, cur_tag)] = 1
+                            else:
+                                self.class111_dict[(111.13, cur_tag)] += 1
+                        else:  # NN + NNS tags
+                            if cur_word[-1] == 's':
+                                if (111.2, cur_tag) not in self.class111_dict:
+                                    self.class111_dict[(111.2, cur_tag)] = 1
+                                else:
+                                    self.class111_dict[(111.2, cur_tag)] += 1
+
+                            if (111.1, cur_tag) not in self.class111_dict:
+                                self.class111_dict[(111.1, cur_tag)] = 1
+                            else:
+                                self.class111_dict[(111.1, cur_tag)] += 1
 
                     if re.match('^[0-9\-,.:]*[][0-9]+[0-9\-,.:]*$', cur_word) or (cur_word in ["II", "III", "IV"] or
                                                                                   re.match(
                                                                                       '^[0-9\-.]+[L][R][B][0-9\-.]+[R][R][B][0-9\-.]+$',
                                                                                       cur_word)):  # CD tag
-                        if (110.3, cur_tag) not in self.class110_dict:
-                            self.class110_dict[(110.3, cur_tag)] = 1
+                        if (111.3, cur_tag) not in self.class111_dict:
+                            self.class111_dict[(111.3, cur_tag)] = 1
                         else:
-                            self.class110_dict[(110.3, cur_tag)] += 1
+                            self.class111_dict[(111.3, cur_tag)] += 1
 
                     elif ((re.search('[\-]', cur_word) and
                            (re.search('ing$', cur_word.split('-')[-1]) or
@@ -492,19 +598,18 @@ class ClassStatistics:
                             re.search('^pre', cur_word.split('-')[0]) or
                             re.search('^anti', cur_word.split('-')[0]) or
                             re.search('er$', cur_word.split('-')[0]))) or
-                          re.search('kDa$', cur_word)) or cur_word in ["CR", "CS"]:  # JJ tag
-                        if (110.4, cur_tag) not in self.class110_dict:
-                            self.class110_dict[(110.4, cur_tag)] = 1
+                          re.search('kDa$', cur_word)):  # JJ tag
+                        if (111.4, cur_tag) not in self.class111_dict:
+                            self.class111_dict[(111.4, cur_tag)] = 1
                         else:
-                            self.class110_dict[(110.4, cur_tag)] += 1
+                            self.class111_dict[(111.4, cur_tag)] += 1
 
                     else:
-                        if re.match('^[a-z]*[A-Z\-0-9.,]+[s]$', cur_word) or cur_word == "GCS":  # NNS tag
-                            print("-----110.5---" + str(cur_word) + " , " + str(cur_tag))
-                            if (110.5, cur_tag) not in self.class110_dict:
-                                self.class110_dict[(110.5, cur_tag)] = 1
+                        if re.match('^[a-z]*[A-Z\-0-9.,]+[s]$', cur_word):  # NNS tag
+                            if (111.5, cur_tag) not in self.class111_dict:
+                                self.class111_dict[(111.5, cur_tag)] = 1
                             else:
-                                self.class110_dict[(110.5, cur_tag)] += 1
+                                self.class111_dict[(111.5, cur_tag)] += 1
 
                         if (re.match('^[A-Z\-0-9.,]+$', cur_word) and cur_word not in ["I", "A", ",", ".", ":"]) or \
                                 re.search('[a-z\-][A-Z]', cur_word) or \
@@ -512,48 +617,48 @@ class ClassStatistics:
                                 re.match('^[a-z\-]+[0-9]+$', cur_word) or \
                                 re.search('coid$', cur_word) or \
                                 re.search('ness$', cur_word):  # NN tag
-                            if (110.6, cur_tag) not in self.class110_dict:
-                                self.class110_dict[(110.6, cur_tag)] = 1
+                            if (111.6, cur_tag) not in self.class111_dict:
+                                self.class111_dict[(111.6, cur_tag)] = 1
                             else:
-                                self.class110_dict[(110.6, cur_tag)] += 1
+                                self.class111_dict[(111.6, cur_tag)] += 1
 
                         if re.match('^[0-9\-.,]+[\-][a-zA-Z]+$', cur_word):  # might be JJ tag
-                            if (110.7, cur_tag) not in self.class110_dict:
-                                self.class110_dict[(110.7, cur_tag)] = 1
+                            if (111.7, cur_tag) not in self.class111_dict:
+                                self.class111_dict[(111.7, cur_tag)] = 1
                             else:
-                                self.class110_dict[(110.7, cur_tag)] += 1
+                                self.class111_dict[(111.7, cur_tag)] += 1
 
                         if re.match('^[A-Z]?[a-z]+[\-][0-9\-.,]+$', cur_word):  # might be NN tag
-                            if (110.8, cur_tag) not in self.class110_dict:
-                                self.class110_dict[(110.8, cur_tag)] = 1
+                            if (111.8, cur_tag) not in self.class111_dict:
+                                self.class111_dict[(111.8, cur_tag)] = 1
                             else:
-                                self.class110_dict[(110.8, cur_tag)] += 1
+                                self.class111_dict[(111.8, cur_tag)] += 1
 
                         if re.search('\.$', cur_word) and cur_word != ".":  # might be FW tag, but not only
-                            if (110.9, cur_tag) not in self.class110_dict:
-                                self.class110_dict[(110.9, cur_tag)] = 1
+                            if (111.9, cur_tag) not in self.class111_dict:
+                                self.class111_dict[(111.9, cur_tag)] = 1
                             else:
-                                self.class110_dict[(110.9, cur_tag)] += 1
+                                self.class111_dict[(111.9, cur_tag)] += 1
 
                         if cur_word in ['Treponema', 'cerevisiae', 'pallidum', 'Borrelia', 'burgdorferi',
                                         'vitro', 'vivo', 'i.e.', 'e.g.']:  # FW tag
-                            if (110.92, cur_tag) not in self.class110_dict:
-                                self.class110_dict[(110.92, cur_tag)] = 1
+                            if (111.92, cur_tag) not in self.class111_dict:
+                                self.class111_dict[(111.92, cur_tag)] = 1
                             else:
-                                self.class110_dict[(110.92, cur_tag)] += 1
+                                self.class111_dict[(111.92, cur_tag)] += 1
                         if cur_word in ['in', 'In'] and word_idx != len(splited_words) - 1:  # FW tag
                             next_word = splited_words[word_idx + 1].split('_')[0]
                             if next_word in ['vitro', 'vivo']:
-                                if (110.92, cur_tag) not in self.class110_dict:
-                                    self.class110_dict[(110.92, cur_tag)] = 1
+                                if (111.92, cur_tag) not in self.class111_dict:
+                                    self.class111_dict[(111.92, cur_tag)] = 1
                                 else:
-                                    self.class110_dict[(110.92, cur_tag)] += 1
+                                    self.class111_dict[(111.92, cur_tag)] += 1
 
                         if cur_word in ['i', 'ii', 'iii', 'iv']:  # LS tag
-                            if (110.93, cur_tag) not in self.class110_dict:
-                                self.class110_dict[(110.93, cur_tag)] = 1
+                            if (111.93, cur_tag) not in self.class111_dict:
+                                self.class111_dict[(111.93, cur_tag)] = 1
                             else:
-                                self.class110_dict[(110.93, cur_tag)] += 1
+                                self.class111_dict[(111.93, cur_tag)] += 1
 
 
 class Feature2Id:
@@ -600,9 +705,8 @@ class Feature2Id:
         self.class110_feature_index_dict = OrderedDict()
         self.n_class110 = 0
 
-        # TODO delete if no thresholds
-        self.suffix_count_dict = OrderedDict()
-        self.prefix_count_dict = OrderedDict()
+        self.class111_feature_index_dict = OrderedDict()
+        self.n_class111 = 0
 
     def set_index_class100(self, threshold=0):
         """
@@ -625,7 +729,6 @@ class Feature2Id:
     def set_index_class102(self, threshold=0):
         # set thresholds for class, f102 we choose the threshold to be the mean in every length category
         thresholds = dict()  # length of prefix : threshold
-
         for length in [1, 2, 3, 4, 5, 6, 7]:
             keys = [key for key in self.feature_statistics.class102_dict if len(key[1]) == length]
             values = [self.feature_statistics.class102_dict[key] for key in keys]
@@ -706,6 +809,13 @@ class Feature2Id:
                 self.n_class110 += 1
         self.n_total_features += self.n_class110
 
+    def set_index_class111(self, threshold=0):
+        for key, value in self.feature_statistics.class111_dict.items():
+            if value >= threshold:
+                self.class111_feature_index_dict[key] = self.n_class111 + self.n_total_features
+                self.n_class111 += 1
+        self.n_total_features += self.n_class111
+
     def build_all_classes_feature_index_dict(self):
         self.all_feature_index_dict.update(self.class100_feature_index_dict)
         self.all_feature_index_dict.update(self.class101_feature_index_dict)
@@ -718,6 +828,7 @@ class Feature2Id:
         self.all_feature_index_dict.update(self.class108_feature_index_dict)
         self.all_feature_index_dict.update(self.class109_feature_index_dict)
         self.all_feature_index_dict.update(self.class110_feature_index_dict)
+        self.all_feature_index_dict.update(self.class111_feature_index_dict)
 
 
 class ConfusionMatrix:
@@ -831,12 +942,12 @@ class ConfusionMatrix:
         for tag in columns_tags:
             style = style.applymap(self.highlight_green, subset=pd.IndexSlice[tag, tag])
 
-        # write the pandas styler object to HTML -> can view the confusion matrix from browser
+        # write the pandas styler object to HTML -> can view the confusion matrix from any web browser
         with open(output_path, "w") as html:
             html.write('<font size="10" face="Courier New" >' + style.render() + '</font>')
 
 
-# Auxiliary functions for class f108
+# Auxiliary function for class f108
 def re_match_words(regular_exp: str, lst):
     if not [w for w in lst if w != '']:
         return False
@@ -846,6 +957,7 @@ def re_match_words(regular_exp: str, lst):
     return True
 
 
+# Auxiliary function for class f108
 def re_match_letters_numbers(regular_exps: list, lst):
     for i, word in enumerate(lst):
         if i % 2 == 0:
@@ -857,6 +969,7 @@ def re_match_letters_numbers(regular_exps: list, lst):
     return True
 
 
+# Auxiliary function for class f108
 def re_match_numbers_letters(regular_exps: list, lst):
     for i, word in enumerate(lst):
         if i % 2 == 0:
@@ -868,7 +981,7 @@ def re_match_numbers_letters(regular_exps: list, lst):
     return True
 
 
-"""START OF SECTION FOR OBJECTIVE AND GRADIENT CALC"""
+"""START OF SECTION FOR OBJECTIVE FUNCTION AND GRADIENT CALC"""
 
 
 def my_sum(obj):
@@ -889,7 +1002,22 @@ all_active_indices = 0
 softmax_indices_for_gradient = 0
 
 
-def function_l_and_gradient_l_special(v: np.array, *args):
+def initialize_global_variables():
+    global first_iteration
+    global active_indices_sentences_i
+    global flattened_f_xi_yi
+    global gradient_left_sigma
+    global all_active_indices
+    global softmax_indices_for_gradient
+    first_iteration = 1
+    active_indices_sentences_i = 0
+    flattened_f_xi_yi = 0
+    gradient_left_sigma = 0
+    all_active_indices = 0
+    softmax_indices_for_gradient = 0
+
+
+def function_l_and_gradient_l(v: np.array, *args):
     file_path = args[0]
     lam = args[1]
     feature_statistics = args[2]
@@ -905,7 +1033,6 @@ def function_l_and_gradient_l_special(v: np.array, *args):
     sentences = sum(1 for _ in open(file_path))
 
     if first_iteration:
-        start = time.time()
         first_iteration = 0
 
         # global variables defined in global scope
@@ -946,11 +1073,8 @@ def function_l_and_gradient_l_special(v: np.array, *args):
                         softmax_indices_for_gradient[index].append((cnt_words, y))
                 cnt_words += 1
 
-        stop = time.time()
-        print(f"the data prep took: {stop - start} secs")
         # finished collecting all data
 
-    start = time.time()
     # updates we need to make according to current 'v'
     # ------ OBJECTIVE ------
     objective_value = sum(v[flattened_f_xi_yi])  # left sigma objective (all sentences)
@@ -970,18 +1094,21 @@ def function_l_and_gradient_l_special(v: np.array, *args):
             gradient_right_sigma[k] += softmax[indices[0]][indices[1]]
     gradient_value -= gradient_right_sigma
 
-    stop = time.time()
-    print(f"the iteration took: {stop - start} secs")
-    print(f'objective value = {(-1 * (objective_value - (lam / 2) * (np.linalg.norm(v)) ** 2))}')
-    print(f'gradient norm {np.linalg.norm(gradient_value - lam * v)}')
-
     return -1 * (objective_value - (lam / 2) * (np.linalg.norm(v) ** 2)), -1 * (gradient_value - lam * v)
 
 
-"""END OF SECTION OBJECTIVE AND GRADIENT CALC"""
+"""END OF SECTION OBJECTIVE FUNCTION AND GRADIENT CALC"""
 
 
 def f_xi_yi(features_indices: Feature2Id, words, tags, i):
+    """
+    determine what features are fired for the given words and tags and location (history)
+    :param features_indices: object containing the features and their indices
+    :param words: words in sentence
+    :param tags: tags
+    :param i: location in sentence
+    :return: list of all active features for the given history
+    """
     active_features_indices = list()
     cur_word = words[i]
     prev_word = words[i - 1] if i > 0 else '*'
@@ -1178,93 +1305,159 @@ def f_xi_yi(features_indices: Feature2Id, words, tags, i):
                 features_indices.all_feature_index_dict[(109.14, prev_tag, cur_tag)])
 
     # features fired in class 110
-    if len(words[i]) >= 13:
-        if re.search('ing$', words[i]):
-            if (110.11, tags[i]) in features_indices.class110_feature_index_dict:
-                active_features_indices.append(features_indices.all_feature_index_dict[(110.11, tags[i])])
-        elif re.search('ed$', words[i]):
-            if (110.14, tags[i]) in features_indices.class110_feature_index_dict:
-                active_features_indices.append(features_indices.all_feature_index_dict[(110.14, tags[i])])
+    if len(cur_word) >= 13:
+        if re.search('ally$', cur_word) or re.search('ely$', cur_word) or re.search('tly$', cur_word):  # RB tag
+            if (110.12, cur_tag) in features_indices.class110_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(110.12, cur_tag)])
 
-        elif re.search('ally$', words[i]) or re.search('ely$', words[i]) or re.search('tly$', words[i]):  # RB tag
-            if (110.12, tags[i]) in features_indices.class110_feature_index_dict:
-                active_features_indices.append(features_indices.all_feature_index_dict[(110.12, tags[i])])
+        elif re.search('tant$', cur_word) or \
+                re.search('cal$', cur_word) or \
+                re.search('ic$', cur_word) or \
+                re.search('ive$', cur_word) or \
+                re.search('nal$', cur_word) or \
+                re.search('-dependent$', cur_word) or \
+                re.search('-sensitive$', cur_word) or \
+                re.search('-specific$', cur_word) or \
+                re.search('tly$', cur_word):
+            if re.match('^[A-Z]$', cur_word[0]):  # NNP tag
+                if (110.135, cur_tag) in features_indices.class110_feature_index_dict:
+                    active_features_indices.append(features_indices.all_feature_index_dict[(110.135, cur_tag)])
 
-        elif re.search('tant$', words[i]) or \
-                re.search('cal$', words[i]) or \
-                re.search('ic$', words[i]) or \
-                re.search('ive$', words[i]) or \
-                re.search('nal$', words[i]) or \
-                re.search('-dependent$', words[i]) or \
-                re.search('-sensitive$', words[i]) or \
-                re.search('-specific$', words[i]) or \
-                re.search('tly$', words[i]):  # JJ tag
-            if (110.13, tags[i]) in features_indices.class110_feature_index_dict:
-                active_features_indices.append(features_indices.all_feature_index_dict[(110.13, tags[i])])
+        elif not (re.search('[\-]', cur_word)):  # NN + NNS tags
+            if cur_word[-1] == 's' and not \
+                    re.search('ness$', cur_word) and not re.match('^[A-Z]$', cur_word[0]):
+                if (110.2, cur_tag) in features_indices.class110_feature_index_dict:
+                    active_features_indices.append(features_indices.all_feature_index_dict[(110.2, cur_tag)])
+
+    if re.match('^[0-9\-,.:]*[0-9]+[0-9\-,.:]*$', cur_word) or cur_word in ["II", "III", "IV"] or \
+            re.match('^[0-9\-.]+[L][R][B][0-9\-.]+[R][R][B][0-9\-.]+$', cur_word):  # CD tag
+        if cur_word in ["II", "III", "IV"]:  # in big model its NNP and not CD
+            if (110.35, cur_tag) in features_indices.class110_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(110.35, cur_tag)])
+        elif (110.3, cur_tag) in features_indices.class110_feature_index_dict:
+            active_features_indices.append(features_indices.all_feature_index_dict[(110.3, cur_tag)])
+
+    elif (re.search('[\-]', cur_word) and not re.match('^[A-Z]', cur_word.split('-')[-1])) and \
+            (re.search('ing$', cur_word.split('-')[-1]) or
+             re.search('ed$', cur_word.split('-')[-1]) or
+             re.search('ic$', cur_word.split('-')[-1]) or
+             re.search('age$', cur_word.split('-')[-1]) or
+             re.search('like$', cur_word.split('-')[-1]) or
+             re.search('ive$', cur_word.split('-')[-1]) or
+             re.search('ven$', cur_word.split('-')[-1]) or
+             re.search('^pre', cur_word.split('-')[0]) or
+             re.search('^anti', cur_word.split('-')[0]) or
+             re.search('er$', cur_word.split('-')[0])):  # JJ tag
+        if (110.4, cur_tag) in features_indices.class110_feature_index_dict:
+            active_features_indices.append(features_indices.all_feature_index_dict[(110.4, cur_tag)])
+    elif cur_word not in ["-LCB-", "-RCB-", "-LRB-", "-RRB-", "--", "...", "I", "A", ",", ".", ":"]:
+        if (re.match('^[a-z]*[A-Z\-0-9.,]+[s]$', cur_word) and  # NNS tag
+            len(cur_word) != 2) and not \
+                re.match('^([a-zA-Z]*(-)?[0-9][0-9][0-9][0-9](s?))$|^([a-zA-Z]*(-)?[0-9][0-9]s)$', cur_word):
+            if (110.5, cur_tag) in features_indices.class110_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(110.5, cur_tag)])
+        if re.match('^[A-Z\-0-9.,]+$', cur_word) or \
+                re.search('[a-z\-][A-Z]', cur_word) or \
+                re.match('^[A-Za-z][\-][a-z]+$', cur_word):  # NNP tag
+            if (110.6, cur_tag) in features_indices.class110_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(110.6, cur_tag)])
+
+        if re.match('^[0-9\-.,]+[\-][a-zA-Z]+$', cur_word):  # JJ tag
+            if (110.7, cur_tag) in features_indices.class110_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(110.7, cur_tag)])
+
+        if re.search('\.$', cur_word) and cur_word not in [".", "No."]:  # in big model its NNP, and not FW
+            if (110.9, cur_tag) in features_indices.class110_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(110.9, cur_tag)])
+
+    # features fired in class 111
+    if len(cur_word) >= 13:
+        if re.search('ing$', cur_word) and not (re.search('[\-]', cur_word)):
+            if (111.11, cur_tag) in features_indices.class111_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(111.11, cur_tag)])
+        elif re.search('ed$', cur_word) and not (re.search('[\-]', cur_word)):
+            if (111.14, cur_tag) in features_indices.class111_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(111.14, cur_tag)])
+
+        elif re.search('ally$', cur_word) or re.search('ely$', cur_word) or re.search('tly$', cur_word):  # RB tag
+            if (111.12, cur_tag) in features_indices.class111_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(111.12, cur_tag)])
+
+        elif re.search('tant$', cur_word) or \
+                re.search('cal$', cur_word) or \
+                re.search('ic$', cur_word) or \
+                re.search('ive$', cur_word) or \
+                re.search('nal$', cur_word) or \
+                re.search('-dependent$', cur_word) or \
+                re.search('-sensitive$', cur_word) or \
+                re.search('-specific$', cur_word) or \
+                re.search('tly$', cur_word):  # JJ tag
+            if (111.13, cur_tag) in features_indices.class111_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(111.13, cur_tag)])
         else:  # NN + NNS tags
-            if words[i][-1] == 's':
-                if (110.2, tags[i]) in features_indices.class110_feature_index_dict:
-                    active_features_indices.append(features_indices.all_feature_index_dict[(110.2, tags[i])])
+            if cur_word[-1] == 's':
+                if (111.2, cur_tag) in features_indices.class111_feature_index_dict:
+                    active_features_indices.append(features_indices.all_feature_index_dict[(111.2, cur_tag)])
 
-            if (110.1, tags[i]) in features_indices.class110_feature_index_dict:
-                active_features_indices.append(features_indices.all_feature_index_dict[(110.1, tags[i])])
+            if (111.1, cur_tag) in features_indices.class111_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(111.1, cur_tag)])
 
-    if re.match('^[0-9\-,.:]*[0-9]+[0-9\-,.:]*$', words[i]) or words[i] in ["II", "III", "IV"] or \
-            re.match('^[0-9\-.]+[L][R][B][0-9\-.]+[R][R][B][0-9\-.]+$', words[i]):  # CD tag
-        if (110.3, tags[i]) in features_indices.class110_feature_index_dict:
-            active_features_indices.append(features_indices.all_feature_index_dict[(110.3, tags[i])])
+    if re.match('^[0-9\-,.:]*[0-9]+[0-9\-,.:]*$', cur_word) or cur_word in ["II", "III", "IV"] or \
+            re.match('^[0-9\-.]+[L][R][B][0-9\-.]+[R][R][B][0-9\-.]+$', cur_word):  # CD tag
+        if (111.3, cur_tag) in features_indices.class111_feature_index_dict:
+            active_features_indices.append(features_indices.all_feature_index_dict[(111.3, cur_tag)])
 
-    elif ((re.search('[\-]', words[i]) and
-           (re.search('ing$', words[i].split('-')[-1]) or
-            re.search('ed$', words[i].split('-')[-1]) or
-            re.search('ic$', words[i].split('-')[-1]) or
-            re.search('age$', words[i].split('-')[-1]) or
-            re.search('like$', words[i].split('-')[-1]) or
-            re.search('ive$', words[i].split('-')[-1]) or
-            re.search('ven$', words[i].split('-')[-1]) or
-            re.search('^pre', words[i].split('-')[0]) or
-            re.search('^anti', words[i].split('-')[0]) or
-            re.search('er$', words[i].split('-')[0]))) or
-          re.search('kDa$', words[i])) or words[i] in ["CR", "CS"]:  # JJ tag
-        if (110.4, tags[i]) in features_indices.class110_feature_index_dict:
-            active_features_indices.append(features_indices.all_feature_index_dict[(110.4, tags[i])])
+    elif ((re.search('[\-]', cur_word) and
+           (re.search('ing$', cur_word.split('-')[-1]) or
+            re.search('ed$', cur_word.split('-')[-1]) or
+            re.search('ic$', cur_word.split('-')[-1]) or
+            re.search('age$', cur_word.split('-')[-1]) or
+            re.search('like$', cur_word.split('-')[-1]) or
+            re.search('ive$', cur_word.split('-')[-1]) or
+            re.search('ven$', cur_word.split('-')[-1]) or
+            re.search('^pre', cur_word.split('-')[0]) or
+            re.search('^anti', cur_word.split('-')[0]) or
+            re.search('er$', cur_word.split('-')[0]))) or
+          re.search('kDa$', cur_word)):  # JJ tag
+        if (111.4, cur_tag) in features_indices.class111_feature_index_dict:
+            active_features_indices.append(features_indices.all_feature_index_dict[(111.4, cur_tag)])
     else:
-        if re.match('^[a-z]*[A-Z\-0-9.,]+[s]$', words[i]) or words[i] == "GCS":  # NNS tag
-            if (110.5, tags[i]) in features_indices.class110_feature_index_dict:
-                active_features_indices.append(features_indices.all_feature_index_dict[(110.5, tags[i])])
+        if re.match('^[a-z]*[A-Z\-0-9.,]+[s]$', cur_word):  # NNS tag
+            if (111.5, cur_tag) in features_indices.class111_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(111.5, cur_tag)])
 
-        if (re.match('^[A-Z\-0-9.,]+$', words[i]) and words[i] not in ["I", "A", ",", ".", ":"]) or \
-                re.search('[a-z][A-Z]', words[i]) or \
-                re.match('[A-Za-z][\-][A-Za-z0-9.,\-]+$', words[i]) or \
-                re.search('coid$', words[i]) or re.search('ness$', words[i]):  # NN tag
-            if (110.6, tags[i]) in features_indices.class110_feature_index_dict:
-                active_features_indices.append(features_indices.all_feature_index_dict[(110.6, tags[i])])
+        if (re.match('^[A-Z\-0-9.,]+$', cur_word) and cur_word not in ["I", "A", ",", ".", ":"]) or \
+                re.search('[a-z][A-Z]', cur_word) or \
+                re.match('[A-Za-z][\-][A-Za-z0-9.,\-]+$', cur_word) or \
+                re.search('coid$', cur_word) or re.search('ness$', cur_word):  # NN tag
+            if (111.6, cur_tag) in features_indices.class111_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(111.6, cur_tag)])
 
-        if re.match('^[0-9\-.,]+[\-][a-zA-Z]+$', words[i]):  # might be JJ tag
-            if (110.7, tags[i]) in features_indices.class110_feature_index_dict:
-                active_features_indices.append(features_indices.all_feature_index_dict[(110.7, tags[i])])
+        if re.match('^[0-9\-.,]+[\-][a-zA-Z]+$', cur_word):  # might be JJ tag
+            if (111.7, cur_tag) in features_indices.class111_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(111.7, cur_tag)])
 
-        if re.match('^[A-Z]?[a-z]+[\-][0-9\-.,]+$', words[i]):  # might be NN tag.
-            if (110.8, tags[i]) in features_indices.class110_feature_index_dict:
-                active_features_indices.append(features_indices.all_feature_index_dict[(110.8, tags[i])])
+        if re.match('^[A-Z]?[a-z]+[\-][0-9\-.,]+$', cur_word):  # might be NN tag.
+            if (111.8, cur_tag) in features_indices.class111_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(111.8, cur_tag)])
 
-        if re.search('\.$', words[i]) and words[i] != ".":  # might be FW tag, but maybe more
-            if (110.9, tags[i]) in features_indices.class110_feature_index_dict:
-                active_features_indices.append(features_indices.all_feature_index_dict[(110.9, tags[i])])
+        if re.search('\.$', cur_word) and cur_word != ".":  # might be FW tag, but maybe more
+            if (111.9, cur_tag) in features_indices.class111_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(111.9, cur_tag)])
 
-        if words[i] in ['Treponema', 'pallidum', 'Borrelia', 'burgdorferi', 'vitro', 'vivo']:  # FW tag
-            if (110.92, tags[i]) in features_indices.class110_feature_index_dict:
-                active_features_indices.append(features_indices.all_feature_index_dict[(110.92, tags[i])])
+        if cur_word in ['Treponema', 'pallidum', 'Borrelia', 'burgdorferi', 'vitro', 'vivo']:  # FW tag
+            if (111.92, cur_tag) in features_indices.class111_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(111.92, cur_tag)])
 
-        if words[i] in ['in', 'In'] and i != len(words) - 1:  # FW tag
+        if cur_word in ['in', 'In'] and i != len(words) - 1:  # FW tag
             next_word = words[i + 1]
             if next_word in ['vitro', 'vivo']:
-                if (110.92, tags[i]) in features_indices.class110_feature_index_dict:
-                    active_features_indices.append(features_indices.all_feature_index_dict[(110.92, tags[i])])
+                if (111.92, cur_tag) in features_indices.class111_feature_index_dict:
+                    active_features_indices.append(features_indices.all_feature_index_dict[(111.92, cur_tag)])
 
-        if words[i] in ['i', 'ii', 'iii', 'iv']:  # LS tag
-            if (110.93, tags[i]) in features_indices.class110_feature_index_dict:
-                active_features_indices.append(features_indices.all_feature_index_dict[(110.93, tags[i])])
+        if cur_word in ['i', 'ii', 'iii', 'iv']:  # LS tag
+            if (111.93, cur_tag) in features_indices.class111_feature_index_dict:
+                active_features_indices.append(features_indices.all_feature_index_dict[(111.93, cur_tag)])
 
     return active_features_indices
 
@@ -1289,11 +1482,17 @@ def split_sentence_to_words_and_tags(line: str):
 
 
 def q_params_aux(words, t, u, v, weights, features_indices):
+    """
+    auxiliary function for calculating q parameters for Viterbi algorithm
+    """
     # Notice that len(words) != len(tags) , but its ok
     return sum(weights[f_xi_yi(features_indices, words=words, tags=[t, u, v], i=2)])
 
 
 def q_params_calc(k, t, u, weights, features_indices: Feature2Id, words: list, class_statistics: ClassStatistics):
+    """
+    calculate q parameters for Viterbi algorithm
+    """
     Y = list(class_statistics.Y)
 
     # set words list according to current k
@@ -1340,15 +1539,13 @@ def beam_search(B, candidates_dict):
 
 def memm_viterbi(weights, features_indices: Feature2Id, words: list, class_statistics: ClassStatistics, beam):
     """
-    :param class_statistics:
+    :param class_statistics: relevant ClassStatistics object
     :param weights: chosen weights vector. will not be changed while the viterbi algorithm
-    :param features_indices:
+    :param features_indices: relevant Feature2Id object
     :param words: a sentence to tag
     :param beam: number for beam search e.g: np.inf , 5, 10
     :return: inference of tags sequence
     """
-    # TODO should determine last tag to be '.' and '"' only? there are samples which other tag?
-    # TODO should decide deterministic for special values, e.g. ('-RRB-', '``', '$', '#', ':', ',', '.', "''",'-LRB-')
     Y = class_statistics.Y
 
     tags_infer = [None] * len(words)
@@ -1408,7 +1605,7 @@ def memm_viterbi(weights, features_indices: Feature2Id, words: list, class_stati
     for k in range(len(words) - 3, -1, -1):
         tags_infer[k] = bp[(k + 2, tags_infer[k + 1], tags_infer[k + 2])]
 
-    # Deterministic tagging  # TODO Determinitic tagging. maybe can do it smarter and change the Y that v is running on
+    # Deterministic tagging
     for i in range(len(words)):
         if words[i] in [";", "--"]:
             tags_infer[i] = ":"
@@ -1416,8 +1613,8 @@ def memm_viterbi(weights, features_indices: Feature2Id, words: list, class_stati
     return tags_infer
 
 
-def generate_inference_file(path_file_to_tag: str, path_result: str, weights, features_indices: Feature2Id,
-                            class_statistics: ClassStatistics, beam):
+def inference(path_file_to_tag: str, path_result: str, weights, features_indices: Feature2Id,
+              class_statistics: ClassStatistics, beam):
     """
     create a tagged POS file for the given file to tag
     :param path_file_to_tag: file to tag with sentences lines (can be tagged or not tagged)
@@ -1431,7 +1628,6 @@ def generate_inference_file(path_file_to_tag: str, path_result: str, weights, fe
     with open(path_result, 'w') as write_file:
         with open(path_file_to_tag) as read_file:
             for line in read_file:
-                start = time.time()
                 # prepare words list of 'line'
                 splited_words = re.split(' |[\n]', line)
                 last_char = ""  # for the last line in the file
@@ -1445,11 +1641,9 @@ def generate_inference_file(path_file_to_tag: str, path_result: str, weights, fe
                 # build the line to write and write it to result path
                 line_to_write = ' '.join(['_'.join(word_tag) for word_tag in list(zip(words, tags))]) + last_char
                 write_file.write(line_to_write)
-                stop = time.time()
-                # print(f'tagging of sentence: {line}\n       took {stop - start} secs') # TODO Delete
 
 
-def compare_tagged_files(path_true: str, path_predicted: str, class_statistics: ClassStatistics) -> (dict, float):
+def evaluate(path_true: str, path_predicted: str, class_statistics: ClassStatistics) -> (dict, float):
     """
     prepare a dictionary for (true_tag, predicted_tag) keys with values number of occurrences,
     and calculate tagging accuracy
@@ -1475,94 +1669,28 @@ def compare_tagged_files(path_true: str, path_predicted: str, class_statistics: 
         if splited_predicted[-1] == "":
             del splited_predicted[-1]  # remove \n
 
-        # TODO DELETE
-        # tags_true = [w.split('_')[1] for w in splited_true]
-        # tags_predicted = [w.split('_')[1] for w in splited_predicted]
-        for true, predicted in zip(splited_true, splited_predicted):
-            if true.split('_')[1] != predicted.split('_')[1]:
+        tags_true = [w.split('_')[1] for w in splited_true]
+        tags_predicted = [w.split('_')[1] for w in splited_predicted]
+        for true, predicted in zip(tags_true, tags_predicted):
+            if true != predicted:
                 wrong += 1
-                # print(true.split('_')[0], true.split('_')[1], predicted.split('_')[1])
             else:
                 correct += 1
 
-            if (true.split('_')[1], predicted.split('_')[1]) in dict_for_confusion_matrix:
-                dict_for_confusion_matrix[(true.split('_')[1], predicted.split('_')[1])] += 1
+            if (true, predicted) in dict_for_confusion_matrix:
+                dict_for_confusion_matrix[(true, predicted)] += 1
             else:  # for the case where we have some tag in the test that we didn't see during train
-                dict_for_confusion_matrix[(true.split('_')[1], predicted.split('_')[1])] = 1
-
-        #  TODO Replace back to original code:
-        # tags_true = [w.split('_')[1] for w in splited_true]
-        # tags_predicted = [w.split('_')[1] for w in splited_predicted]
-        # for true, predicted in zip(tags_true, tags_predicted):
-        #     if true != predicted:
-        #         wrong += 1
-        #     else:
-        #         correct += 1
-        #
-        #     if (true, predicted) in dict_for_confusion_matrix:
-        #         dict_for_confusion_matrix[(true, predicted)] += 1
-        #     else:  # for the case where we have some tag in the test that we didn't see during train
-        #         dict_for_confusion_matrix[(true, predicted)] = 1
+                dict_for_confusion_matrix[(true, predicted)] = 1
 
     return dict_for_confusion_matrix, float(correct / (correct + wrong))
 
 
-def split_train_test(tagged_file_path: str, train_path: str, test_path: str, test_size=25):
-    """
-    split a train file to: train set, validation set (randomlly)
-    :param tagged_file_path: a path for a tagged train file
-    :param train_path: path (e.g. train.txt) to save the train file
-    :param test_path: path (e.g. test.txt) to save the test file
-    :param test_size: the amount of sentences to put aside for validation, all the rest goes to train
-    :return: the path for the 2 files saved
-    """
-    # prepare sentences list from tagged file
-    with open(tagged_file_path) as file:
-        sentences = [line for line in file]
-    np.random.shuffle(sentences)
+def train_model_1(train_file_path_: str, factr_, lambda_):
+    # in case of several runs in the same code
+    initialize_global_variables()
 
-    cur_time = time.time()
-
-    # write test lines to file
-    with open(f'{cur_time}_{test_path}', 'w') as file:
-        for line in sentences[:test_size]:
-            file.write(line)
-
-    # write train lines to file
-    with open(f'{cur_time}_{train_path}', 'w') as file:
-        for line in sentences[test_size:]:
-            file.write(line)
-
-    return f'{cur_time}_{train_path}', f'{cur_time}_{test_path}'
-
-
-def run_model_1():
-    start = time.time()
-    global first_iteration
-    global active_indices_sentences_i
-    global flattened_f_xi_yi
-    global gradient_left_sigma
-    global all_active_indices
-    global softmax_indices_for_gradient
-    first_iteration = 1
-    active_indices_sentences_i = 0
-    flattened_f_xi_yi = 0
-    gradient_left_sigma = 0
-    all_active_indices = 0
-    softmax_indices_for_gradient = 0
-
-    train_file_path = r'train1.wtag'
-    test_file_path = r'test1.wtag'
-
-    factr = 1e11
-    lambd = 0.2
-    beam = 50
-    run_optimization = True
-    result_file_path = f'{test_file_path}_tagged_{time.time()}'
-    info = "THRESHOLD: 102, 103, 106, 107 np.mean()\n" \
-           "length prefix and suffix = 7.\n"
-
-    c = ClassStatistics(train_file_path)
+    # create statistics object
+    c = ClassStatistics(train_file_path_)
     c.set_class100_dict()
     c.set_class101_dict()
     c.set_class102_dict()
@@ -1575,6 +1703,7 @@ def run_model_1():
     c.set_class109_dict()
     c.set_class110_dict()
 
+    # create features from statistics
     f = Feature2Id(c)
     f.set_index_class100()
     f.set_index_class101()
@@ -1588,213 +1717,103 @@ def run_model_1():
     f.set_index_class109()
     f.set_index_class110()
 
-    print(f'f100 features amount = {len(f.class100_feature_index_dict)}')
-    print(f'f101 features amount = {len(f.class101_feature_index_dict)}')
-    print(f'f102 features amount = {len(f.class102_feature_index_dict)}')
-    print(f'f103 features amount = {len(f.class103_feature_index_dict)}')
-    print(f'f104 features amount = {len(f.class104_feature_index_dict)}')
-    print(f'f105 features amount = {len(f.class105_feature_index_dict)}')
-    print(f'f106 features amount = {len(f.class106_feature_index_dict)}')
-    print(f'f107 features amount = {len(f.class107_feature_index_dict)}')
-    print(f'f108 features amount = {len(f.class108_feature_index_dict)}')
-    print(f'f109 features amount = {len(f.class109_feature_index_dict)}')
-    print(f'f110 features amount = {len(f.class110_feature_index_dict)}')
-
-    # print(f'f108 features  = {c.class108_dict}')
-    # print(f'f109 features  = {c.class109_dict}')
-    sorted_to_print = {k: v for k, v in sorted(c.class110_dict.items(), key=lambda item: item[1], reverse=True)}
-    print(f'f110 features  = {sorted_to_print}')
-
+    # build the final features dictionary after thresholds
     f.build_all_classes_feature_index_dict()
 
-    # TODO choose pgtol, factr, lamb
-    # args= [file_path, lambda , feature_statistics, features_indices]
-    args = (train_file_path, lambd, c, f)
+    # create initial weights vector
     x0 = np.random.randn(f.n_total_features)
 
-    v_star_file_name = f'v_star_file={train_file_path}_lam={lambd}_factr={factr}_time={time.time()}.pkl'
+    # run optimization
+    # args= (file_path, lambda , feature_statistics, features_indices)
+    args = (train_file_path_, lambda_, c, f)
+    optimal_params = optimize.fmin_l_bfgs_b(func=function_l_and_gradient_l, x0=x0, args=args, factr=factr_)
 
-    print(
-        f"lambda= {lambd},\n"
-        f"factr= {factr},\n"
-        f"train_file= {train_file_path},\n"
-        f"test_file= {test_file_path},\n"
-        f"x0 length= {len(x0)}\n"
-        f"beam= {beam}\n"
-        f"info= {info}\n"
-        f"v_star_file_name = {v_star_file_name}\n"
-    )
+    # save .pkl file for statistics, features and weights objects (only for later use in generate_comp_tagged.py)
+    c_path = rf'c_object_trained_on_{train_file_path_}.pkl'
+    f_path = rf'f_object_trained_on_{train_file_path_}.pkl'
+    weights_path = rf'weights_trained_on_{train_file_path_}.pkl'
 
-    if run_optimization:
-        if type(factr) != str:  # factr is a number
-            optimal_params = optimize.fmin_l_bfgs_b(func=function_l_and_gradient_l_special, x0=x0, args=args,
-                                                    factr=factr, disp=1)
-        else:  # factr is a string = 'default'
-            optimal_params = optimize.fmin_l_bfgs_b(func=function_l_and_gradient_l_special, x0=x0, args=args,
-                                                    disp=1)
+    # extract weights
+    weights = optimal_params[0]
 
-        v_star = optimal_params[0]
-        with open(v_star_file_name, 'wb') as file:
-            pickle.dump(optimal_params[0], file)
+    # write to .pkl
+    with open(c_path, 'wb') as file:
+        pickle.dump(c, file)
+    with open(f_path, 'wb') as file:
+        pickle.dump(f, file)
+    with open(weights_path, 'wb') as file:
+        pickle.dump(weights, file)
 
-    else:
-        """LOAD PICKLE"""
-        v_star = pickle.load(open(r'', "rb"))
-
-    stop = time.time()
-    print(f'MODEL 1 TRAINING TOOK {stop - start} secs')
-
-    generate_inference_file(path_file_to_tag=test_file_path, path_result=result_file_path, weights=v_star,
-                            features_indices=f, class_statistics=c, beam=beam)
-
-    conf_mat_dict, accuracy = compare_tagged_files(path_true=test_file_path, path_predicted=result_file_path,
-                                                   class_statistics=c)
-    print(f'\nconf_mat_dict = {conf_mat_dict}')
-    print(f'\naccuracy = {accuracy}')
-
-    # conf_mat = ConfusionMatrix(conf_mat_dict, m=1, M=50)
-    # conf_mat.create_conf_matrix_save_to_html_file(f'conf_mat_{time.time()}.html')
+    return c, f, weights
 
 
-def run_model_2():
-    accuracies = list()
-    for i in range(1, 26):
-        global first_iteration
-        global active_indices_sentences_i
-        global flattened_f_xi_yi
-        global gradient_left_sigma
-        global all_active_indices
-        global softmax_indices_for_gradient
-        first_iteration = 1
-        active_indices_sentences_i = 0
-        flattened_f_xi_yi = 0
-        gradient_left_sigma = 0
-        all_active_indices = 0
-        softmax_indices_for_gradient = 0
+def train_model_2(train_file_path_: str, lambda_):
+    # in case of several runs in the same code
+    initialize_global_variables()
 
-        train_file_path = rf'kfold\train2_{i}.txt'
-        test_file_path = rf'kfold\test2_{i}.txt'
+    # create statistics object
+    c = ClassStatistics(train_file_path_)
+    c.set_class100_dict()
+    c.set_class101_dict()
+    c.set_class102_dict()
+    c.set_class103_dict()
+    c.set_class104_dict()
+    c.set_class105_dict()
+    c.set_class106_dict()
+    c.set_class107_dict()
+    c.set_class108_dict()
+    c.set_class109_dict()
+    c.set_class111_dict()
 
-        factr = 'default'
-        lambd = 0.02
-        beam = 50
-        run_optimization = True
-        result_file_path = f'{test_file_path.split(".")[0]}_tagged_{time.time()}.txt'
-        info = "THRESHOLD: 102, 103, 106, 107 np.mean()\n" \
-               "length prefix and suffix = 7.\n"
+    # create features from statistics
+    f = Feature2Id(c)
+    f.set_index_class100()
+    f.set_index_class101()
+    f.set_index_class102()
+    f.set_index_class103()
+    f.set_index_class104()
+    f.set_index_class105()
+    f.set_index_class106()
+    f.set_index_class107()
+    f.set_index_class108()
+    f.set_index_class109()
+    f.set_index_class111()
 
-        c = ClassStatistics(train_file_path)
-        c.set_class100_dict()
-        c.set_class101_dict()
-        c.set_class102_dict()
-        c.set_class103_dict()
-        c.set_class104_dict()
-        c.set_class105_dict()
-        c.set_class106_dict()
-        c.set_class107_dict()
-        c.set_class108_dict()
-        c.set_class109_dict()
-        c.set_class110_dict()
+    # build the final features dictionary after thresholds
+    f.build_all_classes_feature_index_dict()
 
-        f = Feature2Id(c)
-        f.set_index_class100()
-        f.set_index_class101()
-        f.set_index_class102()
-        f.set_index_class103()
-        f.set_index_class104()
-        f.set_index_class105()
-        f.set_index_class106()
-        f.set_index_class107()
-        f.set_index_class108()
-        f.set_index_class109()
-        f.set_index_class110()
+    # create initial weights vector
+    x0 = np.random.randn(f.n_total_features)
 
-        print(f'f100 features amount = {len(f.class100_feature_index_dict)}')
-        print(f'f101 features amount = {len(f.class101_feature_index_dict)}')
-        print(f'f102 features amount = {len(f.class102_feature_index_dict)}')
-        print(f'f103 features amount = {len(f.class103_feature_index_dict)}')
-        print(f'f104 features amount = {len(f.class104_feature_index_dict)}')
-        print(f'f105 features amount = {len(f.class105_feature_index_dict)}')
-        print(f'f106 features amount = {len(f.class106_feature_index_dict)}')
-        print(f'f107 features amount = {len(f.class107_feature_index_dict)}')
-        print(f'f108 features amount = {len(f.class108_feature_index_dict)}')
-        print(f'f109 features amount = {len(f.class109_feature_index_dict)}')
-        print(f'f110 features amount = {len(f.class110_feature_index_dict)}')
+    # run optimization
+    # args= (file_path, lambda , feature_statistics, features_indices)
+    args = (train_file_path_, lambda_, c, f)
+    optimal_params = optimize.fmin_l_bfgs_b(func=function_l_and_gradient_l, x0=x0, args=args)
 
-        # print(f'f108 features  = {c.class108_dict}')
-        # print(f'f109 features  = {c.class109_dict}')
-        sorted_to_print = {k: v for k, v in sorted(c.class110_dict.items(), key=lambda item: item[1], reverse=True)}
-        print(f'f110 features  = {sorted_to_print}')
+    # save .pkl file for statistics, features and weights objects (only for later use in generate_comp_tagged.py)
+    c_path = rf'c_object_trained_on_{train_file_path_}.pkl'
+    f_path = rf'f_object_trained_on_{train_file_path_}.pkl'
+    weights_path = rf'weights_trained_on_{train_file_path_}.pkl'
 
-        f.build_all_classes_feature_index_dict()
+    # extract weights
+    weights = optimal_params[0]
 
-        # TODO choose pgtol, factr, lamb
-        # args= [file_path, lambda , feature_statistics, features_indices]
-        args = (train_file_path, lambd, c, f)
-        x0 = np.random.randn(f.n_total_features)
+    # write to .pkl
+    with open(c_path, 'wb') as file:
+        pickle.dump(c, file)
+    with open(f_path, 'wb') as file:
+        pickle.dump(f, file)
+    with open(weights_path, 'wb') as file:
+        pickle.dump(weights, file)
 
-        v_star_file_name = f'v_star_file={train_file_path}_lam={lambd}_factr={factr}_time={time.time()}.pkl'
-
-        print(
-            f"lambda= {lambd},\n"
-            f"factr= {factr},\n"
-            f"train_file= {train_file_path},\n"
-            f"test_file= {test_file_path},\n"
-            f"x0 length= {len(x0)}\n"
-            f"beam= {beam}\n"
-            f"info= {info}\n"
-            f"v_star_file_name = {v_star_file_name}\n"
-        )
-
-        if run_optimization:
-            if type(factr) != str:  # factr is a number
-                optimal_params = optimize.fmin_l_bfgs_b(func=function_l_and_gradient_l_special, x0=x0, args=args,
-                                                        factr=factr, disp=1)
-            else:  # factr is a string = 'default'
-                optimal_params = optimize.fmin_l_bfgs_b(func=function_l_and_gradient_l_special, x0=x0, args=args,
-                                                        disp=1)
-
-            v_star = optimal_params[0]
-            # with open(v_star_file_name, 'wb') as file:
-            #     pickle.dump(optimal_params[0], file)
-
-        else:
-            """LOAD PICKLE"""
-            v_star = pickle.load(open(r'', "rb"))
-
-        generate_inference_file(path_file_to_tag=test_file_path, path_result=result_file_path, weights=v_star,
-                                features_indices=f, class_statistics=c, beam=beam)
-
-        conf_mat_dict, accuracy = compare_tagged_files(path_true=test_file_path, path_predicted=result_file_path,
-                                                       class_statistics=c)
-        accuracies.append(accuracy)
-        print(f'\nconf_mat_dict = {conf_mat_dict}')
-        print(f'\naccuracy = {accuracy}')
-
-        # conf_mat = ConfusionMatrix(conf_mat_dict, m=1, M=50)
-        # conf_mat.create_conf_matrix_save_to_html_file(f'conf_mat_{time.time()}.html')
-        print(f'\n\n\navg accuracy for {i} runs = {np.mean(accuracies)}')
-
-    print(f'\n\n\nAVG ACCURACY for {25} runs = {np.mean(accuracies)}')
+    return c, f, weights
 
 
-def main():
-    start_1 = time.time()
-    run_model_1()
-    stop_1 = time.time()
-    print(f'WHOLE MODEL 1 TOOK {stop_1 - start_1} SECS')
-
-    # start_2 = time.time()
-    # run_model_2()
-    # stop_2 = time.time()
-    # print(f'WHOLE MODEL 2 TOOK {stop_2 - start_2} SECS')
-
-
-def create_files_leave_one_out(train_file_path='train2.wtag'):
+def create_files_leave_one_out_model_2(train_file_path='train2.wtag'):
     """
-    creates files splited to train and test
+    creates files splited to train and test for model 2, with test size = 1 (leave-one-out)
     :param train_file_path: path for original tagged train file
-    :return: None, writes the files to directory name 'kfold_loo'
+    :return: None, writes the files to directory: 'kfold_loo'
     """
     # prepare sentences list from tagged file
     with open(train_file_path) as file:
@@ -1816,5 +1835,172 @@ def create_files_leave_one_out(train_file_path='train2.wtag'):
                 file.write(sentences[idx])
 
 
+def run_leave_one_out_model_2():
+    """
+    call this function after 'create_files_leave_one_out_model_2' called
+    evaluate leave-one-out accuracy for model 2
+    we used this in order to get the most accurate prediction we can on model 2 performance
+    """
+    accuracies = list()
+    for i in range(1, 251):
+        initialize_global_variables()  # in case of several runs in the same code
+        train_file_path = rf'kfold_loo\train2_{i}.txt'
+        test_file_path = rf'kfold_loo\test2_{i}.txt'
+
+        lambda_ = 0.02
+        beam_ = 50
+        result_file_path = f'{test_file_path.split(".")[0]}_tagged_{int(time.time())}.txt'
+
+        c = ClassStatistics(train_file_path)
+        c.set_class100_dict()
+        c.set_class101_dict()
+        c.set_class102_dict()
+        c.set_class103_dict()
+        c.set_class104_dict()
+        c.set_class105_dict()
+        c.set_class106_dict()
+        c.set_class107_dict()
+        c.set_class108_dict()
+        c.set_class109_dict()
+        c.set_class111_dict()
+
+        f = Feature2Id(c)
+        f.set_index_class100()
+        f.set_index_class101()
+        f.set_index_class102()
+        f.set_index_class103()
+        f.set_index_class104()
+        f.set_index_class105()
+        f.set_index_class106()
+        f.set_index_class107()
+        f.set_index_class108()
+        f.set_index_class109()
+        f.set_index_class111()
+
+        f.build_all_classes_feature_index_dict()
+
+        args = (train_file_path, lambda_, c, f)
+        x0 = np.random.randn(f.n_total_features)
+
+        optimal_params = optimize.fmin_l_bfgs_b(func=function_l_and_gradient_l, x0=x0, args=args)
+        v_star = optimal_params[0]
+
+        inference(path_file_to_tag=test_file_path, path_result=result_file_path, weights=v_star,
+                  features_indices=f, class_statistics=c, beam=beam_)
+
+        conf_mat_dict, accuracy = evaluate(path_true=test_file_path, path_predicted=result_file_path,
+                                           class_statistics=c)
+        accuracies.append(accuracy)
+
+        print(f'accuracy for run {i} = {accuracy}')
+        print(f'avg accuracy for {i} runs = {np.mean(accuracies)}\n')
+
+    print(f'ACCURACY FOR LEAVE-ONE-OUT MODEL 2 = {np.mean(accuracies)}')
+
+
+def main():
+    """
+    train all models, inference on all files
+    """
+
+    """ ---------------------------------------------------------------------------------------------- """
+    """ ########## TRAIN MODEL 1 ON train1.wtag AND INFERENCE ON: [train1.wtag, test1.wtag] ########## """
+
+    # train model 1 on train1.wtag
+    start = time.time()
+    c, f, weights = train_model_1(train_file_path_=r'train1.wtag', factr_=1e11, lambda_=0.2)
+    stop = time.time()
+    print(f'MODEL 1 TRAINING ON FILE train1.wtag TOOK {stop - start} SECS')
+
+    # inference on train1.wtag
+    start = time.time()
+    inference(path_file_to_tag=r'train1.wtag', path_result=r'train1_tagged.wtag', weights=weights,
+              features_indices=f, class_statistics=c, beam=50)
+    stop = time.time()
+    print(f'MODEL 1 INFERENCE ON train1.wtag TOOK {stop - start} SECS')
+
+    conf_mat_dict, accuracy = evaluate(path_true=r'train1.wtag', path_predicted=r'train1_tagged.wtag',
+                                       class_statistics=c)
+    print(f'ACCURACY FOR MODEL 1 TRAINED ON train1.wtag AND INFERENCE ON train1.wtag = {accuracy}')
+
+    # inference on test1.wtag
+    start = time.time()
+    inference(path_file_to_tag=r'test1.wtag', path_result=r'test1_tagged.wtag', weights=weights,
+              features_indices=f, class_statistics=c, beam=50)
+    stop = time.time()
+    print(f'MODEL 1 INFERENCE ON test1.wtag TOOK {stop - start} SECS')
+
+    conf_mat_dict, accuracy = evaluate(path_true=r'test1.wtag', path_predicted=r'test1_tagged.wtag',
+                                       class_statistics=c)
+    print(f'ACCURACY FOR MODEL 1 TRAINED ON train1.wtag AND INFERENCE ON test1.wtag = {accuracy}')
+
+    # TODO DELETE FOR SUBMISSION
+    print(f'CONF MATRIX DICT FOR MODEL 1 TRAINED ON train1.wtag AND INFERENCE ON test1.wtag =\n{conf_mat_dict}')
+
+    conf_mat = ConfusionMatrix(conf_mat_dict, m=1, M=50)
+
+    # next line plots the confusion matrix to .html file with colors ->>
+    # doesn't work on server but does work on our personal computers without any special packages ->>
+    # probably python version problem (we have python 64-bit)
+
+    # conf_mat.create_conf_matrix_save_to_html_file(r'conf_mat_train1.wtag_test1.wtag.html')
+
+    """ --------------------------------------------------------------------------------------------------------- """
+    """ ########## TRAIN MODEL 1 ON train1test1.wtag AND INFERENCE ON: [train1test1.wtag, comp1.words] ########## """
+
+    # train model 1 on train1test1.wtag ->> this file is train1.wtag + test1.wtag together
+    start = time.time()
+    c, f, weights = train_model_1(train_file_path_=r'train1test1.wtag', factr_=1e11, lambda_=0.2)
+    stop = time.time()
+    print(f'MODEL 1 TRAINING ON FILE train1test1.wtag TOOK {stop - start} SECS')
+
+    # inference on train1test1.wtag
+    start = time.time()
+    inference(path_file_to_tag=r'train1test1.wtag', path_result=r'train1test1_tagged.wtag', weights=weights,
+              features_indices=f, class_statistics=c, beam=50)
+    stop = time.time()
+    print(f'MODEL 1 INFERENCE ON train1test1.wtag TOOK {stop - start} SECS')
+
+    conf_mat_dict, accuracy = evaluate(path_true=r'train1test1.wtag', path_predicted=r'train1test1_tagged.wtag',
+                                       class_statistics=c)
+    print(f'ACCURACY FOR MODEL 1 TRAINED ON train1test1.wtag AND INFERENCE ON train1test1.wtag = {accuracy}')
+
+    # inference on comp1.words
+    start = time.time()
+    inference(path_file_to_tag=r'comp1.words', path_result=r'comp_m1_308044296.wtag', weights=weights,
+              features_indices=f, class_statistics=c, beam=50)
+    stop = time.time()
+    print(f'MODEL 1 INFERENCE ON comp1.words TOOK {stop - start} SECS')
+
+    """ ----------------------------------------------------------------------------------------------- """
+    """ ########## TRAIN MODEL 2 ON train2.wtag AND INFERENCE ON: [train2.wtag, comp2.words] ########## """
+
+    # train model 2 on train2.wtag
+    start = time.time()
+    c, f, weights = train_model_2(train_file_path_=r'train2.wtag', lambda_=0.02)
+    stop = time.time()
+    print(f'MODEL 2 TRAINING ON FILE train2.wtag TOOK {stop - start} SECS')
+
+    # inference on train2.wtag
+    start = time.time()
+    inference(path_file_to_tag=r'train2.wtag', path_result=r'train2_tagged.wtag', weights=weights,
+              features_indices=f, class_statistics=c, beam=50)
+    stop = time.time()
+    print(f'MODEL 2 INFERENCE ON train2.wtag TOOK {stop - start} SECS')
+
+    conf_mat_dict, accuracy = evaluate(path_true=r'train2.wtag', path_predicted=r'train2_tagged.wtag',
+                                       class_statistics=c)
+    print(f'ACCURACY FOR MODEL 2 TRAINED ON train2.wtag AND INFERENCE ON train2.wtag = {accuracy}')
+
+    # inference on comp2.words
+    start = time.time()
+    inference(path_file_to_tag=r'comp2.words', path_result=r'comp_m2_308044296.wtag', weights=weights,
+              features_indices=f, class_statistics=c, beam=50)
+    stop = time.time()
+    print(f'MODEL 2 INFERENCE ON comp2.words TOOK {stop - start} SECS')
+
+
 if __name__ == "__main__":
+    # TODO put leave_one_out in comment
+    run_leave_one_out_model_2()
     main()
