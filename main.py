@@ -878,9 +878,11 @@ class ConfusionMatrix:
         color = '#C2C2C2'
         return 'background-color: %s' % color
 
-    def create_conf_matrix_save_to_html_file(self, output_path: str):
+    def plot_confusion_matrix(self, output_path: str = '', colored_table=False):
         """
-        creates confusion matrix, highlight color and save to .html file
+        creates confusion matrix.
+         if colored_table = False only plot the DataFrame to console
+         but if colored_table = True create beautiful colored table and save to .html file with path 'outputh_path'
                            TRUE TAG FOR TOP 10 CONFUSED TAGS
                            ________________________________
             PREDICTED TAG  |      ||      ||      ||      |
@@ -895,7 +897,8 @@ class ConfusionMatrix:
                            ________________________________
 
         (in Jupyter / Python Notebook it shows in the interface, in python script need to save to .html to show result)
-        :param output_path: the path for .html file to save
+        :param output_path: the path for .html file to save (only saves if colored_table = True)
+        :param colored_table: if True will save .html file with colored confusion matrix
         :return: None
         """
         # create dict for wrong tagging in the format ->  true_tag : total amount of mistakes
@@ -929,6 +932,13 @@ class ConfusionMatrix:
 
                 else:
                     df.loc[pred_tag][true_tag] = 0
+
+        #  plot the regular DataFrame without colors
+        if not colored_table:
+            print(df)
+            return
+
+        # else: plot styled DataFrame with colors
 
         # change colors for wrong tagging
         style = df.style.apply(self.background_gradient, axis=None)
@@ -1935,16 +1945,8 @@ def main():
                                        class_statistics=c)
     print(f'ACCURACY FOR MODEL 1 TRAINED ON train1.wtag AND INFERENCE ON test1.wtag = {accuracy}')
 
-    # TODO DELETE FOR SUBMISSION
-    print(f'CONF MATRIX DICT FOR MODEL 1 TRAINED ON train1.wtag AND INFERENCE ON test1.wtag =\n{conf_mat_dict}')
-
     conf_mat = ConfusionMatrix(conf_mat_dict, m=1, M=50)
-
-    # next line plots the confusion matrix to .html file with colors ->>
-    # doesn't work on server but does work on our personal computers without any special packages ->>
-    # probably python version problem (we have python 64-bit)
-
-    # conf_mat.create_conf_matrix_save_to_html_file(r'conf_mat_train1.wtag_test1.wtag.html')
+    conf_mat.plot_confusion_matrix()
 
     """ --------------------------------------------------------------------------------------------------------- """
     """ ########## TRAIN MODEL 1 ON train1test1.wtag AND INFERENCE ON: [train1test1.wtag, comp1.words] ########## """
@@ -2002,6 +2004,5 @@ def main():
 
 
 if __name__ == "__main__":
-    # TODO put leave_one_out in comment
-    run_leave_one_out_model_2()
+    # run_leave_one_out_model_2()
     main()
