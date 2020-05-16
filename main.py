@@ -878,11 +878,11 @@ class ConfusionMatrix:
         color = '#C2C2C2'
         return 'background-color: %s' % color
 
-    def plot_confusion_matrix(self, output_path: str = '', colored_table=False):
+    def plot_confusion_matrix(self, output_path: str = '', colored=False):
         """
         creates confusion matrix.
-         if colored_table = False only plot the DataFrame to console
-         but if colored_table = True create beautiful colored table and save to .html file with path 'outputh_path'
+         if colored = False only plot the DataFrame to console
+         but if colored = True create beautiful colored table and save to .html file with path 'outputh_path'
                            TRUE TAG FOR TOP 10 CONFUSED TAGS
                            ________________________________
             PREDICTED TAG  |      ||      ||      ||      |
@@ -897,8 +897,8 @@ class ConfusionMatrix:
                            ________________________________
 
         (in Jupyter / Python Notebook it shows in the interface, in python script need to save to .html to show result)
-        :param output_path: the path for .html file to save (only saves if colored_table = True)
-        :param colored_table: if True will save .html file with colored confusion matrix
+        :param output_path: the path for .html file to save (only saves if colored = True)
+        :param colored: if True will save .html file with colored confusion matrix
         :return: None
         """
         # create dict for wrong tagging in the format ->  true_tag : total amount of mistakes
@@ -934,7 +934,7 @@ class ConfusionMatrix:
                     df.loc[pred_tag][true_tag] = 0
 
         #  plot the regular DataFrame without colors
-        if not colored_table:
+        if not colored:
             print(df)
             return
 
