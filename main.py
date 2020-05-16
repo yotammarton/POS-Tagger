@@ -417,8 +417,20 @@ class ClassStatistics:
 
     def set_class110_dict(self):
         """
-        Create counts dict for class 110 features
-        TODO update documentation
+        Create counts dict for class 110 features - additional patterns for model 1
+        Description of the sub-classes:
+            110.12. if the word length is >= 13 and finish with common suffixes for 'RB' tag
+            110.135. if the word length is >= 13 and finish with common suffixes for 'NNP' tag
+            110.2. if the word length is >= 13 and finish with common suffixes for 'NN'/'NNS' tag
+            elif:
+            110.3. if the word is from the form of number ('CD' tag)
+            110.35. if the word is from the form of number ('CD' tag) - greek numbers
+            110.4. if the word contains hyphen and finish with common suffixes for 'JJ' tag
+            elif the word is not kind of Punctuation mark
+            110.5. if the word is from common pattern of 'NNS' tag, and has not common year pattern.
+            110.6. if the word is from common pattern of 'NNP' tag (few patterns conatin capital letters)
+            110.7. if the word is from common pattern of 'JJ' tag (number + hyphen + letters)
+            110.9. if the word contains dot (common pattern of 'NNP' tag)
         """
         with open(self.file_path) as f:
             for line in f:
@@ -521,8 +533,26 @@ class ClassStatistics:
 
     def set_class111_dict(self):
         """
-        Create counts dict for class 111 features
-        TODO update documentation
+        Create counts dict for class 111 features - additional patterns for model 2
+        Description of the sub-classes:
+            110.11. if the word length is >= 13 and finish with common suffixes for 'VBG' tag
+            110.12. if the word length is >= 13 and finish with common suffixes for 'RB' tag
+            110.13. if the word length is >= 13 and finish with common suffixes for 'JJ' tag
+            110.14. if the word length is >= 13 and finish with common suffixes for 'VBN'/'VBD' tag
+            110.135. if the word length is >= 13 and finish with common suffixes for 'NNP' tag
+            110.2. if the word length is >= 13 and finish with common suffixes for 'NN'/'NNS' tag
+            110.1. if the word length is >= 13 and finish with common suffixes for 'NN' tag
+            elif:
+            110.3. if the word is from the form of number ('CD' tag)
+            110.4. if the word contains hyphen and finish with common suffixes for 'JJ' tag
+            else:
+            110.5. if the word is from common special pattern of 'NNS' tag.
+            110.6. if the word is from common pattern of 'NN' tag (patterns contain capital letters)
+            110.7. if the word is from common pattern of 'JJ' tag (number + hyphen + letters)
+            110.8. if the word is from common pattern of 'NN' tag (letters + hyphen + numbers)
+            110.9. if the word contains dot (common pattern of 'FW' tag)
+            110.92. if the word contains dot (common pattern of 'FW' tag)
+            110.93. if the word contains dot (common pattern of 'LS' tag)
         """
         with open(self.file_path) as f:
             for line in f:
