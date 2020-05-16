@@ -12,8 +12,6 @@ import time
 import os
 
 
-# TODO run generate_comp_tagged.py and see the results are the same as our comp tagged files - BE CAREFUL - OVERWRITES!!!!
-
 class ClassStatistics:
     """
     define classes of features and its statistics (e.g. counts)
