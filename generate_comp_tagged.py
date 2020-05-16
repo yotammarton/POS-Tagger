@@ -1,5 +1,7 @@
 import pickle
 import main
+from main import ClassStatistics
+from main import Feature2Id
 
 if __name__ == "__main__":
     """ -------------------------------- """
